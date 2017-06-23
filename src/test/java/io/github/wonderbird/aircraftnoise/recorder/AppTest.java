@@ -32,7 +32,7 @@ public class AppTest {
 
         vertx.createHttpClient().getNow(8080, "localhost", "/",
                 response -> response.handler(body -> {
-                    context.assertTrue(body.toString().contains("<h1>Fluglärm Recorder</h1>"));
+                    context.assertTrue(body.toString().contains("<h1>Aircraft Noise Recorder</h1>"));
                     async.complete();
                 }));
     }

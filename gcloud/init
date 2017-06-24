@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Initialize the google cloud project for this application
+#
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. "$DIR/config"
+
+echo
+echo =====
+echo Initializing the Google Cloud project for Aircraft Noise ...
+echo =====
+
+gcloud config set compute/zone europe-west1-b
+gcloud config set project aircraftnoise100
+
+echo
+echo =====
+echo Current Google Cloud Settings
+echo =====
+
+gcloud config list

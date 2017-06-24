@@ -22,7 +22,7 @@ public class App extends AbstractVerticle {
                 .createHttpServer()
                 .requestHandler(router::accept)
                 .listen(
-                        config().getInteger("http.port", 8080),
+                        config().getInteger("http.port", 80),
                         result -> {
                             if (result.succeeded()) {
                                 fut.complete();

@@ -6,9 +6,9 @@ addons:
   apt:
     packages:
     - oracle-java8-installer
-#cache:
-#  directories:
-#  - "$HOME/google-cloud-sdk/"
+cache:
+  directories:
+  - "$HOME/google-cloud-sdk/"
 env:
 - PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
@@ -22,3 +22,8 @@ before_install:
 - gcloud auth activate-service-account --key-file client-secret.json
 install:
 - gcloud config set project aircraftnoise100
+after_success:
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v5 .
+  gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v5
+  fi

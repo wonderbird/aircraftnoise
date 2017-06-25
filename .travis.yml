@@ -14,9 +14,9 @@ env:
 before_install:
 - openssl aes-256-cbc -K $encrypted_72f876c3e1a5_key -iv $encrypted_72f876c3e1a5_iv
   -in gcloud/credentials.tar.gz.enc -out gcloud/credentials.tar.gz -d
-#- if [ ! -d ${HOME}/google-cloud-sdk ]; then echo Installing Google Cloud SDK ...;
-#  curl https://sdk.cloud.google.com | bash; fi
-- curl https://sdk.cloud.google.com | bash
+- if [ ! -d ${HOME}/google-cloud-sdk ]; then echo Installing Google Cloud SDK ...;
+  curl https://sdk.cloud.google.com | bash; fi
+#- curl https://sdk.cloud.google.com | bash
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json

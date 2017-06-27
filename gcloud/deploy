@@ -2,6 +2,8 @@
 #
 # Deploy the updated Docker image to the Google Cloud
 
+mvn verify
+
 echo
 echo =====
 echo

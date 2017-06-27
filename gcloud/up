@@ -24,4 +24,8 @@ echo =====
 echo Exposing pod
 echo =====
 kubectl expose deployment ${DEPLOYMENT_NAME} --type=LoadBalancer --port 80
+EXTERNAL_IP="<pending>"
+while [ "$EXTERNAL_IP" == "<pending>" ]; do
+    EXTERNAL_IP=`kubectl get service | grep aircraft-noise-recorder-pod | sed -n -E 's/[^\ ]+\ +[^\ ]+\ +([^\ ]+).*/\1/p'`
+done
 kubectl get service

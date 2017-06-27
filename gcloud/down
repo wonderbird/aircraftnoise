@@ -19,7 +19,7 @@ echo =====
 NUM_FORWARDING_RULES=-1
 while [ "$NUM_FORWARDING_RULES" != "0" ]; do
   NUM_FORWARDING_RULES=`gcloud compute forwarding-rules list 2>&1 | grep -E "Listed\ \d+\ items." | sed -E -n 's/.*\ ([0-9]+)\ .*/\1/p'`
-  echo Currently $NUM_FORWARDING_RULES forwarding rules are active.
+  echo Currently some forwarding rules are active.
 done
 
 echo
@@ -27,4 +27,4 @@ echo =====
 echo Deleting container cluster
 echo =====
 
-gcloud container clusters delete ${CLUSTER_NAME}
+gcloud container clusters delete --quiet ${CLUSTER_NAME}

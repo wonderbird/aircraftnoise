@@ -11,7 +11,7 @@
 FROM vertx/vertx3
 
 ENV VERTICLE_NAME io.github.wonderbird.aircraftnoise.recorder.App
-ENV VERTICLE_FILE target/aircraft-noise-1.0-SNAPSHOT-*-fat.jar
+ENV VERTICLE_FILE target/aircraft-noise-1.0-SNAPSHOT-fat.jar
 
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles

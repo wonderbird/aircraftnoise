@@ -2,6 +2,14 @@
 #
 # Deploy the updated Docker image to the Google Cloud
 
+echo
+echo =====
+echo
+ls -l target
+echo
+echo =====
+echo
+
 docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v7 .
 gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v7
 kubectl set image deployment/aircraft-noise-recorder-pod aircraft-noise-recorder-pod=gcr.io/aircraftnoise100/aircraft-noise-recorder:v7

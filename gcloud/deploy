@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Deploy the updated Docker image to the Google Cloud
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+$DIR/build
+$DIR/push

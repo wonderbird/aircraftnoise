@@ -27,5 +27,7 @@ after_success:
 #  docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v5 .
 #  gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v5
 #  fi
-- docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v5 .
-- gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v5
+#- docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v5 .
+#- gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v5
+- gcloud/build
+- gcloud/push

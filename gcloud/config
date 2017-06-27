@@ -1,6 +1,6 @@
 export PROJECT_ID=aircraftnoise100
 export IMAGE_NAME=aircraft-noise-recorder
-export IMAGE_VERSION=v5
+export IMAGE_VERSION=v6
 export CLUSTER_NAME=aircraft-noise-cluster
 export NUM_NODES=1
 export DEPLOYMENT_NAME=aircraft-noise-recorder-pod

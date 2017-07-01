@@ -19,6 +19,7 @@ before_install:
 #- if [ ! -d ${HOME}/google-cloud-sdk ]; then echo Installing Google Cloud SDK ...;
 #  curl https://sdk.cloud.google.com | bash; fi
 - curl https://sdk.cloud.google.com | bash
+- gcloud --quiet components update kubectl
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json

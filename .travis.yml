@@ -29,7 +29,9 @@ before_install:
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
 - gcloud version
-- gcloud --quiet components install kubectl
+- curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+- chmod +x ./kubectl
+- mv ./kubectl ${HOME}/google-cloud-sdk/bin
 
 install:
 - gcloud config set project aircraftnoise100

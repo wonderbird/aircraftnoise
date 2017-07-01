@@ -2,29 +2,36 @@ sudo: required
 language: java
 jdk:
 - oraclejdk8
+
 addons:
   apt:
     packages:
     - oracle-java8-installer
+
 services:
   - docker
+
 #cache:
 #  directories:
 #  - "$HOME/google-cloud-sdk/"
-env:
-- PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_72f876c3e1a5_key -iv $encrypted_72f876c3e1a5_iv
   -in gcloud/credentials.tar.gz.enc -out gcloud/credentials.tar.gz -d
 #- if [ ! -d ${HOME}/google-cloud-sdk ]; then echo Installing Google Cloud SDK ...;
 #  curl https://sdk.cloud.google.com | bash; fi
+- rm -rfv ${HOME}/google-cloud-sdk
 - curl https://sdk.cloud.google.com | bash
-- gcloud --quiet components update kubectl
+- source ${HOME}/google-cloud-sdk/path.bash.inc
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
+- gcloud version
+- gcloud --quiet components update kubectl
+
 install:
 - gcloud config set project aircraftnoise100
+
 deploy:
   skip_cleanup: true
   provider: script

@@ -38,15 +38,15 @@ before_install:
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
+
+install:
+- gcloud config set compute/zone europe-west1-b
+- gcloud config set project aircraftnoise100
+- gcloud config list
 # Get login data for kubectl
 # See also:
 # - http://thylong.com/ci/2016/deploying-from-travis-to-gce/ and associated GitHub repository
 - gcloud container clusters get-credentials aircraftnoise100
-- gcloud version
-- kubectl version
-
-install:
-- gcloud config set project aircraftnoise100
 
 deploy:
   skip_cleanup: true

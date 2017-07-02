@@ -2,16 +2,24 @@
 #
 # Deploy the updated Docker image to the Google Cloud
 
+. ./gcloud/config
+
 mvn package -Dmaven.test.skip=true
 
-echo
 echo =====
-echo
-ls -l target
-echo
+echo Building docker image ...
 echo =====
-echo
 
-docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v9 .
-gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v9
-kubectl set image deployment/aircraft-noise-recorder-pod aircraft-noise-recorder-pod=gcr.io/aircraftnoise100/aircraft-noise-recorder:v9
+docker build -t gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_VERSION} .
+
+echo
+echo =====
+echo Pushing docker image to Google Cloud ...
+echo =====
+gcloud docker -- push gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_VERSION}
+
+echo
+echo =====
+echo Activating deployed container ...
+echo =====
+kubectl set image deployment/${DEPLOYMENT_NAME} ${DEPLOYMENT_NAME}=gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_VERSION}

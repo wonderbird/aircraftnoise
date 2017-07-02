@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. "$DIR/config"
+
+echo =====
+echo Deleting container cluster
+echo =====
+
+gcloud container clusters delete --quiet ${CLUSTER_NAME}

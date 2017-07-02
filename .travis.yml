@@ -46,7 +46,7 @@ install:
 # Get login data for kubectl
 # See also:
 # - http://thylong.com/ci/2016/deploying-from-travis-to-gce/ and associated GitHub repository
-- gcloud container clusters get-credentials aircraftnoise100
+- gcloud container clusters get-credentials aircraft-noise-cluster
 
 deploy:
   skip_cleanup: true

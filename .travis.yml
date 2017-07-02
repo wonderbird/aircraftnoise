@@ -16,7 +16,7 @@ services:
 #  - "$HOME/google-cloud-sdk/"
 
 env:
-- PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1 CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+- PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1 CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" GOOGLE_APPLICATION_CREDENTIALS=${HOME}/client-secret.json
 
 before_install:
 # Install Google Cloud SDK
@@ -38,7 +38,10 @@ before_install:
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
-- gcloud auth application-default login
+# Get login data for kubectl
+# See also:
+# - http://thylong.com/ci/2016/deploying-from-travis-to-gce/ and associated GitHub repository
+- gcloud container clusters get-credentials aircraftnoise100
 - gcloud version
 - kubectl version
 

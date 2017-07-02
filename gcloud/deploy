@@ -12,6 +12,6 @@ echo
 echo =====
 echo
 
-docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v7 .
-gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v7
-kubectl set image deployment/aircraft-noise-recorder-pod aircraft-noise-recorder-pod=gcr.io/aircraftnoise100/aircraft-noise-recorder:v7
+docker build -t gcr.io/aircraftnoise100/aircraft-noise-recorder:v8 .
+gcloud docker -- push gcr.io/aircraftnoise100/aircraft-noise-recorder:v8
+kubectl set image deployment/aircraft-noise-recorder-pod aircraft-noise-recorder-pod=gcr.io/aircraftnoise100/aircraft-noise-recorder:v8

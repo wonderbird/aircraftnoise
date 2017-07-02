@@ -38,6 +38,7 @@ before_install:
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
+- gcloud auth application-default login
 - gcloud version
 - kubectl version
 

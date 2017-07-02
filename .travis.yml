@@ -16,22 +16,30 @@ services:
 #  - "$HOME/google-cloud-sdk/"
 
 env:
-- PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1
+- PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1 CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 
 before_install:
+# Install Google Cloud SDK
+# See also:
+# - https://cloud.google.com/sdk/downloads#apt-get
+# - https://docs.travis-ci.com/user/installing-dependencies/
+- echo ${CLOUD_SDK_REPO}
+- sudo apt-get -qq update
+- echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+- curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+- sudo apt-get update -qq
+- sudo apt-get install google-cloud-sdk -y
+- sudo apt-get install kubectl -y
+# Authorize with Google Cloud using the API key
+# See also:
+# - Section "Creating Credentials" in https://cloud.google.com/solutions/continuous-delivery-with-travis-ci
 - openssl aes-256-cbc -K $encrypted_72f876c3e1a5_key -iv $encrypted_72f876c3e1a5_iv
   -in gcloud/credentials.tar.gz.enc -out gcloud/credentials.tar.gz -d
-#- if [ ! -d ${HOME}/google-cloud-sdk ]; then echo Installing Google Cloud SDK ...;
-#  curl https://sdk.cloud.google.com | bash; fi
-- rm -rfv ${HOME}/google-cloud-sdk
-- curl https://sdk.cloud.google.com | bash
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
 - gcloud version
-- curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-- chmod +x ./kubectl
-- mv ./kubectl ${HOME}/google-cloud-sdk/bin
+- kubectl version
 
 install:
 - gcloud config set project aircraftnoise100

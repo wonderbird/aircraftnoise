@@ -2,52 +2,39 @@ sudo: required
 language: java
 jdk:
 - oraclejdk8
-
 addons:
   apt:
     packages:
     - oracle-java8-installer
-
 services:
-  - docker
-
-#cache:
-#  directories:
-#  - "$HOME/google-cloud-sdk/"
-
+- docker
 env:
-- PATH=$PATH:${HOME}/google-cloud-sdk/bin CLOUDSDK_CORE_DISABLE_PROMPTS=1 CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" GOOGLE_APPLICATION_CREDENTIALS=${HOME}/client-secret.json
-
+  global:
+  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+  - GOOGLE_APPLICATION_CREDENTIALS=${HOME}/client-secret.json
+  global:
+    secure: jKJUWdNM9kxzXuF8XVfNfcPBZcn4K35AXoLBvEDenDrzFhqU8MWKkSKrI/vWo6aM1Y3zJMGRixlJg7Klqfl9fmxEbINb1opcmZOKqQfS+91+rb28wMp35OYtH2kYp5HDnWmoiUw0Aqw1m8oXiE+fovEoL85zgQ7qLajN+Tk2jXta5PPNTTzy9TBSt+Ovlzp9bFPj3mNjDRNyUM3jlpqy1YM9OT0tYrOCE5q+7xJO79ikxK9E9wwvShaIgUKAsNh/2tCaX/ZwxrDXXEAeug1hos3TcIBC/fZbJLdLQYyYcpnoaInotmkDcIK85D8vlDWVmNYJLkSPGQtHgnAYyHadrkkgKZ9pfLNwnvV5Gh15R7lq+TM4HCsJ3QjZzAjG3XZOJ/ya0SPTaMWR8bc8OM1YlVWy7FbI+VjCSujkdg9oqXypB6gP7p7WeqASCMprHgv012bdjrfHJmBVe5hDW5kS+GBxTrmc/Ku87/9od+PcgOzyAdf/MUx7KO2M5arRVJ8SRL+ZkSUwX9w+aozWrUuRXaxf045OExYtE7S47T+jwiUdDrAax/LEMrl2G1NwQ5SPIOcLx323l2uNNXcSuGUGqOPVTUbIDnyAnIAWEiYmd5ibASfO8gSX/ByCXKdC/MZ92O30xtbjKqPLXp7UVoJAuvhHwWs0z3f2t3Oq3JrzFwk=
 before_install:
-# Install Google Cloud SDK
-# See also:
-# - https://cloud.google.com/sdk/downloads#apt-get
-# - https://docs.travis-ci.com/user/installing-dependencies/
 - echo ${CLOUD_SDK_REPO}
 - sudo apt-get -qq update
-- echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+- echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee
+  -a /etc/apt/sources.list.d/google-cloud-sdk.list
 - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 - sudo apt-get update -qq
 - sudo apt-get install google-cloud-sdk -y
 - sudo apt-get install kubectl -y
-# Authorize with Google Cloud using the API key
-# See also:
-# - Section "Creating Credentials" in https://cloud.google.com/solutions/continuous-delivery-with-travis-ci
 - openssl aes-256-cbc -K $encrypted_72f876c3e1a5_key -iv $encrypted_72f876c3e1a5_iv
   -in gcloud/credentials.tar.gz.enc -out gcloud/credentials.tar.gz -d
 - tar -xzf gcloud/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
-
 install:
 - gcloud config set compute/zone europe-west1-b
 - gcloud config set project aircraftnoise100
 - gcloud config list
-# Get login data for kubectl
-# See also:
-# - http://thylong.com/ci/2016/deploying-from-travis-to-gce/ and associated GitHub repository
 - gcloud container clusters get-credentials aircraft-noise-cluster
-
 deploy:
   skip_cleanup: true
   provider: script

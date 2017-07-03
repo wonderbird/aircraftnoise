@@ -15,21 +15,15 @@ echo =====
 echo Bumping version ...
 echo =====
 
+git config --global user.email "travis@travis-ci.org"
+git config --global user.name "Travis CI"
+
+git checkout -b master
+
 VERSION=`cat VERSION`
 VERSION=`echo ${VERSION} | ./gcloud/inc.awk`
 echo ${VERSION} > VERSION
 echo Version: ${VERSION}
-
-echo
-echo =====
-echo Pushing Version to GitHub ...
-echo =====
-
-git add VERSION
-git commit -m "Version ${VERSION}"
-git tag -a "${VERSION}" -m "Version ${VERSION}"
-git push
-git push --tags
 
 echo
 echo =====
@@ -49,3 +43,18 @@ echo =====
 echo Activating deployed container ...
 echo =====
 kubectl set image deployment/${DEPLOYMENT_NAME} ${DEPLOYMENT_NAME}=gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${VERSION}
+
+echo
+echo =====
+echo Pushing VERSION to GitHub ...
+echo =====
+git add VERSION
+git commit -m "Version ${VERSION}"
+git tag -a "${VERSION}" -m "Version ${VERSION}"
+
+# Regarding the GitHub Access Token inside Travis see
+# https://gist.github.com/willprice/e07efd73fb7f13f917ea
+
+git remote add origin https://${GITHUB_ACCESS_TOKEN}@github.com/wonderbird/aircraftnoise.git >/dev/null 2>&1
+git push --set-upstream origin master
+git push --tags git push --set-upstream origin master

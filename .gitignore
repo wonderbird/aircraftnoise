@@ -24,3 +24,6 @@ hs_err_pid*
 # Credentials for Travis CI
 gcloud/client-secret.json
 gcloud/credentials.tar.gz
+
+# GitHub Access Token for Travis CI
+gcloud/github-access-token.txt

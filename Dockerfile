@@ -19,7 +19,7 @@ ENV VERTICLE_HOME /usr/verticles
 EXPOSE 8080
 
 # Copy the version file to the container
-ADD VERSION $VERTICLE_HOME/
+# ADD VERSION $VERTICLE_HOME/
 
 # Copy your verticle to the container
 COPY $VERTICLE_FILE $VERTICLE_HOME/

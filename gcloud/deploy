@@ -49,12 +49,12 @@ echo =====
 echo Pushing VERSION to GitHub ...
 echo =====
 git add VERSION
-git commit -m "Version ${VERSION}"
-git tag -a "${VERSION}" -m "Version ${VERSION} [skip ci]"
+git commit -m "Version ${VERSION} [skip ci]"
+git tag -a "${VERSION}" -m "Version ${VERSION}"
 
 # Regarding the GitHub Access Token inside Travis see
 # https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
 git remote add token https://${GITHUB_ACCESS_TOKEN}@github.com/wonderbird/aircraftnoise.git >/dev/null 2>&1
-#git push token master
-#git push --tags token master
+git push token master
+git push --tags token master

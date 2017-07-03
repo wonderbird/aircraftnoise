@@ -18,7 +18,7 @@ echo =====
 git config --global user.email "stefan.boos@gmx.de"
 git config --global user.name "wonderbird"
 
-git checkout -b master
+git checkout master
 
 VERSION=`cat VERSION`
 VERSION=`echo ${VERSION} | ./gcloud/inc.awk`
@@ -55,6 +55,6 @@ git tag -a "${VERSION}" -m "Version ${VERSION}"
 # Regarding the GitHub Access Token inside Travis see
 # https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
-git remote add origin https://${GITHUB_ACCESS_TOKEN}@github.com/wonderbird/aircraftnoise.git >/dev/null 2>&1
-git push --set-upstream origin master
-git push --tags git push --set-upstream origin master
+git remote add token https://${GITHUB_ACCESS_TOKEN}@github.com/wonderbird/aircraftnoise.git >/dev/null 2>&1
+git push --set-upstream token master
+git push --tags git push --set-upstream token master

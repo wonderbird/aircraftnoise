@@ -16,7 +16,7 @@ echo Bumping version ...
 echo =====
 
 git config --global user.email "stefan.boos@gmx.de"
-git config --global user.name "wonderbird"
+git config --global user.name "Travis CI"
 
 git checkout master
 

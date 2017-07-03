@@ -56,5 +56,5 @@ git tag -a "${VERSION}" -m "Version ${VERSION}"
 # https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
 git remote add token https://${GITHUB_ACCESS_TOKEN}@github.com/wonderbird/aircraftnoise.git >/dev/null 2>&1
-git push token master
-git push --tags token master
+#git push token master
+#git push --tags token master

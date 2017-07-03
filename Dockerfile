@@ -21,6 +21,9 @@ EXPOSE 8080
 # Copy your verticle to the container
 COPY $VERTICLE_FILE $VERTICLE_HOME/
 
+# Copy the version file to the container
+COPY VERSION $VERTICLE_HOME/
+
 # Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]

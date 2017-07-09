@@ -26,7 +26,7 @@ public class App extends AbstractVerticle {
                 .createHttpServer()
                 .requestHandler(router::accept)
                 .listen(
-                        config().getInteger("http.port", 8080),
+                        config().getInteger("http.port", 80),
                         result -> {
                             if (result.succeeded()) {
                                 fut.complete();
@@ -38,7 +38,7 @@ public class App extends AbstractVerticle {
     }
 
     private void listDirectory(RoutingContext routingContext) {
-        DirectoryList list = new DirectoryListReader().read();
+        DirectoryList list = new FileSystemDirectoryListReader().read();
         routingContext.response()
                 .putHeader("content-type", "application/json; charset=utf-8")
                 .end(Json.encodePrettily(list));

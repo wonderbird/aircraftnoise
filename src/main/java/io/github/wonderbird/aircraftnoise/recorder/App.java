@@ -27,6 +27,7 @@ public class App extends AbstractVerticle {
         router.route().handler(StaticHandler.create());
 
         int httpPort = config().getInteger("http.port", 8080);
+        System.out.println("Configured port: " + httpPort);
 
         vertx
                 .createHttpServer()

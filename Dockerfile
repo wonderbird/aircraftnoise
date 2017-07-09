@@ -17,7 +17,7 @@ ENV VERTICLE_FILE aircraft-noise-1.0-SNAPSHOT-fat.jar
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles
 
-EXPOSE 8080
+EXPOSE 80
 
 # Copy your verticle to the container
 COPY $VERTICLE_DIR/$VERTICLE_FILE $VERTICLE_HOME/
@@ -28,4 +28,4 @@ COPY VERSION $VERTICLE_HOME/
 # Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["exec vertx run $VERTICLE_NAME -cp $VERTICLE_HOME/$VERTICLE_FILE"]
+CMD ["exec vertx run -conf '{ \"http.port\": 80 }' $VERTICLE_NAME -cp $VERTICLE_HOME/$VERTICLE_FILE"]

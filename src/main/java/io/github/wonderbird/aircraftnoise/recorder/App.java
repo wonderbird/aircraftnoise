@@ -26,11 +26,13 @@ public class App extends AbstractVerticle {
 
         router.route().handler(StaticHandler.create());
 
+        int httpPort = config().getInteger("http.port", 8080);
+
         vertx
                 .createHttpServer()
                 .requestHandler(router::accept)
                 .listen(
-                        config().getInteger("http.port", 80),
+                        httpPort,
                         result -> {
                             if (result.succeeded()) {
                                 fut.complete();

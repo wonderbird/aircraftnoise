@@ -17,7 +17,7 @@ ENV VERTICLE_FILE aircraft-noise-1.0-SNAPSHOT-fat.jar
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles
 
-EXPOSE 80
+EXPOSE 8080
 
 # Copy your verticle to the container
 COPY $VERTICLE_DIR/$VERTICLE_FILE $VERTICLE_HOME/

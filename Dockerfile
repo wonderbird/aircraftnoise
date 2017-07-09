@@ -11,20 +11,21 @@
 FROM vertx/vertx3
 
 ENV VERTICLE_NAME io.github.wonderbird.aircraftnoise.recorder.App
-ENV VERTICLE_FILE target/aircraft-noise-1.0-SNAPSHOT-fat.jar
+ENV VERTICLE_DIR target
+ENV VERTICLE_FILE aircraft-noise-1.0-SNAPSHOT-fat.jar
 
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles
 
-EXPOSE 8080
-
-# Copy the version file to the container
-# ADD VERSION $VERTICLE_HOME/
+EXPOSE 80
 
 # Copy your verticle to the container
-COPY $VERTICLE_FILE $VERTICLE_HOME/
+COPY $VERTICLE_DIR/$VERTICLE_FILE $VERTICLE_HOME/
+
+# Copy the version file to the container
+COPY VERSION $VERTICLE_HOME/
 
 # Launch the verticle
 WORKDIR $VERTICLE_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["exec vertx run $VERTICLE_NAME -cp $VERTICLE_HOME/*"]
+CMD ["exec vertx run $VERTICLE_NAME -cp $VERTICLE_HOME/$VERTICLE_FILE"]

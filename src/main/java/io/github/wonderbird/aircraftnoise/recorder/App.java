@@ -1,10 +1,10 @@
 package io.github.wonderbird.aircraftnoise.recorder;
 
+import io.github.wonderbird.aircraftnoise.recorder.controllers.DirectoryListController;
+import io.github.wonderbird.aircraftnoise.recorder.controllers.VersionController;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
-import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.StaticHandler;
 
 /**
@@ -18,7 +18,11 @@ public class App extends AbstractVerticle {
     public void start(Future<Void> fut) {
         Router router = Router.router(vertx);
 
-        router.get("/api/ls").handler(this::listDirectory);
+        DirectoryListController directoryListController = new DirectoryListController();
+        router.get("/api/directorylist").handler(directoryListController::listDirectoryContents);
+
+        VersionController versionController = new VersionController();
+        router.get("/api/version").handler(versionController::getVersion);
 
         router.route().handler(StaticHandler.create());
 
@@ -35,12 +39,5 @@ public class App extends AbstractVerticle {
                             }
                         }
                 );
-    }
-
-    private void listDirectory(RoutingContext routingContext) {
-        DirectoryList list = new FileSystemDirectoryListReader().read();
-        routingContext.response()
-                .putHeader("content-type", "application/json; charset=utf-8")
-                .end(Json.encodePrettily(list));
     }
 }

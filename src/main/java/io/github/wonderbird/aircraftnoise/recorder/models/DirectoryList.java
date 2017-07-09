@@ -1,4 +1,4 @@
-package io.github.wonderbird.aircraftnoise.recorder;
+package io.github.wonderbird.aircraftnoise.recorder.models;
 
 import java.util.HashSet;
 import java.util.Set;

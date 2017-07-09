@@ -58,3 +58,10 @@ git tag -a "${VERSION}" -m "Version ${VERSION}"
 git remote add token https://${GITHUB_ACCESS_TOKEN}@github.com/wonderbird/aircraftnoise.git >/dev/null 2>&1
 git push token master
 git push --tags token master
+
+echo
+echo =====
+echo Showing public IP of the service
+echo =====
+
+kubectl get service

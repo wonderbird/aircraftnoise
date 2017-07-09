@@ -1,4 +1,7 @@
-package io.github.wonderbird.aircraftnoise.recorder;
+package io.github.wonderbird.aircraftnoise.recorder.logic;
+
+import io.github.wonderbird.aircraftnoise.recorder.logic.interfaces.DirectoryListReader;
+import io.github.wonderbird.aircraftnoise.recorder.models.DirectoryList;
 
 import java.io.File;
 

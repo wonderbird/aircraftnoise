@@ -7,8 +7,8 @@ $(document).ready(function () {
         })
     })
 
-    $.get('/api/version').done(function (versionNumber) {
+    $.get('/api/version').done(function (versionInfo) {
         var version = $('#version')
-        version.text(versionNumber)
+        version.text(versionInfo.version)
     })
 })

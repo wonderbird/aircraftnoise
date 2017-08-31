@@ -10,7 +10,7 @@ public class VersionFileReader {
             List<String> lines = Files.readAllLines(Paths.get("VERSION"));
             return lines.get(0);
         } catch (Exception ex) {
-            return "Exception: " + ex.getClass().getSimpleName();
+            return "VersionFileReader caught " + ex.getClass().getSimpleName() + " - " + ex.getMessage();
         }
     }
 }

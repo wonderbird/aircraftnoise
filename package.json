@@ -1,0 +1,43 @@
+{
+  "name": "aircraftnoiserecorder",
+  "version": "0.0.1",
+  "description": "Aircraft Noise Recorder End-To-End Tests",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "selenium-standalone install",
+    "test": "wdio wdio.conf.js && npm run lint",
+    "lint": "standard | snazzy"
+  },
+  "keywords": [
+    "Aircraft",
+    "Noise",
+    "End-To-End",
+    "Tests",
+    "e2e"
+  ],
+  "author": "Stefan Boos",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/wonderbird/aircraftnoise.git"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.2.0",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.1",
+    "wdio-mocha-framework": "^0.5.9",
+    "wdio-selenium-standalone-service": "^0.0.8",
+    "wdio-spec-reporter": "^0.1.0",
+    "webdriverio": "^4.6.2"
+  },
+  "standard": {
+    "globals": [
+      "browser"
+    ],
+    "env": {
+      "mocha": true
+    }
+  }
+}

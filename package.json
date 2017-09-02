@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "selenium-standalone install",
-    "test": "wdio wdio.conf.js",
+    "test": "java -jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar & wdio wdio.selenium.conf.js; ps ax | grep -Ei './target/aircraft-noise-1.0-SNAPSHOT-fat.jar' | awk 'NR==1{print $1}' | xargs kill -SIGTERM; ps ax | grep -Ei './target/aircraft-noise-1.0-SNAPSHOT-fat.jar'",
+    "test-phantomjs": "wdio wdio.phantomjs.conf.js",
     "lint": "standard | snazzy"
   },
   "keywords": [
@@ -39,5 +40,8 @@
     "env": {
       "mocha": true
     }
+  },
+  "devDependencies": {
+    "wdio-phantomjs-service": "^0.2.2"
   }
 }

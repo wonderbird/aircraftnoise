@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "selenium-standalone install",
-    "test": "wdio wdio.conf.js && npm run lint",
+    "test": "wdio wdio.conf.js",
     "lint": "standard | snazzy"
   },
   "keywords": [

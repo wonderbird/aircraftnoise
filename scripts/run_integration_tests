@@ -1,0 +1,43 @@
+#!/bin/sh
+
+WDIO_CONF=./wdio.selenium.conf.js
+
+if [ "x$1" != "x" ]; then
+    WDIO_CONF=$1
+fi
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pushd "${DIR}/.."
+
+echo =====
+echo Running Acceptance Tests: ${WDIO_CONF}
+echo =====
+echo
+echo Launching Aircraft Noise Recorder ...
+
+java -jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar &
+
+echo Running Selenium Tests ...
+
+./node_modules/.bin/wdio ${WDIO_CONF}
+
+echo Cleaning up:
+
+PID=`ps ax | grep -Ei '[\\-]jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar' | awk 'NR==1{print $1}'`
+if [ "${PID}x" != "x" ]; then
+    echo "  Killing Aircraft Noise Recorder with PID \"$PID\""
+    kill -TERM $PID
+else
+    echo "  Aircraft Noise Recorder is not running. So there's no need to kill."
+fi
+
+PID=`ps ax | grep -Ei 'geckodriver\ [\\-]-port' | awk 'NR==1{print $1}' | xargs kill -SIGTERM`
+if [ "${PID}x" != "x" ]; then
+    echo "  Killing geckodriver with PID \"$PID\""
+    kill -TERM $PID
+else
+    echo "  geckodriver is not running. So there's no need to kill."
+fi
+
+popd

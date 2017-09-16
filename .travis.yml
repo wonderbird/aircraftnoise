@@ -15,6 +15,8 @@ env:
   - CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
   - GOOGLE_APPLICATION_CREDENTIALS=${HOME}/client-secret.json
   - secure: jKJUWdNM9kxzXuF8XVfNfcPBZcn4K35AXoLBvEDenDrzFhqU8MWKkSKrI/vWo6aM1Y3zJMGRixlJg7Klqfl9fmxEbINb1opcmZOKqQfS+91+rb28wMp35OYtH2kYp5HDnWmoiUw0Aqw1m8oXiE+fovEoL85zgQ7qLajN+Tk2jXta5PPNTTzy9TBSt+Ovlzp9bFPj3mNjDRNyUM3jlpqy1YM9OT0tYrOCE5q+7xJO79ikxK9E9wwvShaIgUKAsNh/2tCaX/ZwxrDXXEAeug1hos3TcIBC/fZbJLdLQYyYcpnoaInotmkDcIK85D8vlDWVmNYJLkSPGQtHgnAYyHadrkkgKZ9pfLNwnvV5Gh15R7lq+TM4HCsJ3QjZzAjG3XZOJ/ya0SPTaMWR8bc8OM1YlVWy7FbI+VjCSujkdg9oqXypB6gP7p7WeqASCMprHgv012bdjrfHJmBVe5hDW5kS+GBxTrmc/Ku87/9od+PcgOzyAdf/MUx7KO2M5arRVJ8SRL+ZkSUwX9w+aozWrUuRXaxf045OExYtE7S47T+jwiUdDrAax/LEMrl2G1NwQ5SPIOcLx323l2uNNXcSuGUGqOPVTUbIDnyAnIAWEiYmd5ibASfO8gSX/ByCXKdC/MZ92O30xtbjKqPLXp7UVoJAuvhHwWs0z3f2t3Oq3JrzFwk=
+before_script: npm install
+script: npm run test-phantomjs
 before_install:
 - echo ${CLOUD_SDK_REPO}
 - sudo apt-get -qq update
@@ -25,8 +27,8 @@ before_install:
 - sudo apt-get install google-cloud-sdk -y
 - sudo apt-get install kubectl -y
 - openssl aes-256-cbc -K $encrypted_72f876c3e1a5_key -iv $encrypted_72f876c3e1a5_iv
-  -in gcloud/credentials.tar.gz.enc -out gcloud/credentials.tar.gz -d
-- tar -xzf gcloud/credentials.tar.gz
+  -in scripts/credentials.tar.gz.enc -out scripts/credentials.tar.gz -d
+- tar -xzf scripts/credentials.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
 install:
@@ -37,6 +39,6 @@ install:
 deploy:
   skip_cleanup: true
   provider: script
-  script: gcloud/deploy
+  script: scripts/deploy
   on:
     branch: master

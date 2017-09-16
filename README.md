@@ -22,7 +22,8 @@ Tests are executed at three levels:
 
 1. JUnit4 based unit tests check the code on the lowest level.
 2. JUnit4 and RestAssured based integration tests check REST APIs.
-3. Webdriver.io, Chai and Mocha based end-to-end tests check the web ui and JavaScript.
+3. Webdriver.io, Chai and Mocha based end-to-end tests check the web ui and JavaScript. You can
+   run the tests using `./scripts/run_integration_tests ./wdio.selenium.conf.js`
 
 ## Design Decisions
 

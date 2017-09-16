@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "selenium-standalone install",
-    "test": "java -jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar & wdio wdio.selenium.conf.js; ps ax | grep -Ei './target/aircraft-noise-1.0-SNAPSHOT-fat.jar' | awk 'NR==1{print $1}' | xargs kill -SIGTERM; ps ax | grep -Ei './target/aircraft-noise-1.0-SNAPSHOT-fat.jar'",
-    "test-phantomjs": "wdio wdio.phantomjs.conf.js",
+    "test": "./scripts/run_integration_tests ./wdio.selenium.conf.js",
+    "test-phantomjs": "./scripts/run_integration_tests wdio.phantomjs.conf.js",
     "lint": "standard | snazzy"
   },
   "keywords": [

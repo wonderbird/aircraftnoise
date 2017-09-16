@@ -1,24 +1,24 @@
 #!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pushd "${DIR}/.."
+
 WDIO_CONF=./wdio.selenium.conf.js
 
 if [ "x$1" != "x" ]; then
     WDIO_CONF=$1
 fi
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-pushd "${DIR}/.."
-
 echo =====
-echo Running Acceptance Tests: ${WDIO_CONF}
+echo Running Integration Tests: ${WDIO_CONF}
 echo =====
 echo
 echo Launching Aircraft Noise Recorder ...
 
 java -jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar &
 
-echo Running Selenium Tests ...
+echo Running Integration Tests ...
 
 ./node_modules/.bin/wdio ${WDIO_CONF}
 

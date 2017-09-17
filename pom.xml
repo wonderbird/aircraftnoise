@@ -158,7 +158,7 @@
                                     <arg value="-jar"/>
                                     <arg value="${project.artifactId}-${project.version}-fat.jar"/>
                                     <arg value="-conf"/>
-                                    <arg value="${project.build.directory}/test-classes/integrationtests-config.json"/>
+                                    <arg value="./test-classes/integrationtests-config.json"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -179,7 +179,7 @@
                                       dir="${project.build.directory}"
                                       spawn="false">
                                     <arg value="-c"/>
-                                    <arg value="ps ax | grep -Ei '[\-]jar\s+${project.artifactId}\-${project.version}\-fat.jar\s+\-conf\ .*${project.build.directory}/test\-classes/integrationtests\-config.json' | awk 'NR==1{print $1}' | xargs kill -SIGTERM"/>
+                                    <arg value="ps ax | grep -Ei '[\-]jar\s+${project.artifactId}\-${project.version}\-fat.jar\s+\-conf\ .*${project.build.directory}/test\-classes/integrationtests\-config.json' | awk 'NR==1{print $1}' | xargs kill -TERM"/>
                                 </exec>
                             </target>
                         </configuration>

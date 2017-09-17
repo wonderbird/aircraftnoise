@@ -35,8 +35,8 @@ hs_err_pid*
 .DS_Store
 
 # Credentials for Travis CI
-gcloud/client-secret.json
-gcloud/credentials.tar.gz
+scripts/client-secret.json
+scripts/credentials.tar.gz
 
 # GitHub Access Token for Travis CI
-gcloud/github-access-token.txt
+scripts/github-access-token.txt

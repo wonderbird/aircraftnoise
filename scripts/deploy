@@ -2,7 +2,7 @@
 #
 # Deploy the updated Docker image to the Google Cloud
 
-. ./gcloud/config
+. ./scripts/config
 
 echo =====
 echo Creating Fat JAR ...
@@ -21,7 +21,7 @@ git config --global user.name "Travis CI"
 git checkout master
 
 VERSION=`cat VERSION`
-VERSION=`echo ${VERSION} | ./gcloud/inc.awk`
+VERSION=`echo ${VERSION} | ./scripts/inc.awk`
 echo ${VERSION} > VERSION
 echo Version: ${VERSION}
 

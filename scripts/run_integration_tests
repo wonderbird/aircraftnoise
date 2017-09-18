@@ -23,12 +23,12 @@ echo Cleaning up:
 PID=`ps ax | grep -Ei '[\\-]jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar' | awk 'NR==1{print $1}'`
 if [ "${PID}x" != "x" ]; then
     echo "  Killing Aircraft Noise Recorder with PID \"$PID\""
-    echo kill -15 $PID
+    kill -15 $PID
 else
     echo "  Aircraft Noise Recorder is not running. So there's no need to kill."
 fi
 
-PID=`ps ax | grep -Ei 'geckodriver\ [\\-]-port' | awk 'NR==1{print $1}' | xargs kill -SIGTERM`
+PID=`ps ax | grep -Ei 'geckodriver\ [\\-]-port' | awk 'NR==1{print $1}'`
 if [ "${PID}x" != "x" ]; then
     echo "  Killing geckodriver with PID \"$PID\""
     kill -15 $PID

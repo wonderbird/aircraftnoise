@@ -1,9 +1,5 @@
 #!/bin/sh
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-pushd "${DIR}/.."
-
 WDIO_CONF=./wdio.selenium.conf.js
 
 if [ "x$1" != "x" ]; then
@@ -27,7 +23,7 @@ echo Cleaning up:
 PID=`ps ax | grep -Ei '[\\-]jar ./target/aircraft-noise-1.0-SNAPSHOT-fat.jar' | awk 'NR==1{print $1}'`
 if [ "${PID}x" != "x" ]; then
     echo "  Killing Aircraft Noise Recorder with PID \"$PID\""
-    kill -15 $PID
+    echo kill -15 $PID
 else
     echo "  Aircraft Noise Recorder is not running. So there's no need to kill."
 fi
@@ -39,5 +35,3 @@ if [ "${PID}x" != "x" ]; then
 else
     echo "  geckodriver is not running. So there's no need to kill."
 fi
-
-popd

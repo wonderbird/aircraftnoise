@@ -1,13 +1,18 @@
 sudo: required
+
 language: java
+
 jdk:
 - oraclejdk8
+
 addons:
   apt:
     packages:
     - oracle-java8-installer
+
 services:
 - docker
+
 env:
   global:
   - PATH=$PATH:${HOME}/google-cloud-sdk/bin
@@ -15,8 +20,13 @@ env:
   - CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
   - GOOGLE_APPLICATION_CREDENTIALS=${HOME}/client-secret.json
   - secure: MGCazVLxCLjp3NyZoRzR6Z+/NnzAzJ3Kxh8KXJ8dE7FNGIH1EFAlTHbqg1Tqstjl2p+Avts57ynh7QE+Rob4gDu3PRGwmSOBOaCvSQuZ2HsNzO0lI7lz2txHWfSLc2lZFcBiuJfmlNg9W0bUZ/ihLiEacnznFR9uvEVjmterTu6Hl4znKQgo8Ps7kCC/JGuJV8tQf6wXVj3btlu3RlJsqsReQ7u7iRWCfqyCf72YthdolKo50jRuVVjzUy8iBgLXAxfk7y8QDyAySMhZ2X6K2i4rPR54gUVaqri44s/Uu6t1JDcEB7bNg5tJy+VPFD0RAcdWJKbPWOG+LKTmVAnq4LS14StrTUx3LWit9xdL0X+RD/QCqwKNfCrMMSjYn7JpEntke4Efm4A5LnubHmW38Nas0YtCdoFMpE1OuZjBw324vq/8s5M37c4gAqEiyy5waJEsYhs09lb1ud9VQv8xX6CgoTT3P8rH5zrctpv9H3McNcDUPTaDY0Nn5WFXcQuHZUkE2+HLw3yZvvY/D45Xexe0EKbXtVgEeBxWX0JafDwrvQJejbqYAyS89l9+WmLvAFmxnLhhzvd8iTa5aLe9vzzhzIhi7LhDDBoMbB8zICjxvLa5dXKxnMZWTSZ4X3ZoxwTwD1v95BrgWI9Ti+gEB/9NCr0N0KqvPQ1AoQGkra4=
+
 before_script: npm install
+
 script: mvn clean verify && npm run test-phantomjs
+
+# For encrypting the gcloud credentials (gcloud-client-secret.tar.gz.enc see
+# https://cloud.google.com/solutions/continuous-delivery-with-travis-ci
 before_install:
 - echo ${CLOUD_SDK_REPO}
 - sudo apt-get -qq update
@@ -26,16 +36,18 @@ before_install:
 - sudo apt-get update -qq
 - sudo apt-get install google-cloud-sdk -y
 - sudo apt-get install kubectl -y
-- openssl aes-256-cbc -K $encrypted_72f876c3e1a5_key -iv $encrypted_72f876c3e1a5_iv
-  -in scripts/credentials.tar.gz.enc -out scripts/credentials.tar.gz -d
-- tar -xzf scripts/credentials.tar.gz
+- openssl aes-256-cbc -K $encrypted_082a22a0c4ce_key -iv $encrypted_082a22a0c4ce_iv
+  -in gcloud-client-secret.tar.gz.enc -out gcloud-client-secret.tar.gz -d
+- tar -xzf scripts/gcloud-client-secret.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json
+
 install:
 - gcloud config set compute/zone europe-west1-b
 - gcloud config set project aircraftnoise100
 - gcloud config list
 - gcloud container clusters get-credentials aircraft-noise-cluster
+
 deploy:
   skip_cleanup: true
   provider: script

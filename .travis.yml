@@ -37,7 +37,7 @@ before_install:
 - sudo apt-get install google-cloud-sdk -y
 - sudo apt-get install kubectl -y
 - openssl aes-256-cbc -K $encrypted_082a22a0c4ce_key -iv $encrypted_082a22a0c4ce_iv
-  -in scripts/gcloud-client-secret.tar.gz.enc -out gcloud-client-secret.tar.gz -d
+  -in scripts/gcloud-client-secret.tar.gz.enc -out scripts/gcloud-client-secret.tar.gz -d
 - tar -xzf scripts/gcloud-client-secret.tar.gz
 - mkdir -p lib
 - gcloud auth activate-service-account --key-file client-secret.json

@@ -40,7 +40,7 @@ before_install:
   -in scripts/gcloud-client-secret.tar.gz.enc -out scripts/gcloud-client-secret.tar.gz -d
 - tar -xzf scripts/gcloud-client-secret.tar.gz
 - mkdir -p lib
-- gcloud auth activate-service-account --key-file client-secret.json
+- gcloud auth activate-service-account --key-file gcloud-client-secret.json
 
 install:
 - gcloud config set compute/zone europe-west1-b

@@ -1,9 +1,12 @@
 package io.github.wonderbird.aircraftnoise.recorder;
 
 import io.restassured.RestAssured;
+import org.hamcrest.text.MatchesPattern;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static io.restassured.RestAssured.get;
 
 public class AppIT {
     @BeforeClass
@@ -19,8 +22,9 @@ public class AppIT {
 
     @Test
     public void VersionGet_ShouldReturnAVersionNumber() {
-//        get("/api/version").then()
-//                .statusCode(200)
-//                .body("version", equalTo("0.2.3"));
+        get("/api/version").then()
+                .statusCode(200)
+                .body("version", MatchesPattern.matchesPattern("[0-9]*\\.[0-9]*\\.[0-9]*"));
+
     }
 }

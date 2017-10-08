@@ -1,6 +1,7 @@
 package io.github.wonderbird.aircraftnoise.recorder;
 
 import io.github.wonderbird.aircraftnoise.recorder.controllers.DirectoryListController;
+import io.github.wonderbird.aircraftnoise.recorder.controllers.MeasurementValueController;
 import io.github.wonderbird.aircraftnoise.recorder.controllers.VersionController;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
@@ -23,6 +24,9 @@ public class App extends AbstractVerticle {
 
         VersionController versionController = new VersionController();
         router.get("/api/version").handler(versionController::getVersion);
+
+        MeasurementValueController measurementValueController = new MeasurementValueController();
+        router.put("/api/measurementvalue").handler(measurementValueController::put);
 
         router.route().handler(StaticHandler.create());
 

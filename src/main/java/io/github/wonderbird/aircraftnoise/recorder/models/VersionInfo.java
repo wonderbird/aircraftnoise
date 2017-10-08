@@ -1,8 +1,9 @@
 package io.github.wonderbird.aircraftnoise.recorder.models;
 
 public class VersionInfo {
-    private final String version;
+    private String version;
 
+    public VersionInfo() {}
     public VersionInfo(String version) {
         this.version = version;
     }
@@ -10,4 +11,5 @@ public class VersionInfo {
     public String getVersion() {
         return version;
     }
+    public void setVersion(String version) { this.version = version; }
 }

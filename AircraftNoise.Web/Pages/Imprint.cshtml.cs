@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AircraftNoise.Web.Pages;
 
-public class PrivacyModel : PageModel
+public class ImprintModel : PageModel
 {
-    private readonly ILogger<PrivacyModel> _logger;
+    private readonly ILogger<ImprintModel> _logger;
 
-    public PrivacyModel(ILogger<PrivacyModel> logger)
+    public ImprintModel(ILogger<ImprintModel> logger)
     {
         _logger = logger;
     }

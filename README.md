@@ -8,6 +8,13 @@ Motivate responsible parties to reduce aircraft noise
 dotnet watch --project AircraftNoise.Web
 ```
 
+## Run as Docker Container
+
+```shell
+docker build -t aircraftnoise -f ./AircraftNoise.Web/Dockerfile .
+docker run -p 8080:8080 aircraftnoise
+```
+
 ## Thanks
 
 Many thanks to [JetBrains](https://www.jetbrains.com/?from=aircraftnoise) who provide

@@ -11,7 +11,7 @@ dotnet watch --project AircraftNoise.Web
 ## Run as Docker Container
 
 ```shell
-docker build -t aircraftnoise -f ./AircraftNoise.Web/Dockerfile .
+docker build -t aircraftnoise .
 docker run -p 8080:8080 aircraftnoise
 ```
 

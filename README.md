@@ -2,6 +2,11 @@
 
 Motivate responsible parties to reduce aircraft noise
 
+## Development Prerequisites
+
+- [.NET SDK (8.0 LTS)](http://get.dot.net/)
+- [Node.js (22.14 lts/jod)](https://nodejs.org/)
+
 ## Run with Hot Reload
 
 ```shell

@@ -1,3 +1,7 @@
+# Don't commit compiled typsecript files, but keep site.js
+**/wwwroot/js/
+!**/wwwroot/js/site.js
+
 # Created by https://www.toptal.com/developers/gitignore/api/linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode
 

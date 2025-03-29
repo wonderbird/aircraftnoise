@@ -25,17 +25,14 @@
     
     <h2>2 Beschwerde vorbereiten</h2>
     
-    <h3>2.1 Messstation finden</h3>
-    <ol>
-        <li>Öffne die <a href="https://www.dfld.de/Mess/Language/MessR001.php">Regionsauswahl</a> des Deutschen Fluglärmdienstes e.V. (DFLD) in einem separaten Browser Fenster</li>
-        <li>Wähle dort Deine Region aus</li>
-        <li>Wähle dann eine Messstation in Deiner Nähe aus</li>
-    </ol>
-    
-    <h3>2.2 Beschwerde vorbereiten</h3>
+    <p>
+        Öffne das Diagramm der nächstgelegenen DFLD Messstation in Deiner Region <a href="@Html.DisplayFor(model => model.Region.MessstationUrl)" target="_blank">@Html.DisplayFor(model => model.Region.Name)</a>.
+    </p>
+
     <p>
         Führe die folgenden Schritte durch, um die oben aufgenommenen Störungen in eine Beschwerde zu übertragen:
     </p>
+    
     <ol>
         <li>Klicke auf den die Spitze des Ereignisses im Diagramm - Das Diagramm wird nun an dieser Stelle vergrößert.</li>
         <li>Klicke erneut auf den die Spitze des Ereignisses im vergrößerten Diagramm - Es poppt ein Fenster mit Titel "Beschwerde" auf. Dort wird die Uhrzeit und der Schallpegel der Störung eingetragen.</li>

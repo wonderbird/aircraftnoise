@@ -8,9 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\.dockerignore">
-      <Link>.dockerignore</Link>
-    </Content>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.8.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!-- dotnet watch ... shall also consider typescript -->
+    <Watch Include="**\*.ts" />
   </ItemGroup>
 
 </Project>

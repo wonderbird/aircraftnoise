@@ -5,6 +5,14 @@ EXPOSE 8080
 EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Install Node.js LTS
+RUN apt-get update && apt-get install -y curl \
+    && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["AircraftNoise.Web/AircraftNoise.Web.csproj", "AircraftNoise.Web/"]

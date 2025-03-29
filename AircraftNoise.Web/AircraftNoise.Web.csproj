@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\ts\EventRecorder.ts" />
+    <Content Include="..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
   </ItemGroup>
 
 </Project>

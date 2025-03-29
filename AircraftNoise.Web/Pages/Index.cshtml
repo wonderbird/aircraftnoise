@@ -4,25 +4,46 @@
     ViewData["Title"] = "Startseite";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Fluglärm Beschwerde vorbereiten</h1>
+@section Scripts
+{
+    <script src="js/EventRecorder.js" asp-append-version="true"></script>
+}
+
+<div class="container">
+    <h1 class="display-4">Fluglärm Beschwerde erstellen</h1>
+    <h2>1 Störungen aufzeichnen</h2>
     <p>
         Verwende den Button, um die Uhrzeit einer Störung zu speichern.
         Später kannst Du die eingetragenen Ereignisse als Sammelbeschwerde
         melden.
     </p>
     <p>
-        <button class="btn btn-primary">Zeitpunkt einer Störung merken</button>
+        <button id="record-button" class="btn btn-primary">Zeitpunkt einer Störung merken</button>
     </p>
     <ul id="events" style="list-style-type: none">
     </ul>
+    
+    <h2>2 Beschwerde vorbereiten</h2>
+    
+    <h3>2.1 Messstation finden</h3>
+    <ol>
+        <li>Öffne die <a href="https://www.dfld.de/Mess/Language/MessR001.php">Regionsauswahl</a> des Deutschen Fluglärmdienstes e.V. (DFLD) in einem separaten Browser Fenster</li>
+        <li>Wähle dort Deine Region aus</li>
+        <li>Wähle dann eine Messstation in Deiner Nähe aus</li>
+    </ol>
+    
+    <h3>2.2 Beschwerde vorbereiten</h3>
     <p>
-        Finde nun die oben gemerkten Zeitpunkte in den Messdaten des
-        Deutschen Fluglärmdienstes e.V. (DFLD). Durch einen Klick in das
-        Diagramm kannst Du die Messdaten für den entsprechenden Zeitpunkt
-        in eine Beschwerde übernehmen.
+        Führe die folgenden Schritte durch, um die oben aufgenommenen Störungen in eine Beschwerde zu übertragen:
     </p>
+    <ol>
+        <li>Klicke auf den die Spitze des Ereignisses im Diagramm - Das Diagramm wird nun an dieser Stelle vergrößert.</li>
+        <li>Klicke erneut auf den die Spitze des Ereignisses im vergrößerten Diagramm - Es poppt ein Fenster mit Titel "Beschwerde" auf. Dort wird die Uhrzeit und der Schallpegel der Störung eingetragen.</li>
+        <li>Wiederhole diese Schritte bis alle aufgenommenen Störungen in die Beschwerde übernommen wurden.</li>
+    </ol>
+    
+    <h3>3 Beschwerde absenden</h3>
     <p>
-        <a href="https://www.dfld.de/Mess/Language/MessR001.php">DFLD Regionsauswahl</a>
+        Klicke auf <b>Fluglärmbeschwerde versenden</b>, um Deine Beschwerde fertigzustellen und abzusenden.
     </p>
 </div>

@@ -1,7 +1,12 @@
+using AircraftNoise.Web.Adapters.Outbound;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ICanFindLocation, LocationLookupService>();
+builder.Services.AddSingleton<ICanFindRegion, RegionRepository>();
+builder.Services.AddSingleton<ICanFindMeasurementStation, MeasurementStationRepository>();
 
 var app = builder.Build();
 

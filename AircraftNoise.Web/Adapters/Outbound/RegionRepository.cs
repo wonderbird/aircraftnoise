@@ -2,9 +2,9 @@ using AircraftNoise.Web.Domain;
 
 namespace AircraftNoise.Web.Adapters.Outbound;
 
-public class RegionLookupService
+public class RegionRepository : ICanFindRegion
 {
-    public Region GetRegion(Location _)
+    public Region FindRegion(Location _)
     {
         return new Region(3, "Köln/Bonn");
     }

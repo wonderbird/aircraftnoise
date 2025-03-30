@@ -22,25 +22,66 @@
     </p>
     <ul id="events">
     </ul>
-    
+
     <h2>2 Beschwerde vorbereiten</h2>
-    
+
     <p>
-        Öffne das Diagramm der nächstgelegenen DFLD Messstation in Deiner Region <a href="@Html.DisplayFor(model => model.Region.MessstationUrl)" target="_blank">@Html.DisplayFor(model => model.Region.Name)</a>.
     </p>
 
     <p>
-        Führe die folgenden Schritte durch, um die oben aufgenommenen Störungen in eine Beschwerde zu übertragen:
+        Anhand Deiner IP Adresse wurde die Region
+        <a href="@Html.DisplayFor(model => model.Region.MeasurementStationSelectionUrl)"
+           target="_blank">
+            @Html.DisplayFor(model => model.Region.Name)</a>
+        und
+        <a href="@Html.DisplayFor(model => model.MeasurementStation.NoiseGraphUrl)"
+           target="_blank">
+            @Html.DisplayFor(model => model.MeasurementStation.Name)</a>
+        als nächstgelegene Messstation ermittelt.
     </p>
-    
+
+    <p>
+        Falls Du nicht an diesem Ort bist, dann kannst Du über die
+        <a href="https://www.dfld.de/Mess/Language/MessR001.php" target="_blank">DFLD Regionsauswahl</a>
+        die nächstgelegene Messstation heraussuchen.
+    </p>
+
+    <p>
+        Öffne nun das Diagramm der Messstation und führe die folgenden Schritte durch, um die oben aufgenommenen
+        Störungen in eine Beschwerde zu übertragen:
+    </p>
+
     <ol>
-        <li>Klicke auf den die Spitze des Ereignisses im Diagramm - Das Diagramm wird nun an dieser Stelle vergrößert.</li>
-        <li>Klicke erneut auf den die Spitze des Ereignisses im vergrößerten Diagramm - Es poppt ein Fenster mit Titel "Beschwerde" auf. Dort wird die Uhrzeit und der Schallpegel der Störung eingetragen.</li>
-        <li>Wiederhole diese Schritte bis alle aufgenommenen Störungen in die Beschwerde übernommen wurden.</li>
+        <li>Klicke auf den die Spitze des Ereignisses im Diagramm - Das Diagramm wird nun an dieser Stelle vergrößert.
+        </li>
+        <li>Klicke erneut auf den die Spitze des Ereignisses im vergrößerten Diagramm.</li>
     </ol>
     
+    <p>
+        Es poppt ein Fenster mit Titel
+        "Beschwerde" auf. Dort wird die Uhrzeit und der Schallpegel der Störung eingetragen. Dieses Fenster bleibt
+        geöffnet und nimmt alle weiteren Ereignisse auf.
+    </p>
+
+    <p>
+        Wiederhole beiden Schritte, um alle Störungen in das Beschwerde-Fenster einzutragen.
+    </p>
+
     <h3>3 Beschwerde absenden</h3>
     <p>
         Klicke auf <b>Fluglärmbeschwerde versenden</b>, um Deine Beschwerde fertigzustellen und abzusenden.
+    </p>
+
+    <h3>Weitere Informationen</h3>
+    <p>
+        Der <a href="https://www.dfld.de/" target="_blank">Deutsche Fluglärmdienst e.V. (DFLD)</a> bietet unter anderem
+        folgende Dokumentation an:
+
+    <ul>
+        <li><a href="https://www.dfld.de/Mess/Language/MessHelpG.html" target="_blank">Erläuterungen zu den
+                Lärm-Messungen</a></li>
+        <li><a href="https://www.dfld.de/Mess/Language/BeschHelpG.html" target="_blank">Hilfe zur Fluglärmbeschwerde</a>
+        </li>
+    </ul>
     </p>
 </div>

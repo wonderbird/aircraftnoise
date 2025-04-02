@@ -4,7 +4,8 @@ const recordButton = document.querySelector("#record-button") as HTMLButtonEleme
 if (events && recordButton) {
     recordButton.addEventListener("click", () => {
         const event = document.createElement("li");
-        event.textContent = new Date().toLocaleTimeString();
+        let now = new Date();
+        event.textContent = now.toLocaleString();
         events.appendChild(event);
     });
 }

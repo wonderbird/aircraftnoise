@@ -3,10 +3,11 @@
     /* Visit https://aka.ms/tsconfig to read more about this file */
     
     /* Language and Environment */
-    "target": "ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ESNext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 
     /* Modules */
-    "module": "ES2020",                                  /* Specify what module code is generated. */
+    "module": "ES2015",                                  /* Specify what module code is generated. */
+    "moduleResolution": "node",                        /* Specify how TypeScript looks up a file from a given module specifier. */
     "rootDir": "./wwwroot/ts",                           /* Specify the root folder within your source files. */
 
     /* JavaScript Support */

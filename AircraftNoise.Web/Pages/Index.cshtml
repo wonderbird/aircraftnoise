@@ -6,8 +6,9 @@
 
 @section Scripts
 {
-    <script src="js/Adapters/Inbound/EventRecorder.js" asp-append-version="true"></script>
-    <script src="js/Adapters/Outbound/LocationProvider.js" asp-append-version="true"></script>
+    <script type="module" src="js/Adapters/Inbound/EventRecorder.js" asp-append-version="true"></script>
+    <script type="module" src="js/Adapters/Inbound/NoiseLevelMapper.js" asp-append-version="true"></script>
+    <script type="module" src="js/Adapters/Outbound/LocationProvider.js" asp-append-version="true"></script>
 }
 
 <div class="container">
@@ -119,4 +120,7 @@
     <p>
         <button id="get-noise-button" class="btn btn-primary">Schallpegel abrufen</button>
     </p>
+    
+    <ul id="noise-levels">
+    </ul>
 </div>

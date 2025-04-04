@@ -1,7 +1,7 @@
 import {NoiseEvent} from "../../Domain/NoiseEvent";
 
 export class NoiseEventRepository {
-    private _noiseEvents: NoiseEvent[] = [];
+    private readonly _noiseEvents: NoiseEvent[] = [];
 
     constructor() {
         this._noiseEvents = [];

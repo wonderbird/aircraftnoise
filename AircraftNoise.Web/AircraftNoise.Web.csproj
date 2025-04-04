@@ -16,10 +16,4 @@
     <Watch Include="**\*.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <TypeScriptCompile Remove="wwwroot\ts\Adapters\Outbound\NoiseLevelMapper.ts" />
-    <TypeScriptCompile Remove="wwwroot\ts\Domain\NoiseEvents.ts" />
-    <TypeScriptCompile Remove="wwwroot\ts\Services\NoiseLevelMapper.ts" />
-  </ItemGroup>
-
 </Project>

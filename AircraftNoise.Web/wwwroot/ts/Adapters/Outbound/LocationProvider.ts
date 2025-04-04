@@ -1,31 +1,52 @@
-const positionLabel = document.querySelector("#position") as HTMLSpanElement;
-const locateButton = document.querySelector("#locate-button") as HTMLButtonElement;
-const positionErrorLabel = document.querySelector("#position-error") as HTMLSpanElement;
-const manualStationSearchInstructions = document.querySelector("#manual-measurement-station-search-instructions") as HTMLDivElement;
-const nextMeasurementStationInfo = document.querySelector("#next-measurement-station-info") as HTMLDivElement;
-
-function displayPosition(position: GeolocationPosition) {
-    const latitude = position.coords.latitude.toFixed(4);
-    const longitude = position.coords.longitude.toFixed(4);
-    positionLabel.textContent = "(" + latitude + ", " + longitude + ") ";
+export class LocationProvider {
+    private static _instance: LocationProvider;
     
-    manualStationSearchInstructions.setAttribute("hidden", "true");
-    nextMeasurementStationInfo.removeAttribute("hidden");
-}
+    private readonly positionLabel: HTMLSpanElement;
+    private readonly positionErrorLabel: HTMLSpanElement;
+    private readonly manualStationSearchInstructions: HTMLDivElement;
+    private readonly nextMeasurementStationInfo: HTMLDivElement;
+    
+    private constructor() {
+        this.positionLabel = document.querySelector("#position") as HTMLSpanElement;
+        this.positionErrorLabel = document.querySelector("#position-error") as HTMLSpanElement;
+        this.manualStationSearchInstructions = document.querySelector("#manual-measurement-station-search-instructions") as HTMLDivElement;
+        this.nextMeasurementStationInfo = document.querySelector("#next-measurement-station-info") as HTMLDivElement;
+    }
+    
+    private static get instance(): LocationProvider {
+        if (!this._instance) {
+            this._instance = new LocationProvider();
+        }
+        return this._instance;
+    }
+    
+    public static connectUserInterface(): void {
+        const locateButton = document.querySelector("#locate-button") as HTMLButtonElement;
+        if (LocationProvider.instance.positionLabel
+            && LocationProvider.instance.positionErrorLabel
+            && LocationProvider.instance.manualStationSearchInstructions
+            && LocationProvider.instance.nextMeasurementStationInfo
+            && locateButton
+            && "geolocation" in navigator) {
+            locateButton.addEventListener("click", () => {
+                navigator.geolocation.getCurrentPosition(LocationProvider.instance.displayPosition, LocationProvider.instance.showError)
+            });
+        }
+    }
 
-function showError(error: GeolocationPositionError) {
-    positionErrorLabel.textContent = "Deine Position kann nicht ermittelt werden. Dein Gerät begründet dies so: \"" + error.message + "\"";
+    private displayPosition(position: GeolocationPosition): void {
+        const latitude = position.coords.latitude.toFixed(4);
+        const longitude = position.coords.longitude.toFixed(4);
+        LocationProvider.instance.positionLabel.textContent = "(" + latitude + ", " + longitude + ") ";
 
-    manualStationSearchInstructions.removeAttribute("hidden");
-    nextMeasurementStationInfo.setAttribute("hidden", "true");
-}
+        LocationProvider.instance.manualStationSearchInstructions.setAttribute("hidden", "true");
+        LocationProvider.instance.nextMeasurementStationInfo.removeAttribute("hidden");
+    }
 
-if (positionLabel
-    && locateButton
-    && manualStationSearchInstructions
-    && nextMeasurementStationInfo
-    && "geolocation" in navigator) {
-    locateButton.addEventListener("click", () => {
-        navigator.geolocation.getCurrentPosition(displayPosition, showError)
-    });
+    private showError(error: GeolocationPositionError): void {
+        LocationProvider.instance.positionErrorLabel.textContent = "Deine Position kann nicht ermittelt werden. Dein Gerät begründet dies so: \"" + error.message + "\"";
+
+        LocationProvider.instance.manualStationSearchInstructions.removeAttribute("hidden");
+        LocationProvider.instance.nextMeasurementStationInfo.setAttribute("hidden", "true");
+    }
 }

@@ -1,4 +1,4 @@
-import {ApplicationState} from "../../Services/ApplicationState";
+import {ApplicationState} from "../../Services/ApplicationState.js";
 
 export class EventRecorder {
     private static _instance: EventRecorder = new EventRecorder();

@@ -1,4 +1,4 @@
-import {NoiseEvent} from "../../Domain/NoiseEvent";
+import {NoiseEvent} from "../../Domain/NoiseEvent.js";
 
 export class NoiseEventRepository {
     private readonly _noiseEvents: NoiseEvent[] = [];

@@ -1,6 +1,6 @@
-import {NoiseEventRepository} from "../Adapters/Outbound/NoiseEventRepository";
-import {LocationProvider} from "../Adapters/Outbound/LocationProvider";
-import {EventRecorder} from "../Adapters/Inbound/EventRecorder";
+import {NoiseEventRepository} from "../Adapters/Outbound/NoiseEventRepository.js";
+import {LocationProvider} from "../Adapters/Outbound/LocationProvider.js";
+import {EventRecorder} from "../Adapters/Inbound/EventRecorder.js";
 
 export class ApplicationState {
     private static _instance: ApplicationState = new ApplicationState();

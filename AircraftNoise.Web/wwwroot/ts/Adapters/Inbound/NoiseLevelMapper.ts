@@ -2,13 +2,12 @@ import {ApplicationState} from "../../Services/ApplicationState.js";
 
 export class NoiseLevelMapper {
     private static _instance: NoiseLevelMapper = new NoiseLevelMapper();
-    private noiseLevels: HTMLUListElement | null;
-    private getNoiseButton: HTMLButtonElement | null;
+    private readonly noiseLevels: HTMLUListElement | null;
+    private readonly getNoiseButton: HTMLButtonElement | null;
     
     private constructor() {
         this.noiseLevels = document.querySelector("#noise-levels") as HTMLUListElement;
         this.getNoiseButton = document.querySelector("#get-noise-button") as HTMLButtonElement;
-        this.connectUserInterface();
     }
     
     static get instance(): NoiseLevelMapper {
@@ -18,9 +17,10 @@ export class NoiseLevelMapper {
         return this._instance;
     }
     
-    private connectUserInterface(): void {
-        if (this.noiseLevels && this.getNoiseButton) {
-            this.getNoiseButton.addEventListener("click", () => {
+    public static connectUserInterface(): void {
+        if (NoiseLevelMapper.instance.noiseLevels
+            && NoiseLevelMapper.instance.getNoiseButton) {
+            NoiseLevelMapper.instance.getNoiseButton.addEventListener("click", () => {
                 const noiseLevel = document.createElement("li");
                 const noiseEventRepository = ApplicationState.noiseEventRepository;
 
@@ -30,7 +30,7 @@ export class NoiseLevelMapper {
                 }
 
                 noiseLevel.textContent = firstEvent.timestamp.toLocaleString();
-                this.noiseLevels?.append(noiseLevel);
+                NoiseLevelMapper.instance.noiseLevels?.append(noiseLevel);
             });
         }
     }

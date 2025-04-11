@@ -3,7 +3,7 @@ import {ApplicationState} from "../../Services/ApplicationState.js";
 export class EventRecorder {
     private static _instance: EventRecorder = new EventRecorder();
     
-    private readonly events: HTMLUListElement;
+    private readonly events: HTMLUListElement | null;
     
     private constructor() {
         this.events = document.querySelector("#events") as HTMLUListElement;
@@ -27,7 +27,7 @@ export class EventRecorder {
                 const event = document.createElement("li");
                 let now = new Date();
                 event.textContent = now.toLocaleString();
-                EventRecorder.instance.events.appendChild(event);
+                EventRecorder.instance.events?.appendChild(event);
             });
         }
     }

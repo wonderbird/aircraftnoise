@@ -1,5 +1,5 @@
 export class NoiseEvent {
-    private _timestamp: Date;
+    private readonly _timestamp: Date;
     
     constructor() {
         this._timestamp = new Date();

@@ -28,7 +28,7 @@ export class NoiseLevelMapper {
                 if (!firstEvent) {
                     return;
                 }
-
+                
                 noiseLevel.textContent = firstEvent.timestamp.toLocaleString();
                 NoiseLevelMapper.instance.noiseLevels?.append(noiseLevel);
             });

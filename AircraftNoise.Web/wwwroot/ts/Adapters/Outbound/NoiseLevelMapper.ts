@@ -11,9 +11,12 @@ export class NoiseLevelMapper {
     
     public map(): void {
         let noiseEvents = this.noiseEventRepository.noiseEvents;
-        let firstEvent = noiseEvents[0];
 
-        console.log(`Processed event: ${firstEvent?.timestamp}`);
+        for (const event of noiseEvents) {
+            // TODO: use the nearest measurement station to map the timestamp to a noise level
+            event.noiseLevelDBA = 0;
+            this.noiseEventRepository.update(event);
+        }
         
         this.view.update(noiseEvents);
     }

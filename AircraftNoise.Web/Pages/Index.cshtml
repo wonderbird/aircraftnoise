@@ -28,15 +28,20 @@
         <button id="locate-button" class="btn btn-primary">Meine Position ermitteln</button>
     </p>
 
-    <div id="manual-measurement-station-search-instructions">
+    <p>
+        Bitte klicke auf "Meine Position ermitteln".
+    </p>
+    
+    <div id="position-error" hidden="hidden">
         <p>
-            <span id="position-error">Bitte klicke auf "Meine Position ermitteln".</span>
+            Deine Position kann nicht ermittelt werden. Dein Gerät begründet dies so:
+            "<span id="position-error-message"></span>"
         </p>
 
         <p>
             Du kannst die nächstgelegene Messstation unter
             <a href="https://www.dfld.de/Mess/Language/MessR001.php" target="_blank">DFLD Regionsauswahl</a>
-            selbst heraussuchen.
+            heraussuchen.
         </p>
     </div>
 
@@ -60,6 +65,8 @@
         </p>
     </div>
 
+    <h2>3 Störungen in die Beschwerde eintragen</h2>
+    
     <p>
         Öffne nun das Diagramm der Messstation und führe die folgenden Schritte durch, um die oben aufgenommenen
         Störungen in eine Beschwerde zu übertragen:

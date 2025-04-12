@@ -9,6 +9,7 @@ export class EventView {
         this.presenter = new EventRecorder(this);
         
         this.events = document.querySelector("#events") as HTMLUListElement;
+        
         const recordButton = document.querySelector("#record-button") as HTMLButtonElement;
 
         if (this.events && recordButton) {

@@ -6,19 +6,8 @@
 
 <div class="container">
     <h1 class="display-4">Fluglärm Beschwerde erstellen</h1>
-    <h2>1 Störungen aufzeichnen</h2>
-    <p>
-        Verwende den Button, um die Uhrzeit einer Störung zu speichern.
-        Später kannst Du die eingetragenen Ereignisse als Sammelbeschwerde
-        melden.
-    </p>
-    <p>
-        <button id="record-button" class="btn btn-primary">Zeitpunkt einer Störung merken</button>
-    </p>
-    <ul id="events">
-    </ul>
 
-    <h2>2 Beschwerde vorbereiten</h2>
+    <h2>1 Nächstgelegene Messstation finden</h2>
 
     <p>
         Deine aktuelle Position wird benötigt, um die nächstgelegene DFLD Messstation zu ermitteln.
@@ -31,7 +20,7 @@
     <p>
         Bitte klicke auf "Meine Position ermitteln".
     </p>
-    
+
     <div id="position-error" hidden="hidden">
         <p>
             Deine Position kann nicht ermittelt werden. Dein Gerät begründet dies so:
@@ -65,8 +54,28 @@
         </p>
     </div>
 
-    <h2>3 Störungen in die Beschwerde eintragen</h2>
-    
+    <h2>2 Störungen aufzeichnen</h2>
+    <p>
+        Verwende den Button, um die Uhrzeit einer Störung zu speichern.
+        Später kannst Du die eingetragenen Ereignisse als Sammelbeschwerde
+        melden.
+    </p>
+    <p>
+        <button id="record-button" class="btn btn-primary">Zeitpunkt einer Störung merken</button>
+    </p>
+    <ul id="events">
+    </ul>
+
+    <h2>3 Lärmpegel der Störungen ermitteln</h2>
+    <p>
+        Klicke auf "Schallpegel abrufen", um zu jeder Störung den Schallpegel zu ermitteln.
+    </p>
+    <p>
+        <button id="get-noise-button" class="btn btn-primary">Schallpegel abrufen</button>
+    </p>
+
+    <h2>4 Störungen in die Beschwerde eintragen</h2>
+
     <p>
         Öffne nun das Diagramm der Messstation und führe die folgenden Schritte durch, um die oben aufgenommenen
         Störungen in eine Beschwerde zu übertragen:
@@ -88,7 +97,7 @@
         Wiederhole beiden Schritte, um alle Störungen in das Beschwerde-Fenster einzutragen.
     </p>
 
-    <h3>3 Beschwerde absenden</h3>
+    <h3>5 Beschwerde absenden</h3>
     <p>
         Klicke auf <b>Fluglärmbeschwerde versenden</b>, um Deine Beschwerde fertigzustellen und abzusenden.
     </p>
@@ -100,27 +109,10 @@
     </p>
 
     <ul>
-        <li><a href="https://www.dfld.de/Mess/Language/MessHelpG.html" target="_blank">Erläuterungen zu den
+        <li>
+            <a href="https://www.dfld.de/Mess/Language/MessHelpG.html" target="_blank">Erläuterungen zu den
                 Lärm-Messungen</a></li>
         <li><a href="https://www.dfld.de/Mess/Language/BeschHelpG.html" target="_blank">Hilfe zur Fluglärmbeschwerde</a>
         </li>
-    </ul>
-
-    <h3>Ereignisse automatisch zur Beschwerde hinzufügen</h3>
-
-    <div class="alert alert-info show">
-        Dieser Abschnitt befindet sich gerade in der Entwicklung. Das heißt, dass die Funktionen unterhalb dieser
-        Nachricht noch nicht fertig programmiert sind.
-    </div>
-
-    <p>
-        Klicke auf "Schallpegel abrufen", um zu jeder Störung den Schallpegel zu ermitteln.
-    </p>
-
-    <p>
-        <button id="get-noise-button" class="btn btn-primary">Schallpegel abrufen</button>
-    </p>
-    
-    <ul id="noise-levels">
     </ul>
 </div>

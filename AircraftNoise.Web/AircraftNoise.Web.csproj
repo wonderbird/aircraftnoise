@@ -16,4 +16,8 @@
     <Watch Include="**\*.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TypeScriptCompile Remove="wwwroot\ts\Adapters\Inbound\NoiseLevelMapper.ts" />
+  </ItemGroup>
+
 </Project>

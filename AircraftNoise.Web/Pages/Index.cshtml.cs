@@ -1,5 +1,5 @@
-using AircraftNoise.Web.Adapters.Outbound;
-using AircraftNoise.Web.Domain;
+using AircraftNoise.Core.Adapters.Outbound;
+using AircraftNoise.Core.Domain;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AircraftNoise.Web.Pages;

@@ -1,4 +1,4 @@
-namespace AircraftNoise.Web.Domain;
+namespace AircraftNoise.Core.Domain;
 
 public readonly record struct Region(int Id, string Name)
 {

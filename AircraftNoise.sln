@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{2C6A331D-B
 		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Core", "AircraftNoise.Core\AircraftNoise.Core.csproj", "{7F5AD610-EC5C-4A9D-AD50-37D9974E2AB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1E0ACB74-50C1-42F0-AFF3-38A87BDB120B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E0ACB74-50C1-42F0-AFF3-38A87BDB120B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E0ACB74-50C1-42F0-AFF3-38A87BDB120B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F5AD610-EC5C-4A9D-AD50-37D9974E2AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5AD610-EC5C-4A9D-AD50-37D9974E2AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5AD610-EC5C-4A9D-AD50-37D9974E2AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5AD610-EC5C-4A9D-AD50-37D9974E2AB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

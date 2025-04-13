@@ -1,4 +1,4 @@
-using AircraftNoise.Web.Adapters.Outbound;
+using AircraftNoise.Core.Adapters.Outbound;
 
 var builder = WebApplication.CreateBuilder(args);
 

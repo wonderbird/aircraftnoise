@@ -20,6 +20,12 @@ docker build -t aircraftnoise .
 docker run -p 8080:8080 aircraftnoise
 ```
 
+## Running the Tests
+
+```shell
+dotnet test
+```
+
 ## Thanks
 
 Many thanks to [JetBrains](https://www.jetbrains.com/?from=aircraftnoise) who provide

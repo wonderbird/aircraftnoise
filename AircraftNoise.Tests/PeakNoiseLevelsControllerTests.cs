@@ -37,6 +37,6 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         Assert.NotNull(result);
-        Assert.Equal(42.0, result.NoiseMeasurementDba);
+        Assert.False(result.HasMeasurement);
     }
 }

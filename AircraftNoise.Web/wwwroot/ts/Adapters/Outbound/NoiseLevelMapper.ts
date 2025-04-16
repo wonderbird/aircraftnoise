@@ -3,6 +3,8 @@ import {EventView} from "../../Views/EventView.js";
 
 interface NoiseMeasurementResponse {
     noiseMeasurementDba: number;
+    timestamp: string | null;
+    hasMeasurement: boolean;
 }
 
 export class NoiseLevelMapper {
@@ -35,7 +37,7 @@ export class NoiseLevelMapper {
             }
 
             const data: NoiseMeasurementResponse = await response.json();
-            return data.noiseMeasurementDba;
+            return data.hasMeasurement ? data.noiseMeasurementDba : null;
         } catch (error) {
             // TODO: Implement proper error handling if there is a communication error
             console.error('Failed to fetch noise level:', error);

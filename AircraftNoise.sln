@@ -21,6 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Core", "Aircr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Tests", "AircraftNoise.Tests\AircraftNoise.Tests.csproj", "{9BC30905-7117-48AD-AA36-82D35AED0BCD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{57722150-06CC-4B8A-BF59-0D2DBAE6F84C}"
+	ProjectSection(SolutionItems) = preProject
+		Data\README.md = Data\README.md
+		Data\GetMeasurementData.http = Data\GetMeasurementData.http
+		Data\20250409T000000P2H.html = Data\20250409T000000P2H.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

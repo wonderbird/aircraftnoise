@@ -28,5 +28,9 @@ dotnet test
 
 ## Thanks
 
-Many thanks to [JetBrains](https://www.jetbrains.com/?from=aircraftnoise) who provide
-an [Open Source License](https://www.jetbrains.com/community/opensource/) for this project ❤️.
+Many thanks to [JetBrains](https://www.jetbrains.com/?from=aircraftnoise) who provide an [Open Source License](https://www.jetbrains.com/community/opensource/) for this project ❤️.
+
+## Acknowledgements
+
+This project uses code, documentation and ideas generated with the assistance of large language models
+(Claude 3.7 Sonnet).

@@ -15,30 +15,31 @@ public class PeakNoiseLevelsController : ControllerBase
         _measurementProvider = measurementProvider;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<NoiseMeasurementResponse>> Get()
+    [HttpPost]
+    public async Task<ActionResult<NoiseMeasurementResponse>> Search([FromBody] NoiseMeasurementRequest request)
     {
-        var endTime = DateTime.Now;
-        var duration = TimeSpan.FromMinutes(5);
+        var response = new NoiseMeasurementResponse
+        {
+            NoiseMeasurementDba = 0.0,
+            Timestamp = null,
+            HasMeasurement = false
+        };
+
+        var endTime = request.EndTime ?? DateTime.Now;
+        var duration = TimeSpan.FromMinutes(request.DurationMinutes);
         
         var measurements = (await _measurementProvider.GetNoiseMeasurementsForPastTimePeriodAsync(endTime, duration)).ToList();
-        if (!measurements.Any())
+        if (measurements.Count > 0)
         {
-            return new NoiseMeasurementResponse
+            var peakMeasurement = measurements.OrderByDescending(m => m.NoiseMeasurementDba).First();
+            response = new NoiseMeasurementResponse
             {
-                NoiseMeasurementDba = 0.0,
-                Timestamp = null,
-                HasMeasurement = false
+                NoiseMeasurementDba = peakMeasurement.NoiseMeasurementDba,
+                Timestamp = peakMeasurement.Timestamp,
+                HasMeasurement = true
             };
         }
-        
-        var peakMeasurement = measurements.OrderByDescending(m => m.NoiseMeasurementDba).First();
-        
-        return new NoiseMeasurementResponse
-        {
-            NoiseMeasurementDba = peakMeasurement.NoiseMeasurementDba,
-            Timestamp = peakMeasurement.Timestamp,
-            HasMeasurement = true
-        };
+
+        return response;
     }
 }

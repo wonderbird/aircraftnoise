@@ -78,8 +78,7 @@
 ### Technical Issues
 1. **DFLD HTML Structure Dependency**: Parsing depends on stable HTML structure
 2. **Time Synchronization**: Event timestamps may not align perfectly with measurement periods
-3. **Network Reliability**: HTML parsing requires reliable internet connectivity
-4. **Browser Compatibility**: Geolocation API requires HTTPS and user permission
+3. **Browser Compatibility**: Geolocation API requires HTTPS and user permission
 
 ### User Experience Issues
 1. **Manual Export**: Users must manually transfer data to complaint systems
@@ -93,7 +92,6 @@
 - **Started**: Simple web application
 - **Evolved**: Clean architecture with domain separation
 - **Current**: Hexagonal architecture with ports and adapters
-- **Future**: Microservices for multi-region support
 
 ### Integration Strategy Evolution
 - **Initially**: Direct API integration planned
@@ -110,14 +108,12 @@
 ## Success Metrics
 
 ### Technical Metrics
-- **Test Coverage**: 95% for core business logic
-- **API Response Time**: <200ms for noise level queries
+- **Test Coverage**: High test coverage for core business logic
 - **HTML Parsing Success**: 99% reliability for DFLD data
 - **Error Recovery**: Graceful degradation for all external failures
 
 ### User Experience Metrics
 - **Event Recording**: <3 seconds from noise event to recorded timestamp
-- **Complaint Preparation**: 80% reduction in manual work
 - **Data Accuracy**: 95% correlation between events and measurements
 - **User Satisfaction**: High confidence in complaint legitimacy
 
@@ -133,10 +129,3 @@
 - [ ] Multi-station support within region
 - [ ] Persistent storage for event history
 - [ ] Export functionality for complaint data
-- [ ] Performance optimization and caching
-
-### Long-term (Future Releases)
-- [ ] Multi-region expansion
-- [ ] Mobile application development
-- [ ] Automated complaint submission
-- [ ] Integration with additional measurement systems

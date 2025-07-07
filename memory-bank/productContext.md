@@ -50,12 +50,9 @@ Aircraft noise pollution significantly impacts quality of life for citizens near
 - **Immediate**: Record events without delay during noise disturbances
 - **Accurate**: Backed by official measurement data
 - **Simple**: Minimal steps from event to complaint
-- **Reliable**: Consistent access to DFLD data
 - **Transparent**: Clear display of official noise measurements
 
 ## Success Criteria
 
 - Citizens can record noise events in under 3 seconds
-- Automatic noise level mapping achieves 95% accuracy
-- Complaint preparation time reduced by 80%
 - User satisfaction with complaint process quality

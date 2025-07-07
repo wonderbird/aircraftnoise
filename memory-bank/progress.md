@@ -22,10 +22,12 @@
 - **Error Handling**: Basic error responses for API failures
 
 ### External Integration ✅
-- **DFLD HTML Parsing**: MeasurementFileReader can extract noise data
-- **Sample Data Processing**: Successfully parsing 20250409T000000P2H.html
+- **DFLD HTML Parsing**: MeasurementFileReader extracts noise data from `<area>` tag titles
+- **Sample Data Processing**: Successfully parsing 20250409T000000P2H.html with regex pattern
 - **Location Services**: Hardcoded service for Cologne/Bonn region
 - **Browser APIs**: Geolocation and local storage integration
+- **TypeScript ES6 Modules**: Fixed browser module loading with .js extension requirements
+- **Time Zone Handling**: Berlin time zone conversion implemented
 
 ## What's Left to Build
 
@@ -64,8 +66,10 @@
 ### Technical Debt
 - **Hardcoded Services**: Location and station data need configuration system
 - **Error Handling**: Need comprehensive error handling for external failures
-- **HTML Parsing Fragility**: DFLD structure changes could break integration
+- **HTML Parsing Fragility**: DFLD structure changes could break `<area>` tag parsing
 - **Time Zone Handling**: Potential issues with event-to-measurement synchronization
+- **TypeScript Build Complexity**: Selective compilation strategy requires maintenance
+- **DFLD URL Dependencies**: Hardcoded URL structure vulnerable to DFLD changes
 
 ### Performance Status
 - **Development**: Fast iteration with hot reload
@@ -76,9 +80,11 @@
 ## Known Issues
 
 ### Technical Issues
-1. **DFLD HTML Structure Dependency**: Parsing depends on stable HTML structure
-2. **Time Synchronization**: Event timestamps may not align perfectly with measurement periods
+1. **DFLD HTML Structure Dependency**: Parsing depends on stable `<area>` tag title structure
+2. **Time Synchronization**: Event timestamps may not align perfectly with 2-hour measurement periods
 3. **Browser Compatibility**: Geolocation API requires HTTPS and user permission
+4. **TypeScript ES6 Module Complexity**: Browser imports require .js extensions despite .ts sources
+5. **DFLD Regex Fragility**: Pattern `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"` could break with German text changes
 
 ### User Experience Issues
 1. **Manual Export**: Users must manually transfer data to complaint systems
@@ -96,8 +102,10 @@
 ### Integration Strategy Evolution
 - **Initially**: Direct API integration planned
 - **Reality**: DFLD has no public API
-- **Adapted**: HTML parsing approach
-- **Current**: Robust HTML parsing with error handling
+- **Adapted**: HTML parsing approach using HtmlAgilityPack
+- **Current**: Robust HTML parsing with regex extraction from `<area>` tag titles
+- **Discovered**: Noise data embedded in image map tooltips, not traditional table structure
+- **Implemented**: Time zone aware parsing with German date format support
 
 ### User Experience Evolution
 - **Originally**: Complex multi-step workflow

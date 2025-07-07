@@ -9,10 +9,11 @@
 - **xUnit**: Testing framework for unit and integration tests
 
 ### Frontend Technologies
-- **TypeScript**: Strongly typed JavaScript with ES6 modules
+- **TypeScript**: Strongly typed JavaScript with ES6 modules (requires .js extensions in browser imports)
 - **Node.js 22.14 LTS**: Development toolchain
 - **HTML5**: Modern web standards (geolocation, local storage)
 - **CSS3**: Styling with responsive design
+- **HtmlAgilityPack**: .NET HTML parsing library for DFLD integration
 
 ### Infrastructure
 - **Docker**: Containerization for deployment
@@ -51,14 +52,18 @@ AircraftNoise.sln
 ## Technical Constraints
 
 ### External Dependencies
-- **DFLD Website Structure**: HTML parsing depends on stable page structure
+- **DFLD Website Structure**: HTML parsing extracts noise data from `<area>` tag title attributes
 - **Browser Geolocation**: Requires HTTPS for geolocation API
 - **German Language**: UI and data formats specific to German aviation system
+- **DFLD URL Parameters**: R=region, S=station, D=date (dd.MM.yyyy), ZT=start hour
+- **DFLD Data Windows**: 2-hour measurement periods constraint data access patterns
 
 ### Performance Considerations
-- **HTML Parsing**: Synchronous parsing of DFLD measurement files
+- **HTML Parsing**: Synchronous parsing of DFLD measurement files using regex patterns
 - **Client-side Storage**: In-memory storage with no persistence
 - **Single Station**: Limited to one measurement station per region
+- **TypeScript Compilation**: Selective JS compilation (exclude compiled files, keep site.js)
+- **DFLD Parsing Complexity**: Regex pattern extraction from HTML image map areas
 
 ### Security Requirements
 - **HTTPS**: Required for geolocation API access
@@ -111,9 +116,11 @@ AircraftNoise.sln
 - **Feature Branches**: Development workflow with mob programming
 
 ### External Integration
-- **DFLD HTML Parsing**: Custom parser for measurement data
+- **DFLD HTML Parsing**: Custom parser extracts data from `<area>` tag titles using regex `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"`
 - **Manual Testing**: Browser-based validation of DFLD endpoints
 - **Error Handling**: Graceful degradation for external failures
+- **Time Zone Conversion**: Berlin time zone handling for accurate timestamp mapping
+- **German Date Parsing**: dd.MM.yyyy format parsing with CultureInfo.InvariantCulture
 
 ## Future Technical Considerations
 

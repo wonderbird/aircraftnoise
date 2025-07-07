@@ -63,9 +63,11 @@
 - 🔄 Event timestamp to measurement mapping
 
 **Blockers/Risks**:
-- DFLD HTML structure changes could break parsing
-- Time zone handling between events and measurements
+- DFLD HTML structure changes could break parsing (noise data embedded in `<area>` tag titles)
+- Time zone handling between events and measurements (Berlin time zone conversion required)
 - Error handling for network failures
+- TypeScript ES6 module complexity (browser requires .js extensions in imports)
+- No official DFLD API (HTML scraping only approach)
 
 ## Active Decisions and Considerations
 
@@ -95,9 +97,12 @@
 ## Learnings and Project Insights
 
 ### Technical Insights
-- **DFLD Integration Complexity**: HTML parsing more complex than initially expected
-- **Time Synchronization**: Critical for accurate event-to-measurement mapping
+- **DFLD Integration Complexity**: HTML parsing extracts noise data from `<area>` tag titles in image maps
+- **Time Synchronization**: Critical for accurate event-to-measurement mapping with Berlin time zone conversion
 - **Browser Limitations**: Geolocation requires HTTPS and user permission
+- **TypeScript ES6 Module Challenges**: Browser ES6 modules require .js extensions in TypeScript imports
+- **HTML Parsing Implementation**: Regex pattern `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"` extracts timestamps and noise levels
+- **DFLD Data Constraints**: 2-hour measurement windows limit data access patterns
 
 ### User Experience Insights
 - **Immediate Recording**: Users need fast event capture during noise events
@@ -108,6 +113,9 @@
 - **Scope Creep Prevention**: Maintaining focus on core complaint assistance workflow
 - **Technical Debt**: Clean architecture paying dividends for maintainability
 - **External Dependencies**: DFLD HTML structure is a significant risk factor
+- **Mob Programming Benefits**: Collaborative development approach improving code quality
+- **Configuration Management**: Comprehensive .gitignore and .dockerignore for professional deployment
+- **Testing Strategy**: Integration testing with real DFLD data validates HTML parsing accuracy
 
 ## Current Sprint Focus
 

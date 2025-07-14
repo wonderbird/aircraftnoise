@@ -2,9 +2,8 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using AircraftNoise.Web.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Xunit;
 
-namespace AircraftNoise.Tests;
+namespace AircraftNoise.Web.Tests;
 
 public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {

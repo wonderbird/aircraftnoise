@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{2C6A331D-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Core", "AircraftNoise.Core\AircraftNoise.Core.csproj", "{7F5AD610-EC5C-4A9D-AD50-37D9974E2AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Tests", "AircraftNoise.Tests\AircraftNoise.Tests.csproj", "{9BC30905-7117-48AD-AA36-82D35AED0BCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Web.Tests", "AircraftNoise.Web.Tests\AircraftNoise.Web.Tests.csproj", "{9BC30905-7117-48AD-AA36-82D35AED0BCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{57722150-06CC-4B8A-BF59-0D2DBAE6F84C}"
 	ProjectSection(SolutionItems) = preProject

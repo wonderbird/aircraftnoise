@@ -6,14 +6,19 @@
 
 ## Recent Changes (Git History Analysis)
 
-### Latest Commit (a3db414): "mob next [ci-skip]"
-- Mob programming session marker
-- Indicates team collaboration on current features
+### Latest Commit (332029c): "feat(get noise levels): wire frontend to backend"
+- **Status**: Major integration milestone achieved
+- **Achievement**: Frontend now successfully connected to backend API
+- **Key Changes**:
+  - NoiseLevelMapper calls POST request to PeakNoiseLevelsController
+  - API changed from GET to POST with proper request/response models
+  - Test data now returns actual measurements (13.0 dBA) instead of placeholder
+  - Sample DFLD HTML data integrated into project
+  - HTML parsing partially implemented but incomplete
 
-### Key Development (50a4e50): "feat(get noise levels, wip): noise levels are read from a DFLD HTML response"
-- **Status**: Work in progress
-- **Achievement**: Successfully parsing DFLD HTML files for noise measurements
-- **Location**: MeasurementFileReader can extract noise data from HTML responses
+### Previous Development (50a4e50): "feat(get noise levels, wip): noise levels are read from a DFLD HTML response"
+- **Foundation**: Initial HTML parsing framework established
+- **Location**: MeasurementFileReader basic structure created
 
 ### Infrastructure (8ed264f): "test: add REST controller test project"
 - Added comprehensive test coverage for PeakNoiseLevelsController
@@ -33,41 +38,47 @@
 ## Next Steps
 
 ### Immediate Priority
-1. **Complete DFLD HTML parsing integration**
-   - Connect MeasurementFileReader to actual DFLD endpoints
-   - Replace placeholder noise level (42) with real parsed data
-   - Ensure robust error handling for HTML parsing failures
+1. **Complete DFLD HTML parsing implementation**
+   - Fix incomplete parsing logic in MeasurementFileReader
+   - Implement proper area element grouping (time + date pairs)
+   - Add robust error handling for HTML parsing failures
+   - Connect to live DFLD endpoints instead of static file
 
 2. **Implement event-to-noise-level mapping**
    - Map recorded event timestamps to measurement time periods
    - Handle time zone and precision matching
    - Provide peak noise level identification
 
-3. **End-to-end testing**
-   - Verify complete workflow from event recording to noise level display
+3. **Complete end-to-end workflow**
+   - Verify complete user journey from event recording to noise level display
    - Test with real DFLD data from Rösrath-Forsbach station
-   - Validate HTML parsing stability
+   - Validate HTML parsing stability with live data
 
 ### Current Technical State
 
 **Working Components**:
 - ✅ Event recording (TypeScript frontend)
 - ✅ Geolocation and station discovery
-- ✅ REST API structure (PeakNoiseLevelsController)
+- ✅ REST API structure (PeakNoiseLevelsController with POST endpoints)
 - ✅ Domain models and clean architecture
-- ✅ Test infrastructure
+- ✅ Test infrastructure with integration tests
+- ✅ Frontend-to-backend integration (NoiseLevelMapper)
+- ✅ Request/response models (NoiseMeasurementRequest/Response)
 
 **In Progress**:
-- 🔄 DFLD HTML parsing (partially implemented)
-- 🔄 Real noise level data integration
+- 🔄 DFLD HTML parsing (partially implemented, needs completion)
+- 🔄 Area element grouping for time/date extraction
+- 🔄 Live DFLD endpoint integration
 - 🔄 Event timestamp to measurement mapping
 
 **Blockers/Risks**:
 - DFLD HTML structure changes could break parsing (noise data embedded in `<area>` tag titles)
+- HTML parsing implementation incomplete (area element grouping not implemented)
 - Time zone handling between events and measurements (Berlin time zone conversion required)
-- Error handling for network failures
+- Error handling for network failures and HTML parsing failures
 - TypeScript ES6 module complexity (browser requires .js extensions in imports)
 - No official DFLD API (HTML scraping only approach)
+- TODO comments indicate development gaps requiring test-driven development
 
 ## Active Decisions and Considerations
 

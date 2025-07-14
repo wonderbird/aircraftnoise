@@ -78,9 +78,10 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 ## Integration Patterns
 
 ### External Data Sources
-- **DFLD HTML Parsing**: Scraping approach for measurement data
+- **DFLD HTML Parsing**: Scraping approach for measurement data (with embedded sample data)
 - **Browser Geolocation**: Standard HTML5 API integration
 - **Manual Export**: User-driven data transfer to complaint systems
+- **Static Data Integration**: Sample measurements.html for development and testing
 
 ### Error Handling Strategy
 - Graceful degradation for missing geolocation

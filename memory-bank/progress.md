@@ -16,14 +16,16 @@
 - **German Language UI**: Localized for target user base
 
 ### Backend APIs ✅
-- **REST Endpoints**: PeakNoiseLevelsController for noise level queries
+- **REST Endpoints**: PeakNoiseLevelsController with POST endpoints for noise level queries
+- **Request/Response Models**: NoiseMeasurementRequest and NoiseMeasurementResponse
 - **Domain Models**: Immutable record structs for reliable data handling
 - **Repository Pattern**: Abstracted data access with hardcoded stations
 - **Error Handling**: Basic error responses for API failures
 
 ### External Integration ✅
-- **DFLD HTML Parsing**: MeasurementFileReader extracts noise data from `<area>` tag titles
-- **Sample Data Processing**: Successfully parsing 20250409T000000P2H.html with regex pattern
+- **Frontend-Backend Integration**: NoiseLevelMapper successfully calls backend POST endpoints
+- **DFLD HTML Parsing**: MeasurementFileReader framework established with regex pattern
+- **Sample Data Processing**: Real DFLD HTML data (measurements.html) integrated into project
 - **Location Services**: Hardcoded service for Cologne/Bonn region
 - **Browser APIs**: Geolocation and local storage integration
 - **TypeScript ES6 Modules**: Fixed browser module loading with .js extension requirements
@@ -32,10 +34,11 @@
 ## What's Left to Build
 
 ### Critical Path 🔄
-1. **Complete DFLD Integration**
-   - Connect MeasurementFileReader to live DFLD endpoints
-   - Replace placeholder noise level (42) with actual parsed data
-   - Implement robust error handling for HTML parsing failures
+1. **Complete DFLD HTML Parsing**
+   - Fix incomplete parsing logic in MeasurementFileReader
+   - Implement area element grouping for time/date extraction
+   - Add robust error handling for HTML parsing failures
+   - Connect to live DFLD endpoints instead of static measurements.html
 
 2. **Event-to-Measurement Mapping**
    - Map recorded event timestamps to measurement time periods
@@ -57,19 +60,22 @@
 ## Current Status
 
 ### Development Phase
-**Phase 1**: Core Functionality (80% Complete)
+**Phase 1**: Core Functionality (85% Complete)
 - ✅ Event recording system
 - ✅ Infrastructure and architecture
-- 🔄 DFLD data integration (in progress)
+- ✅ Frontend-backend integration
+- 🔄 DFLD HTML parsing (partially implemented)
 - ⏳ Complete workflow validation (pending)
 
 ### Technical Debt
 - **Hardcoded Services**: Location and station data need configuration system
 - **Error Handling**: Need comprehensive error handling for external failures
 - **HTML Parsing Fragility**: DFLD structure changes could break `<area>` tag parsing
+- **Incomplete HTML Parsing**: Area element grouping not implemented (TODO comments)
 - **Time Zone Handling**: Potential issues with event-to-measurement synchronization
 - **TypeScript Build Complexity**: Selective compilation strategy requires maintenance
 - **DFLD URL Dependencies**: Hardcoded URL structure vulnerable to DFLD changes
+- **Test-Driven Development**: TODO comments indicate need for TDD approach
 
 ### Performance Status
 - **Development**: Fast iteration with hot reload
@@ -81,10 +87,12 @@
 
 ### Technical Issues
 1. **DFLD HTML Structure Dependency**: Parsing depends on stable `<area>` tag title structure
-2. **Time Synchronization**: Event timestamps may not align perfectly with 2-hour measurement periods
-3. **Browser Compatibility**: Geolocation API requires HTTPS and user permission
-4. **TypeScript ES6 Module Complexity**: Browser imports require .js extensions despite .ts sources
-5. **DFLD Regex Fragility**: Pattern `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"` could break with German text changes
+2. **Incomplete HTML Parsing**: Area element grouping not implemented (time/date pairs)
+3. **Time Synchronization**: Event timestamps may not align perfectly with 2-hour measurement periods
+4. **Browser Compatibility**: Geolocation API requires HTTPS and user permission
+5. **TypeScript ES6 Module Complexity**: Browser imports require .js extensions despite .ts sources
+6. **DFLD Regex Fragility**: Pattern `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"` could break with German text changes
+7. **Development Gaps**: TODO comments indicate areas requiring test-driven development
 
 ### User Experience Issues
 1. **Manual Export**: Users must manually transfer data to complaint systems

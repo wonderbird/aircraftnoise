@@ -57,6 +57,7 @@ AircraftNoise.sln
 - **German Language**: UI and data formats specific to German aviation system
 - **DFLD URL Parameters**: R=region, S=station, D=date (dd.MM.yyyy), ZT=start hour
 - **DFLD Data Windows**: 2-hour measurement periods constraint data access patterns
+- **Sample Data**: Static measurements.html file for development and testing
 
 ### Performance Considerations
 - **HTML Parsing**: Synchronous parsing of DFLD measurement files using regex patterns
@@ -64,6 +65,8 @@ AircraftNoise.sln
 - **Single Station**: Limited to one measurement station per region
 - **TypeScript Compilation**: Selective JS compilation (exclude compiled files, keep site.js)
 - **DFLD Parsing Complexity**: Regex pattern extraction from HTML image map areas
+- **API Integration**: POST requests with structured request/response models
+- **Test Data**: Static file serving for development (measurements.html)
 
 ### Security Requirements
 - **HTTPS**: Required for geolocation API access
@@ -117,10 +120,13 @@ AircraftNoise.sln
 
 ### External Integration
 - **DFLD HTML Parsing**: Custom parser extracts data from `<area>` tag titles using regex `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"`
+- **Frontend-Backend Integration**: NoiseLevelMapper calls POST endpoints with structured requests
+- **Sample Data Integration**: Static measurements.html file for development and testing
 - **Manual Testing**: Browser-based validation of DFLD endpoints
 - **Error Handling**: Graceful degradation for external failures
 - **Time Zone Conversion**: Berlin time zone handling for accurate timestamp mapping
 - **German Date Parsing**: dd.MM.yyyy format parsing with CultureInfo.InvariantCulture
+- **TODO Management**: Development tasks tracked in code comments for test-driven development
 
 ## Future Technical Considerations
 

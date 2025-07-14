@@ -1,3 +1,4 @@
+using System.Net.Http.Json;
 using System.Text.Json;
 using AircraftNoise.Web.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -9,17 +10,27 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
 {
     private readonly WebApplicationFactory<Program> _factory;
 
+    private readonly NoiseMeasurementRequest _searchRequest = new()
+    {
+        EndTime = TimeZoneInfo.ConvertTime(
+            DateTime.Parse("2025-04-09T01:00:00"),
+            TimeZoneInfo.FindSystemTimeZoneById("Europe/Berlin"),
+            TimeZoneInfo.Utc),
+        DurationMinutes = 5
+    };
+
+
     public PeakNoiseLevelsControllerTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
     }
 
     [Fact]
-    public async Task Get_ReturnsSuccessAndCorrectContentType()
+    public async Task Search_ReturnsSuccessAndCorrectContentType()
     {
         var client = _factory.CreateClient();
 
-        var response = await client.GetAsync("/PeakNoiseLevels");
+        var response = await client.PostAsJsonAsync("/PeakNoiseLevels", _searchRequest);
 
         response.EnsureSuccessStatusCode();
         Assert.Equal("application/json; charset=utf-8", 
@@ -27,16 +38,17 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
     }
 
     [Fact]
-    public async Task Get_ReturnsExpectedNoiseMeasurementValue()
+    public async Task Search_ReturnsExpectedNoiseMeasurementValue()
     {
         var client = _factory.CreateClient();
 
-        var response = await client.GetAsync("/PeakNoiseLevels");
+        var response = await client.PostAsJsonAsync("/PeakNoiseLevels", _searchRequest);
         var content = await response.Content.ReadAsStringAsync();
         var result = JsonSerializer.Deserialize<NoiseMeasurementResponse>(content, 
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         Assert.NotNull(result);
-        Assert.False(result.HasMeasurement);
+        Assert.Equal(13.0, result.NoiseMeasurementDba);
+        Assert.True(result.HasMeasurement);
     }
 }

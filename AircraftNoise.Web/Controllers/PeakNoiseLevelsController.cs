@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AircraftNoise.Web.Controllers;
 
+// TODO: Because this returns only a single peak measurement, it should be renamed to PeakNoiseLevelController
 [ApiController]
 [Route("[controller]")]
 public class PeakNoiseLevelsController : ControllerBase
@@ -15,30 +16,38 @@ public class PeakNoiseLevelsController : ControllerBase
         _measurementProvider = measurementProvider;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<NoiseMeasurementResponse>> Get()
+    [HttpPost]
+    public async Task<ActionResult<NoiseMeasurementResponse>> Search(
+        [FromBody] NoiseMeasurementRequest request
+    )
     {
-        var endTime = DateTime.Now;
-        var duration = TimeSpan.FromMinutes(5);
-        
-        var measurements = (await _measurementProvider.GetNoiseMeasurementsForPastTimePeriodAsync(endTime, duration)).ToList();
-        if (!measurements.Any())
+        // TODO: Replace temporary test data here with properly initialized empty response
+        var response = new NoiseMeasurementResponse
         {
-            return new NoiseMeasurementResponse
-            {
-                NoiseMeasurementDba = 0.0,
-                Timestamp = null,
-                HasMeasurement = false
-            };
-        }
-        
-        var peakMeasurement = measurements.OrderByDescending(m => m.NoiseMeasurementDba).First();
-        
-        return new NoiseMeasurementResponse
-        {
-            NoiseMeasurementDba = peakMeasurement.NoiseMeasurementDba,
-            Timestamp = peakMeasurement.Timestamp,
+            NoiseMeasurementDba = 13.0,
+            Timestamp = DateTime.Now,
             HasMeasurement = true
         };
+
+        var endTime = request.EndTime ?? DateTime.Now;
+        var duration = TimeSpan.FromMinutes(request.DurationMinutes);
+
+        var measurements = (
+            await _measurementProvider.GetNoiseMeasurementsForPastTimePeriodAsync(endTime, duration)
+        ).ToList();
+        if (measurements.Count > 0)
+        {
+            var peakMeasurement = measurements
+                .OrderByDescending(m => m.NoiseMeasurementDba)
+                .First();
+            response = new NoiseMeasurementResponse
+            {
+                NoiseMeasurementDba = peakMeasurement.NoiseMeasurementDba,
+                Timestamp = peakMeasurement.Timestamp,
+                HasMeasurement = true
+            };
+        }
+
+        return response;
     }
 }

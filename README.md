@@ -32,5 +32,4 @@ Many thanks to [JetBrains](https://www.jetbrains.com/?from=aircraftnoise) who pr
 
 ## Acknowledgements
 
-This project uses code, documentation and ideas generated with the assistance of large language models
-(Claude 3.7 Sonnet).
+This project uses code, documentation and ideas generated with the assistance of large language models.

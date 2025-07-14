@@ -45,6 +45,7 @@ public class MeasurementFileReader : ICanProvideMeasurements
         return measurements;
     }
     
+    // TODO: Develop this code test driven
     private List<NoiseMeasurement> ParseHtmlData(string htmlContent)
     {
         var doc = new HtmlDocument();
@@ -67,6 +68,7 @@ public class MeasurementFileReader : ICanProvideMeasurements
                 var timeString = match.Groups[1].Value;
                 var noiseLevelString = match.Groups[2].Value;
                 
+                // TODO: Group every two area elements - the title of the first contains the time, the href of the second contains the date
                 // Extract date from the href attribute - D parameter
                 DateTime baseDate = DateTime.MinValue;
                 var dateMatch = Regex.Match(href, @"D=(\d{2}\.\d{2}\.\d{4})");

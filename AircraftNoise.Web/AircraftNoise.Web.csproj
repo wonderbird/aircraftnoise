@@ -24,4 +24,10 @@
     <ProjectReference Include="..\AircraftNoise.Core\AircraftNoise.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\measurements.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

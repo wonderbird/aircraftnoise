@@ -7,6 +7,13 @@
 #   ZT: Start time (format: HH)
 GET https://www.dfld.de/Mess/Messwerte.php?R=003&S=032&D=09.04.2025&ZT=00
 
-### GET /PeakNoiseLevels
+### POST /PeakNoiseLevels
 # Verify that the controllers are working
-GET http://localhost:5159/PeakNoiseLevels
+POST http://localhost:5159/PeakNoiseLevels
+Accept: application/json
+Content-Type: application/json
+
+{
+    "EndTime": "2025-04-09T01:00:00Z",
+    "DurationMinutes": 5
+}

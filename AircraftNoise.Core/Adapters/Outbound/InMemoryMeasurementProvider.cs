@@ -53,6 +53,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                 var areaList = areas.ToList();
                 var subject = areaList.Last().Title;
                 var traceScript = areaList.First().Href;
+                return Complaint.Parse(areaList);
                 return new Complaint(subject, traceScript);
             })
             .ToList();

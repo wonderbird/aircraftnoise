@@ -27,13 +27,9 @@ public class InMemoryMeasurementProviderTests
         var peakDate = peakTimestampCet.ToString("dd.MM.yyyy");
 
         var HtmlAreas = $"""
-                                <html>
-                                    <body>
                                         <area href="javascript:SetMultiParaUrl('form1','Z','{peakTime}','ShowTrack.php?R=3&S=032&D={peakDate}&N=900&Z={peakTime}');"
                                               title="Flugspuren: {peakTime}" />
                                         <area title="Beschwerde zu {peakTime} Uhr versenden [{noiseLevel} dBA]" />
-                                    </body>
-                                </html>
                                 """;
         
         var DfldHtmlResponse = $"""

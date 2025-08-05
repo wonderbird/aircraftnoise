@@ -71,11 +71,8 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
         // TODO: What about moving the regular expressions from below into the Complaint parser?
         var measurements = areaNodes.Select(HtmlAreaElement.Parse)
-            .GroupBy(x => x.Index / 2, x => x, Measurement.Parse)
-            .ToList();
-
-        var result = measurements.Select(measurement => new NoiseMeasurement(measurement.TimestampUtc, measurement.NoiseLevel));
-
-        return Task.FromResult(result);
+            .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
+        
+        return Task.FromResult(measurements);
     }
 }

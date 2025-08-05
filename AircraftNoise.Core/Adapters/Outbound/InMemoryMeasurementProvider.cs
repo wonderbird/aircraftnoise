@@ -21,7 +21,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         }
     }
 
-    private readonly record struct Measurement(string Subject, string TraceScript, double NoiseLevel)
+    private readonly record struct Measurement(string Subject, string TraceScript, double NoiseLevel, DateTime TimestampUtc)
     {
         private static readonly TimeZoneInfo TimeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
 
@@ -48,7 +48,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                     System.Globalization.CultureInfo.InvariantCulture));
             var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, TimeZoneCet);
             
-            return new Measurement(subject, traceScript, noiseLevel);
+            return new Measurement(subject, traceScript, noiseLevel, timestampUtc);
         }
     }
     

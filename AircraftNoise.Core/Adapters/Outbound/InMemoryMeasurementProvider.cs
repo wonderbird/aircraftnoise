@@ -47,6 +47,8 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                 };
             })
             .ToList();
+        
+        var complaints = areas.Select(area => new Complaint(area.ComplaintSubject, area.TraceScript)).ToList();
 
         var result = areas.Select(htmlData =>
         {

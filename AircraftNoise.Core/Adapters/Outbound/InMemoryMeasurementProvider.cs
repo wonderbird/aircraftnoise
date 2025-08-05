@@ -69,18 +69,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
             .GroupBy(x => x.Index / 2, x => x, Measurement.Parse)
             .ToList();
 
-        var result = measurements.Select(measurement =>
-        {
-            var dateMatch = System.Text.RegularExpressions.Regex.Match(measurement.TraceScript, @"(\d{2}\.\d{2}\.\d{4})");
-            var timeMatch = System.Text.RegularExpressions.Regex.Match(measurement.TraceScript, @"(\d{2}:\d{2}:\d{2})");
-            var timestampCet = DateTime.ParseExact(dateMatch.Groups[1].Value, "dd.MM.yyyy",
-                    System.Globalization.CultureInfo.InvariantCulture)
-                .Add(TimeSpan.ParseExact(timeMatch.Groups[1].Value, "hh\\:mm\\:ss",
-                    System.Globalization.CultureInfo.InvariantCulture));
-            var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, _timeZoneCet);
-
-            return new NoiseMeasurement(measurement.TimestampUtc, measurement.NoiseLevel);
-        });
+        var result = measurements.Select(measurement => new NoiseMeasurement(measurement.TimestampUtc, measurement.NoiseLevel));
 
         return Task.FromResult(result);
     }

@@ -1,3 +1,6 @@
+# Don't commit the mob.sh configuration file
+.mob
+
 # Don't commit compiled typsecript files, but keep site.js
 **/wwwroot/js/
 !**/wwwroot/js/site.js

@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{57722150-0
 		Data\20250409T000000P2H.html = Data\20250409T000000P2H.html
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AircraftNoise.Core.Tests", "AircraftNoise.Core.Tests\AircraftNoise.Core.Tests.csproj", "{5A9407B8-1959-47DC-8814-ADE439945B42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +51,9 @@ Global
 		{9BC30905-7117-48AD-AA36-82D35AED0BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BC30905-7117-48AD-AA36-82D35AED0BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BC30905-7117-48AD-AA36-82D35AED0BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A9407B8-1959-47DC-8814-ADE439945B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A9407B8-1959-47DC-8814-ADE439945B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A9407B8-1959-47DC-8814-ADE439945B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A9407B8-1959-47DC-8814-ADE439945B42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

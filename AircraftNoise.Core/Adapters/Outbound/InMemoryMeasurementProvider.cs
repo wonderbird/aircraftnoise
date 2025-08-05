@@ -20,8 +20,19 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
             return new AreaPayload(index, title, href);
         }
     }
-    
-    private readonly record struct Complaint(string Subject, string TraceScript);
+
+    private readonly record struct Complaint(string Subject, string TraceScript)
+    {
+        public static Complaint Parse(IEnumerable<AreaPayload> areas)
+        {
+            // TODO: Assert that there are always two areas in the list.
+
+            var areaList = areas.ToList();
+            var subject = areaList.Last().Title;
+            var traceScript = areaList.First().Href;
+            return new Complaint(subject, traceScript);
+        }
+    }
     
     public InMemoryMeasurementProvider(string dfldHtmlResponse)
     {

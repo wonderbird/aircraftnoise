@@ -35,7 +35,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var title = x.GetAttributeValue("title", string.Empty);
         var href = x.GetAttributeValue("href", string.Empty);
 
-        // TODO: Throw an exception if title or href is empty (create a test first)
+        // TODO(validate input data): Throw an exception if title or href is empty (create a test first)
 
         return new HtmlAreaElement(index, title, href);
     }
@@ -44,7 +44,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
     {
         var areaList = areas.ToList();
 
-        // TODO: Assert that there are always two areas in the list.
+        // TODO(validate input data): Assert that there are always two areas in the list.
 
         var noiseLevel = ParseNoiseLevel(areaList.Last().Title);
         var timestampUtc = ParseTimestampUtc(areaList.First().Href);

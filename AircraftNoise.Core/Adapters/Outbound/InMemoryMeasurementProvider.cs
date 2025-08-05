@@ -8,19 +8,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
     private readonly string _dfldHtmlResponse;
     private static readonly TimeZoneInfo TimeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
 
-    private readonly record struct HtmlAreaElement(int Index, string Title, string Href)
-    {
-        public static HtmlAreaElement Parse(HtmlNode x, int index)
-        {
-            var title = x.GetAttributeValue("title", string.Empty);
-            var href = x.GetAttributeValue("href", string.Empty);
-            
-            // TODO: Throw an exception if title or href is empty (create a test first)
-            
-            return new HtmlAreaElement(index, title, href);
-        }
-    }
-
+    private readonly record struct HtmlAreaElement(int Index, string Title, string Href);
     public InMemoryMeasurementProvider(string dfldHtmlResponse)
     {
         _dfldHtmlResponse = dfldHtmlResponse;

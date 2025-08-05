@@ -79,7 +79,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                     System.Globalization.CultureInfo.InvariantCulture));
             var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, _timeZoneCet);
 
-            return new NoiseMeasurement(timestampUtc, measurement.NoiseLevel);
+            return new NoiseMeasurement(measurement.TimestampUtc, measurement.NoiseLevel);
         });
 
         return Task.FromResult(result);

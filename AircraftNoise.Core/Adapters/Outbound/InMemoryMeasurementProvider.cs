@@ -24,8 +24,8 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
     private readonly record struct Complaint(string Subject, string TraceScript)
     {
         public static Complaint Parse(int _, IEnumerable<AreaPayload> areas) => Parse(areas);
-        
-        public static Complaint Parse(IEnumerable<AreaPayload> areas)
+
+        private static Complaint Parse(IEnumerable<AreaPayload> areas)
         {
             // TODO: Assert that there are always two areas in the list.
 

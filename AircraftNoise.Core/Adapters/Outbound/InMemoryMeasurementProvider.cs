@@ -39,6 +39,16 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         return Task.FromResult(result);
     }
 
+    private static HtmlAreaElement ParseHtmlAreaElement(HtmlNode x, int index)
+    {
+        var title = x.GetAttributeValue("title", string.Empty);
+        var href = x.GetAttributeValue("href", string.Empty);
+            
+        // TODO: Throw an exception if title or href is empty (create a test first)
+            
+        return new HtmlAreaElement(index, title, href);
+    }
+    
     private static NoiseMeasurement ParseNoiseMeasurement(int index, IEnumerable<HtmlAreaElement> areas)
     {
         var areaList = areas.ToList();

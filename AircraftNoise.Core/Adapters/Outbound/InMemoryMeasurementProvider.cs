@@ -21,18 +21,18 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         }
     }
 
-    private readonly record struct Complaint(string Subject, string TraceScript)
+    private readonly record struct Measurement(string Subject, string TraceScript)
     {
-        public static Complaint Parse(int _, IEnumerable<AreaPayload> areas) => Parse(areas);
+        public static Measurement Parse(int _, IEnumerable<AreaPayload> areas) => Parse(areas);
 
-        private static Complaint Parse(IEnumerable<AreaPayload> areas)
+        private static Measurement Parse(IEnumerable<AreaPayload> areas)
         {
             // TODO: Assert that there are always two areas in the list.
 
             var areaList = areas.ToList();
             var subject = areaList.Last().Title;
             var traceScript = areaList.First().Href;
-            return new Complaint(subject, traceScript);
+            return new Measurement(subject, traceScript);
         }
     }
     
@@ -50,7 +50,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
         // TODO: What about moving the regular expressions from below into the Complaint parser?
         var complaints = areaNodes.Select(AreaPayload.Parse)
-            .GroupBy(x => x.Index / 2, x => x, Complaint.Parse)
+            .GroupBy(x => x.Index / 2, x => x, Measurement.Parse)
             .ToList();
 
         var result = complaints.Select(complaint =>

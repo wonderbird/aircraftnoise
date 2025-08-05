@@ -8,24 +8,24 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
     private readonly string _dfldHtmlResponse;
     private readonly TimeZoneInfo _timeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
 
-    private readonly record struct AreaPayload(int Index, string Title, string Href)
+    private readonly record struct HtmlAreaElement(int Index, string Title, string Href)
     {
-        public static AreaPayload Parse(HtmlNode x, int index)
+        public static HtmlAreaElement Parse(HtmlNode x, int index)
         {
             var title = x.GetAttributeValue("title", string.Empty);
             var href = x.GetAttributeValue("href", string.Empty);
             
             // TODO: Throw an exception if title or href is empty (create a test first)
             
-            return new AreaPayload(index, title, href);
+            return new HtmlAreaElement(index, title, href);
         }
     }
 
     private readonly record struct Measurement(string Subject, string TraceScript)
     {
-        public static Measurement Parse(int _, IEnumerable<AreaPayload> areas) => Parse(areas);
+        public static Measurement Parse(int _, IEnumerable<HtmlAreaElement> areas) => Parse(areas);
 
-        private static Measurement Parse(IEnumerable<AreaPayload> areas)
+        private static Measurement Parse(IEnumerable<HtmlAreaElement> areas)
         {
             // TODO: Assert that there are always two areas in the list.
 
@@ -49,7 +49,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
         // TODO: What about moving the regular expressions from below into the Complaint parser?
-        var complaints = areaNodes.Select(AreaPayload.Parse)
+        var complaints = areaNodes.Select(HtmlAreaElement.Parse)
             .GroupBy(x => x.Index / 2, x => x, Measurement.Parse)
             .ToList();
 

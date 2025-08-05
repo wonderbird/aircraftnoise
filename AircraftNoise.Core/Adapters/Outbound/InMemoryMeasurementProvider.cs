@@ -51,6 +51,12 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         }
     }
     
+    private static NoiseMeasurement ParseNoiseMeasurement(int index, IEnumerable<HtmlAreaElement> areas)
+    {
+        var measurement = Measurement.Parse(index, areas);
+        return new NoiseMeasurement(measurement.TimestampUtc, measurement.NoiseLevel);
+    }
+    
     public InMemoryMeasurementProvider(string dfldHtmlResponse)
     {
         _dfldHtmlResponse = dfldHtmlResponse;

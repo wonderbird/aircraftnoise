@@ -4,5 +4,5 @@ namespace AircraftNoise.Core.Adapters.Outbound;
 
 public interface ICanProvideMeasurements
 {
-    Task<IEnumerable<Domain.NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end, TimeSpan duration);
+    Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime endTimeUtc, TimeSpan duration);
 }

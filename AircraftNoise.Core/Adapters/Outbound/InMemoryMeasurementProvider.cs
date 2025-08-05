@@ -50,6 +50,24 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         
         var complaints = areas.Select(area => new Complaint(area.ComplaintSubject, area.TraceScript)).ToList();
 
+        var result2 = complaints.Select(complaint =>
+        {
+            var noiseLevelMatch =
+                System.Text.RegularExpressions.Regex.Match(complaint.Subject, @"(\d+(\.\d+)?) dBA");
+            var noiseLevel = double.Parse(noiseLevelMatch.Groups[1].Value,
+                System.Globalization.CultureInfo.InvariantCulture);
+
+            var dateMatch = System.Text.RegularExpressions.Regex.Match(complaint.TraceScript, @"(\d{2}\.\d{2}\.\d{4})");
+            var timeMatch = System.Text.RegularExpressions.Regex.Match(complaint.TraceScript, @"(\d{2}:\d{2}:\d{2})");
+            var timestampCet = DateTime.ParseExact(dateMatch.Groups[1].Value, "dd.MM.yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture)
+                .Add(TimeSpan.ParseExact(timeMatch.Groups[1].Value, "hh\\:mm\\:ss",
+                    System.Globalization.CultureInfo.InvariantCulture));
+            var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, _timeZoneCet);
+
+            return new NoiseMeasurement(timestampUtc, noiseLevel);
+        });
+        
         var result = areas.Select(htmlData =>
         {
             var noiseLevelMatch =

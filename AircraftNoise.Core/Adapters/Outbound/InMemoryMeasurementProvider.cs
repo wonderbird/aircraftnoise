@@ -6,7 +6,6 @@ namespace AircraftNoise.Core.Adapters.Outbound;
 public class InMemoryMeasurementProvider : ICanProvideMeasurements
 {
     private readonly string _dfldHtmlResponse;
-    private readonly TimeZoneInfo _timeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
 
     private readonly record struct HtmlAreaElement(int Index, string Title, string Href)
     {

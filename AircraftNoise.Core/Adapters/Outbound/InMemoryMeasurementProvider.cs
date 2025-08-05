@@ -50,7 +50,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         
         var complaints = areas.Select(area => new Complaint(area.ComplaintSubject, area.TraceScript)).ToList();
 
-        var result2 = complaints.Select(complaint =>
+        var result = complaints.Select(complaint =>
         {
             var noiseLevelMatch =
                 System.Text.RegularExpressions.Regex.Match(complaint.Subject, @"(\d+(\.\d+)?) dBA");
@@ -68,7 +68,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
             return new NoiseMeasurement(timestampUtc, noiseLevel);
         });
         
-        var result = areas.Select(htmlData =>
+        var result2 = areas.Select(htmlData =>
         {
             var noiseLevelMatch =
                 System.Text.RegularExpressions.Regex.Match(htmlData.ComplaintSubject, @"(\d+(\.\d+)?) dBA");

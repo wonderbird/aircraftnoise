@@ -35,7 +35,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
-        var areas = areaNodes.Select(AreaPayload.Parse)
+        var complaints = areaNodes.Select(AreaPayload.Parse)
             .GroupBy(x => x.Index / 2, x => x, (_, areas) =>
             {
                 // TODO: Hemingway Bridge - Move this to another parser; what about moving the regular expressions from below into that parser?
@@ -45,8 +45,6 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                 return new Complaint(subject, traceScript);
             })
             .ToList();
-        
-        var complaints = areas.ToList();
 
         var result = complaints.Select(complaint =>
         {

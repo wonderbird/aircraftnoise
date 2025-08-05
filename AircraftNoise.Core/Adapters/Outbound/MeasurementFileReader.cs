@@ -15,7 +15,7 @@ public class MeasurementFileReader : ICanProvideMeasurements
         _filePath = filePath;
     }
 
-    public async Task<IEnumerable<Domain.NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end,
+    public async Task<IEnumerable<Domain.NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime endTimeUtc,
         TimeSpan duration)
     {
         var measurements = new List<Domain.NoiseMeasurement>();
@@ -29,11 +29,11 @@ public class MeasurementFileReader : ICanProvideMeasurements
             measurements = ParseHtmlData(content);
             
             // Calculate the start time of the interval
-            DateTime start = end - duration;
+            DateTime start = endTimeUtc - duration;
             
             // Filter measurements based on the time interval
             measurements = measurements
-                .Where(m => m.Timestamp >= start && m.Timestamp <= end)
+                .Where(m => m.Timestamp >= start && m.Timestamp <= endTimeUtc)
                 .ToList();
         }
         catch (Exception ex)

@@ -16,7 +16,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         _dfldHtmlResponse = dfldHtmlResponse;
     }
 
-    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end,
+    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime endTimeUtc,
         TimeSpan duration)
     {
         var html = new HtmlDocument();

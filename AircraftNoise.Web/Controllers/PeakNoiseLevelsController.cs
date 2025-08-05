@@ -25,7 +25,7 @@ public class PeakNoiseLevelsController : ControllerBase
         var response = new NoiseMeasurementResponse
         {
             NoiseMeasurementDba = 13.0,
-            Timestamp = DateTime.Now,
+            Timestamp = DateTime.Now, // TODO: This timestamp should be Utc
             HasMeasurement = true
         };
 

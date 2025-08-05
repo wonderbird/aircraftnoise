@@ -30,6 +30,7 @@ public class PeakNoiseLevelsController : ControllerBase
         };
 
         var endTime = request.EndTime ?? DateTime.Now;
+        var endTimeUtc = request.EndTimeUtc ?? DateTime.UtcNow;
         var duration = TimeSpan.FromMinutes(request.DurationMinutes);
 
         var measurements = (

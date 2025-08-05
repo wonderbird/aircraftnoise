@@ -12,12 +12,13 @@ public class InMemoryMeasurementProviderTests
     {
         var configuredNoiseLevel = 55.0;
         var configuredPeakTimestamp = "2024-12-31T11:00:00Z";
-        var htmlAreas = RenderHtmlAreasForMeasurement(configuredNoiseLevel, configuredPeakTimestamp);
+
+        var measurementHtml = RenderHtmlAreasForMeasurement(configuredNoiseLevel, configuredPeakTimestamp);
 
         var dfldHtmlResponse = $"""
                                 <html>
                                     <body>
-                                {htmlAreas}
+                                {measurementHtml}
                                     </body>
                                 </html>
                                 """;
@@ -27,8 +28,7 @@ public class InMemoryMeasurementProviderTests
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(DateTime.MinValue, TimeSpan.Zero);
 
         var firstMeasurement = measurements.First();
-        var firstMeasurementTimestamp = firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ",
-            System.Globalization.CultureInfo.InvariantCulture);
+        var firstMeasurementTimestamp = firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
         Assert.Equal(configuredPeakTimestamp, firstMeasurementTimestamp);
         Assert.Equal(configuredNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }

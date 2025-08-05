@@ -49,11 +49,11 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
         // TODO: What about moving the regular expressions from below into the Complaint parser?
-        var complaints = areaNodes.Select(HtmlAreaElement.Parse)
+        var measurements = areaNodes.Select(HtmlAreaElement.Parse)
             .GroupBy(x => x.Index / 2, x => x, Measurement.Parse)
             .ToList();
 
-        var result = complaints.Select(complaint =>
+        var result = measurements.Select(complaint =>
         {
             var noiseLevelMatch =
                 System.Text.RegularExpressions.Regex.Match(complaint.Subject, @"(\d+(\.\d+)?) dBA");

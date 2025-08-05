@@ -21,7 +21,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         }
     }
 
-    private readonly record struct Measurement(string Subject, string TraceScript)
+    private readonly record struct Measurement(string Subject, string TraceScript, double NoiseLevel)
     {
         public static Measurement Parse(int _, IEnumerable<HtmlAreaElement> areas) => Parse(areas);
 
@@ -37,7 +37,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                 System.Globalization.CultureInfo.InvariantCulture);
             
             var traceScript = areaList.First().Href;
-            return new Measurement(subject, traceScript);
+            return new Measurement(subject, traceScript, noiseLevel);
         }
     }
     

@@ -40,15 +40,13 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
             {
                 // TODO: Hemingway Bridge - Move this to another parser; what about moving the regular expressions from below into that parser?
                 var areaList = areas.ToList();
-                return new
-                {
-                    ComplaintSubject = areaList.Last().Title,
-                    TraceScript = areaList.First().Href
-                };
+                var subject = areaList.Last().Title;
+                var traceScript = areaList.First().Href;
+                return new Complaint(subject, traceScript);
             })
             .ToList();
         
-        var complaints = areas.Select(area => new Complaint(area.ComplaintSubject, area.TraceScript)).ToList();
+        var complaints = areas.ToList();
 
         var result = complaints.Select(complaint =>
         {

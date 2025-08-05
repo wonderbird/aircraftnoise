@@ -23,6 +23,8 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
     private readonly record struct Complaint(string Subject, string TraceScript)
     {
+        public static Complaint Parse(int _, IEnumerable<AreaPayload> areas) => Parse(areas);
+        
         public static Complaint Parse(IEnumerable<AreaPayload> areas)
         {
             // TODO: Assert that there are always two areas in the list.
@@ -46,9 +48,9 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
-                // TODO: What about moving the regular expressions from below into the Complaint parser?
+        // TODO: What about moving the regular expressions from below into the Complaint parser?
         var complaints = areaNodes.Select(AreaPayload.Parse)
-            .GroupBy(x => x.Index / 2, x => x, (_, areas) => Complaint.Parse(areas))
+            .GroupBy(x => x.Index / 2, x => x, Complaint.Parse)
             .ToList();
 
         var result = complaints.Select(complaint =>

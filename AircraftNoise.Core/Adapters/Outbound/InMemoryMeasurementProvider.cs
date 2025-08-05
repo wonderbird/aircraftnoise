@@ -69,10 +69,9 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
-        // TODO: What about moving the regular expressions from below into the Complaint parser?
-        var measurements = areaNodes.Select(HtmlAreaElement.Parse)
+        var result = areaNodes.Select(HtmlAreaElement.Parse)
             .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
         
-        return Task.FromResult(measurements);
+        return Task.FromResult(result);
     }
 }

@@ -16,16 +16,17 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         _dfldHtmlResponse = dfldHtmlResponse;
     }
 
-    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end, TimeSpan duration)
+    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end,
+        TimeSpan duration)
     {
         var html = new HtmlDocument();
         html.LoadHtml(_dfldHtmlResponse);
-        
+
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
         var result = areaNodes.Select(ParseHtmlAreaElement)
             .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
-        
+
         return Task.FromResult(result);
     }
 
@@ -33,23 +34,20 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
     {
         var title = x.GetAttributeValue("title", string.Empty);
         var href = x.GetAttributeValue("href", string.Empty);
-            
+
         // TODO: Throw an exception if title or href is empty (create a test first)
-            
+
         return new HtmlAreaElement(index, title, href);
     }
-    
+
     private static NoiseMeasurement ParseNoiseMeasurement(int index, IEnumerable<HtmlAreaElement> areas)
     {
         var areaList = areas.ToList();
-            
+
         // TODO: Assert that there are always two areas in the list.
-        var subject = areaList.Last().Title;
-        var noiseLevelMatch =
-            System.Text.RegularExpressions.Regex.Match(subject, @"(\d+(\.\d+)?) dBA");
-        var noiseLevel = double.Parse(noiseLevelMatch.Groups[1].Value,
-            System.Globalization.CultureInfo.InvariantCulture);
-            
+
+        var noiseLevel = ParseNoiseLevel(areaList.Last().Title);
+
         var traceScript = areaList.First().Href;
 
         var dateMatch = System.Text.RegularExpressions.Regex.Match(traceScript, @"(\d{2}\.\d{2}\.\d{4})");
@@ -61,5 +59,12 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, TimeZoneCet);
 
         return new NoiseMeasurement(timestampUtc, noiseLevel);
+    }
+
+    private static double ParseNoiseLevel(string titleAttribute)
+    {
+        var match = System.Text.RegularExpressions.Regex.Match(titleAttribute, @"(\d+(\.\d+)?) dBA");
+        var result = double.Parse(match.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture);
+        return result;
     }
 }

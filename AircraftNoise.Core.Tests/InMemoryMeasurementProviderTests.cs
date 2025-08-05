@@ -11,6 +11,30 @@ public class InMemoryMeasurementProviderTests
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
     {
         var configuredNoiseLevel = 55.0;
+        var configuredPeakTimestamp = "2024-12-31T11:00:00Z";
+        var htmlAreas = RenderHtmlAreasForMeasurement(configuredNoiseLevel, configuredPeakTimestamp);
+
+        var dfldHtmlResponse = $"""
+                                <html>
+                                    <body>
+                                {htmlAreas}
+                                    </body>
+                                </html>
+                                """;
+
+        var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
+
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(DateTime.MinValue, TimeSpan.Zero);
+
+        var firstMeasurement = measurements.First();
+        var firstMeasurementTimestamp = firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ",
+            System.Globalization.CultureInfo.InvariantCulture);
+        Assert.Equal(configuredPeakTimestamp, firstMeasurementTimestamp);
+        Assert.Equal(configuredNoiseLevel, firstMeasurement.NoiseMeasurementDba);
+    }
+
+    private static string RenderHtmlAreasForMeasurement(double configuredNoiseLevel, string configuredPeakTimestamp)
+    {
         var noiseLevel = configuredNoiseLevel.ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
 
         // Avoid time zone issues when running tests on different systems.
@@ -20,7 +44,6 @@ public class InMemoryMeasurementProviderTests
         // This procedure avoids problems, if a developer runs the test in a different time zone.
 
         // Set up peak time on 2024-12-31 at 12:00:00 CET (UTC+01:00).
-        var configuredPeakTimestamp = "2024-12-31T11:00:00Z";
         var peakTimestampUtc = DateTime.Parse(configuredPeakTimestamp, CultureInfo.InvariantCulture,
             DateTimeStyles.AdjustToUniversal);
         var timeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
@@ -33,23 +56,6 @@ public class InMemoryMeasurementProviderTests
                                        title="Flugspuren: {peakTime}" />
                                  <area title="Beschwerde zu {peakTime} Uhr versenden [{noiseLevel} dBA]" />
                          """;
-
-        var DfldHtmlResponse = $"""
-                                <html>
-                                    <body>
-                                {HtmlAreas}
-                                    </body>
-                                </html>
-                                """;
-
-        var provider = new InMemoryMeasurementProvider(DfldHtmlResponse);
-
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(DateTime.MinValue, TimeSpan.Zero);
-
-        var firstMeasurement = measurements.First();
-        var firstMeasurementTimestamp = firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ",
-            System.Globalization.CultureInfo.InvariantCulture);
-        Assert.Equal(configuredPeakTimestamp, firstMeasurementTimestamp);
-        Assert.Equal(configuredNoiseLevel, firstMeasurement.NoiseMeasurementDba);
+        return HtmlAreas;
     }
 }

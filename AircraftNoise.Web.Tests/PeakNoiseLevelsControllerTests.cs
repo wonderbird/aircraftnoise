@@ -15,10 +15,9 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
             DateTime.Parse("2025-04-09T01:00:00"),
             TimeZoneInfo.FindSystemTimeZoneById("Europe/Berlin"),
             TimeZoneInfo.Utc),
-        EndTimeUtc = TimeZoneInfo.ConvertTime(
+        EndTimeUtc = TimeZoneInfo.ConvertTimeToUtc(
             DateTime.Parse("2025-04-09T01:00:00"),
-            TimeZoneInfo.FindSystemTimeZoneById("Europe/Berlin"),
-            TimeZoneInfo.Utc),
+            TimeZoneInfo.FindSystemTimeZoneById("Europe/Berlin")),
         DurationMinutes = 5
     };
 

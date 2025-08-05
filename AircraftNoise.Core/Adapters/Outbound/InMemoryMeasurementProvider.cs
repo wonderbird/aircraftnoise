@@ -20,7 +20,25 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
             return new HtmlAreaElement(index, title, href);
         }
     }
-    
+
+    public InMemoryMeasurementProvider(string dfldHtmlResponse)
+    {
+        _dfldHtmlResponse = dfldHtmlResponse;
+    }
+
+    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end, TimeSpan duration)
+    {
+        var html = new HtmlDocument();
+        html.LoadHtml(_dfldHtmlResponse);
+        
+        var areaNodes = html.DocumentNode.SelectNodes("//area");
+
+        var result = areaNodes.Select(HtmlAreaElement.Parse)
+            .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
+        
+        return Task.FromResult(result);
+    }
+
     private static NoiseMeasurement ParseNoiseMeasurement(int index, IEnumerable<HtmlAreaElement> areas)
     {
         var areaList = areas.ToList();
@@ -43,23 +61,5 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, TimeZoneCet);
 
         return new NoiseMeasurement(timestampUtc, noiseLevel);
-    }
-    
-    public InMemoryMeasurementProvider(string dfldHtmlResponse)
-    {
-        _dfldHtmlResponse = dfldHtmlResponse;
-    }
-
-    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime end, TimeSpan duration)
-    {
-        var html = new HtmlDocument();
-        html.LoadHtml(_dfldHtmlResponse);
-        
-        var areaNodes = html.DocumentNode.SelectNodes("//area");
-
-        var result = areaNodes.Select(HtmlAreaElement.Parse)
-            .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
-        
-        return Task.FromResult(result);
     }
 }

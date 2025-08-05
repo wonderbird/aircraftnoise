@@ -33,7 +33,7 @@ export class NoiseLevelMapper {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify({ 
-                    EndTime: new Date().toISOString(), 
+                    EndTimeUtc: new Date().toISOString(), 
                     DurationMinutes: 5 
                 })
             });

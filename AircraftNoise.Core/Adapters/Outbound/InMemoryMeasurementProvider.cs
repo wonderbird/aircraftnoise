@@ -33,7 +33,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
-        var result = areaNodes.Select(HtmlAreaElement.Parse)
+        var result = areaNodes.Select(ParseHtmlAreaElement)
             .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
         
         return Task.FromResult(result);

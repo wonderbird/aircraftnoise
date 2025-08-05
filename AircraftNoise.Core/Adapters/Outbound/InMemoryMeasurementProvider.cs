@@ -58,22 +58,22 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
             .GroupBy(x => x.Index / 2, x => x, Measurement.Parse)
             .ToList();
 
-        var result = measurements.Select(complaint =>
+        var result = measurements.Select(measurement =>
         {
             var noiseLevelMatch =
-                System.Text.RegularExpressions.Regex.Match(complaint.Subject, @"(\d+(\.\d+)?) dBA");
+                System.Text.RegularExpressions.Regex.Match(measurement.Subject, @"(\d+(\.\d+)?) dBA");
             var noiseLevel = double.Parse(noiseLevelMatch.Groups[1].Value,
                 System.Globalization.CultureInfo.InvariantCulture);
 
-            var dateMatch = System.Text.RegularExpressions.Regex.Match(complaint.TraceScript, @"(\d{2}\.\d{2}\.\d{4})");
-            var timeMatch = System.Text.RegularExpressions.Regex.Match(complaint.TraceScript, @"(\d{2}:\d{2}:\d{2})");
+            var dateMatch = System.Text.RegularExpressions.Regex.Match(measurement.TraceScript, @"(\d{2}\.\d{2}\.\d{4})");
+            var timeMatch = System.Text.RegularExpressions.Regex.Match(measurement.TraceScript, @"(\d{2}:\d{2}:\d{2})");
             var timestampCet = DateTime.ParseExact(dateMatch.Groups[1].Value, "dd.MM.yyyy",
                     System.Globalization.CultureInfo.InvariantCulture)
                 .Add(TimeSpan.ParseExact(timeMatch.Groups[1].Value, "hh\\:mm\\:ss",
                     System.Globalization.CultureInfo.InvariantCulture));
             var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, _timeZoneCet);
 
-            return new NoiseMeasurement(timestampUtc, noiseLevel);
+            return new NoiseMeasurement(timestampUtc, measurement.NoiseLevel);
         });
 
         return Task.FromResult(result);

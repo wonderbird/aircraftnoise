@@ -29,12 +29,11 @@ public class PeakNoiseLevelsController : ControllerBase
             HasMeasurement = true
         };
 
-        var endTime = request.EndTime ?? DateTime.Now;
-        var endTimeUtc = request.EndTimeUtc ?? endTime;
+        var endTimeUtc = request.EndTimeUtc ?? DateTime.UtcNow;
         var duration = TimeSpan.FromMinutes(request.DurationMinutes);
 
         var measurements = (
-            await _measurementProvider.GetNoiseMeasurementsForPastTimePeriodAsync(endTime, duration)
+            await _measurementProvider.GetNoiseMeasurementsForPastTimePeriodAsync(endTimeUtc, duration)
         ).ToList();
         if (measurements.Count > 0)
         {

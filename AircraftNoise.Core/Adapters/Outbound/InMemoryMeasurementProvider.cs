@@ -23,7 +23,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
     private readonly record struct Measurement(string Subject, string TraceScript, double NoiseLevel)
     {
-        private static readonly TimeZoneInfo _timeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+        private static readonly TimeZoneInfo TimeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
 
         public static Measurement Parse(int _, IEnumerable<HtmlAreaElement> areas) => Parse(areas);
 
@@ -46,7 +46,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
                     System.Globalization.CultureInfo.InvariantCulture)
                 .Add(TimeSpan.ParseExact(timeMatch.Groups[1].Value, "hh\\:mm\\:ss",
                     System.Globalization.CultureInfo.InvariantCulture));
-            var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, _timeZoneCet);
+            var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, TimeZoneCet);
             
             return new Measurement(subject, traceScript, noiseLevel);
         }

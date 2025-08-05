@@ -27,10 +27,15 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
         private static Measurement Parse(IEnumerable<HtmlAreaElement> areas)
         {
-            // TODO: Assert that there are always two areas in the list.
-
             var areaList = areas.ToList();
+            
+            // TODO: Assert that there are always two areas in the list.
             var subject = areaList.Last().Title;
+            var noiseLevelMatch =
+                System.Text.RegularExpressions.Regex.Match(subject, @"(\d+(\.\d+)?) dBA");
+            var noiseLevel = double.Parse(noiseLevelMatch.Groups[1].Value,
+                System.Globalization.CultureInfo.InvariantCulture);
+            
             var traceScript = areaList.First().Href;
             return new Measurement(subject, traceScript);
         }

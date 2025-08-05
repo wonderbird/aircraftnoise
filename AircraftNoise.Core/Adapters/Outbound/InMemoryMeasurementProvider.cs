@@ -47,16 +47,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         // TODO: Assert that there are always two areas in the list.
 
         var noiseLevel = ParseNoiseLevel(areaList.Last().Title);
-
-        var traceScript = areaList.First().Href;
-
-        var dateMatch = System.Text.RegularExpressions.Regex.Match(traceScript, @"(\d{2}\.\d{2}\.\d{4})");
-        var timeMatch = System.Text.RegularExpressions.Regex.Match(traceScript, @"(\d{2}:\d{2}:\d{2})");
-        var timestampCet = DateTime.ParseExact(dateMatch.Groups[1].Value, "dd.MM.yyyy",
-                System.Globalization.CultureInfo.InvariantCulture)
-            .Add(TimeSpan.ParseExact(timeMatch.Groups[1].Value, "hh\\:mm\\:ss",
-                System.Globalization.CultureInfo.InvariantCulture));
-        var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, TimeZoneCet);
+        var timestampUtc = ParseTimestampUtc(areaList.First().Href);
 
         return new NoiseMeasurement(timestampUtc, noiseLevel);
     }
@@ -66,5 +57,17 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var match = System.Text.RegularExpressions.Regex.Match(titleAttribute, @"(\d+(\.\d+)?) dBA");
         var result = double.Parse(match.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture);
         return result;
+    }
+
+    private static DateTime ParseTimestampUtc(string traceScript)
+    {
+        var dateMatch = System.Text.RegularExpressions.Regex.Match(traceScript, @"(\d{2}\.\d{2}\.\d{4})");
+        var timeMatch = System.Text.RegularExpressions.Regex.Match(traceScript, @"(\d{2}:\d{2}:\d{2})");
+        var timestampCet = DateTime.ParseExact(dateMatch.Groups[1].Value, "dd.MM.yyyy",
+                System.Globalization.CultureInfo.InvariantCulture)
+            .Add(TimeSpan.ParseExact(timeMatch.Groups[1].Value, "hh\\:mm\\:ss",
+                System.Globalization.CultureInfo.InvariantCulture));
+        var timestampUtc = TimeZoneInfo.ConvertTimeToUtc(timestampCet, TimeZoneCet);
+        return timestampUtc;
     }
 }

@@ -21,6 +21,8 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         }
     }
     
+    private readonly record struct Complaint(string Subject, string TraceScript);
+    
     public InMemoryMeasurementProvider(string dfldHtmlResponse)
     {
         _dfldHtmlResponse = dfldHtmlResponse;

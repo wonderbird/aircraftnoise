@@ -28,7 +28,8 @@ public class InMemoryMeasurementProviderTests
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(DateTime.MinValue, TimeSpan.Zero);
 
         var firstMeasurement = measurements.First();
-        var firstMeasurementTimestamp = firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+        var firstMeasurementTimestamp =
+            firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
         Assert.Equal(configuredPeakTimestamp, firstMeasurementTimestamp);
         Assert.Equal(configuredNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }

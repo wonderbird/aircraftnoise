@@ -12,8 +12,7 @@ public class InMemoryMeasurementProviderTests
     {
         var expectedNoiseLevel = 55.0;
         var expectedTimestampUtcString = "2024-12-31T11:00:00Z";
-        var expectedTimestampUtc = DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
-            DateTimeStyles.AdjustToUniversal);
+        var expectedTimestampUtc = StringToTimestampUtc(expectedTimestampUtcString);
 
         var measurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, expectedTimestampUtcString);
 
@@ -37,15 +36,18 @@ public class InMemoryMeasurementProviderTests
         Assert.Equal(expectedTimestampUtcString, firstMeasurementTimestamp);
         Assert.Equal(expectedNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }
-    
+
+    private static DateTime StringToTimestampUtc(string expectedTimestampUtcString) =>
+        DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
+            DateTimeStyles.AdjustToUniversal);
+
     [Fact]
     public async Task
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
     {
         var expectedNoiseLevel = 55.0;
         var expectedTimestampUtcString = "2024-12-31T11:00:00Z";
-        var expectedTimestampUtc = DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
-            DateTimeStyles.AdjustToUniversal);
+        var expectedTimestampUtc = StringToTimestampUtc(expectedTimestampUtcString);
         var anyNoiseLevelExceptExpected = 60.0;
         var anyTimestampUtcBeforeExpected = "2024-12-31T10:00:00Z";
         

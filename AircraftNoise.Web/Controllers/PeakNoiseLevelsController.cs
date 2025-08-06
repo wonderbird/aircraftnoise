@@ -43,7 +43,6 @@ public class PeakNoiseLevelsController : ControllerBase
             response = new NoiseMeasurementResponse
             {
                 NoiseMeasurementDba = peakMeasurement.NoiseMeasurementDba,
-                Timestamp = peakMeasurement.Timestamp,
                 TimestampUtc = peakMeasurement.Timestamp,
                 HasMeasurement = true
             };

@@ -11,9 +11,11 @@ public class InMemoryMeasurementProviderTests
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
     {
         var configuredNoiseLevel = 55.0;
-        var configuredPeakTimestamp = "2024-12-31T11:00:00Z";
+        var configuredPeakTimestampUtcString = "2024-12-31T11:00:00Z";
+        var configuredPeakTimestampUtc = DateTime.Parse(configuredPeakTimestampUtcString, CultureInfo.InvariantCulture,
+            DateTimeStyles.AdjustToUniversal);
 
-        var measurementHtml = RenderHtmlAreasForMeasurement(configuredNoiseLevel, configuredPeakTimestamp);
+        var measurementHtml = RenderHtmlAreasForMeasurement(configuredNoiseLevel, configuredPeakTimestampUtcString);
 
         var dfldHtmlResponse = $"""
                                 <html>
@@ -25,13 +27,49 @@ public class InMemoryMeasurementProviderTests
 
         var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(DateTime.MinValue, TimeSpan.Zero);
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(configuredPeakTimestampUtc, TimeSpan.Zero);
 
         var firstMeasurement = measurements.First();
         var firstMeasurementTimestamp =
             firstMeasurement.TimestampUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
-        Assert.Equal(configuredPeakTimestamp, firstMeasurementTimestamp);
+        Assert.Equal(configuredPeakTimestampUtcString, firstMeasurementTimestamp);
         Assert.Equal(configuredNoiseLevel, firstMeasurement.NoiseMeasurementDba);
+    }
+    
+    [Fact]
+    public async Task
+        GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
+    {
+        var expectedNoiseLevel = 55.0;
+        var expectedTimestampUtcString = "2024-12-31T11:00:00Z";
+        var expectedTimestampUtc = DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
+            DateTimeStyles.AdjustToUniversal);
+        var anyNoiseLevelExceptExpected = 60.0;
+        var anyTimestampUtcBeforeExpected = "2024-12-31T10:00:00Z";
+        
+        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(anyNoiseLevelExceptExpected, anyTimestampUtcBeforeExpected);
+        var secondMeasurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, expectedTimestampUtcString);
+
+        var dfldHtmlResponse = $"""
+                                <html>
+                                    <body>
+                                {firstMeasurementHtml}
+                                {secondMeasurementHtml}
+                                    </body>
+                                </html>
+                                """;
+
+        var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
+
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(expectedTimestampUtc, TimeSpan.Zero);
+
+        var measurementList = measurements.ToList();
+        Assert.Single(measurementList);
+        var firstMeasurement = measurementList.First();
+        var firstMeasurementTimestamp =
+            firstMeasurement.TimestampUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+        Assert.Equal(expectedTimestampUtcString, firstMeasurementTimestamp);
+        Assert.Equal(expectedNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }
 
     private static string RenderHtmlAreasForMeasurement(double configuredNoiseLevel, string configuredPeakTimestamp)

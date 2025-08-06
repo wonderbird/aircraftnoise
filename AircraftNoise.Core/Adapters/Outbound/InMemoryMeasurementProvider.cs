@@ -25,7 +25,8 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
         var result = areaNodes.Select(ParseHtmlAreaElement)
-            .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement);
+            .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement)
+            .Where(x => x.TimestampUtc == endTimeUtc);
 
         return Task.FromResult(result);
     }

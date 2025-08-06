@@ -8,6 +8,8 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ICanFindLocation, LocationLookupService>();
 builder.Services.AddSingleton<ICanFindRegion, RegionRepository>();
 builder.Services.AddSingleton<ICanFindMeasurementStation, MeasurementStationRepository>();
+
+var dfldHtmlResponse = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "measurements.html"));
 builder.Services.AddSingleton<ICanProvideMeasurements, MeasurementFileReader>(_ => new MeasurementFileReader(Path.Combine(AppContext.BaseDirectory, "Data", "measurements.html")));
 
 var app = builder.Build();

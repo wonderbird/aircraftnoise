@@ -29,7 +29,9 @@ public class InMemoryMeasurementProviderTests
 
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(expectedTimestampUtc, TimeSpan.Zero);
 
-        var firstMeasurement = measurements.First();
+        var measurementList = measurements.ToList();
+        Assert.Single(measurementList);
+        var firstMeasurement = measurementList.First();
         var firstMeasurementTimestamp =
             firstMeasurement.TimestampUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
         Assert.Equal(expectedTimestampUtcString, firstMeasurementTimestamp);

@@ -29,7 +29,7 @@ public class InMemoryMeasurementProviderTests
 
         var firstMeasurement = measurements.First();
         var firstMeasurementTimestamp =
-            firstMeasurement.Timestamp.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+            firstMeasurement.TimestampUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
         Assert.Equal(configuredPeakTimestamp, firstMeasurementTimestamp);
         Assert.Equal(configuredNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }

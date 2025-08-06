@@ -33,7 +33,7 @@ public class MeasurementFileReader : ICanProvideMeasurements
             
             // Filter measurements based on the time interval
             measurements = measurements
-                .Where(m => m.Timestamp >= start && m.Timestamp <= endTimeUtc)
+                .Where(m => m.TimestampUtc >= start && m.TimestampUtc <= endTimeUtc)
                 .ToList();
         }
         catch (Exception ex)
@@ -89,6 +89,6 @@ public class MeasurementFileReader : ICanProvideMeasurements
             }
         }
         
-        return dataPoints.OrderBy(dp => dp.Timestamp).ToList();
+        return dataPoints.OrderBy(dp => dp.TimestampUtc).ToList();
     }
 }

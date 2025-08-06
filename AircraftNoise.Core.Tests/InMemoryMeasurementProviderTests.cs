@@ -37,10 +37,6 @@ public class InMemoryMeasurementProviderTests
         Assert.Equal(expectedNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }
 
-    private static DateTime StringToTimestampUtc(string expectedTimestampUtcString) =>
-        DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
-            DateTimeStyles.AdjustToUniversal);
-
     [Fact]
     public async Task
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
@@ -101,4 +97,8 @@ public class InMemoryMeasurementProviderTests
                          """;
         return HtmlAreas;
     }
+
+    private static DateTime StringToTimestampUtc(string expectedTimestampUtcString) =>
+        DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
+            DateTimeStyles.AdjustToUniversal);
 }

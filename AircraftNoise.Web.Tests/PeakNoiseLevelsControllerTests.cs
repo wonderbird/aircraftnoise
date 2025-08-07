@@ -7,7 +7,7 @@ namespace AircraftNoise.Web.Tests;
 
 public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
-    private const double ExpectedNoiseLevelInDataFile = 55.5;
+    private const double ExpectedNoiseLevelInDataFile = 59.4;
     
     private readonly WebApplicationFactory<Program> _factory;
 

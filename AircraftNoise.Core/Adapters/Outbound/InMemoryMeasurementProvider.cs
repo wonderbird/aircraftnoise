@@ -26,7 +26,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
         var result = areaNodes.Select(ParseHtmlAreaElement)
             .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement)
-            .Where(x => x.TimestampUtc == endTimeUtc);
+            .Where(x => x.TimestampUtc >= endTimeUtc - duration && x.TimestampUtc <= endTimeUtc);
 
         return Task.FromResult(result);
     }

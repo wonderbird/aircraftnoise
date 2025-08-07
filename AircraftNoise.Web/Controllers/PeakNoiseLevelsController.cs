@@ -24,7 +24,7 @@ public class PeakNoiseLevelsController : ControllerBase
         // TODO: Replace temporary test data here with properly initialized empty response
         var response = new NoiseMeasurementResponse
         {
-            NoiseMeasurementDba = 13.0,
+            NoiseMeasurementDba = 55.5,
             TimestampUtc = DateTime.UtcNow,
             HasMeasurement = true
         };

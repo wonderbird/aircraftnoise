@@ -5,8 +5,8 @@
 **/wwwroot/js/
 !**/wwwroot/js/site.js
 
-# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode,vim
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode,vim
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -590,6 +590,26 @@ Temporary Items
 
 # Android studio 3.1+ serialized cache file
 
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
 ### VisualStudioCode ###
 !.vscode/*.code-snippets
 
@@ -805,4 +825,4 @@ $RECYCLE.BIN/
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/linux,macos,rider,csharp,windows,visualstudio,jetbrains+all,visualstudiocode,vim

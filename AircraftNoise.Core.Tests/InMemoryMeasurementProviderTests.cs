@@ -11,10 +11,11 @@ public class InMemoryMeasurementProviderTests
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
     {
         var expectedNoiseLevel = 55.0;
-        var expectedTimestampUtcString = "2024-12-31T11:00:00Z";
-        var expectedTimestampUtc = StringToTimestampUtc(expectedTimestampUtcString);
+        var matchingDate = "31.12.2024";
+        var matchingTime = "12:00:00";
+        var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var measurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, expectedTimestampUtcString);
+        var measurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, matchingDate, matchingTime); 
 
         var dfldHtmlResponse = $"""
                                 <html>
@@ -31,9 +32,7 @@ public class InMemoryMeasurementProviderTests
         var measurementList = measurements.ToList();
         Assert.Single(measurementList);
         var firstMeasurement = measurementList.First();
-        var firstMeasurementTimestamp =
-            firstMeasurement.TimestampUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
-        Assert.Equal(expectedTimestampUtcString, firstMeasurementTimestamp);
+        Assert.Equal(expectedTimestampUtc, firstMeasurement.TimestampUtc);
         Assert.Equal(expectedNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }
 
@@ -42,13 +41,15 @@ public class InMemoryMeasurementProviderTests
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
     {
         var expectedNoiseLevel = 55.0;
-        var expectedTimestampUtcString = "2024-12-31T11:00:00Z";
-        var expectedTimestampUtc = StringToTimestampUtc(expectedTimestampUtcString);
-        var anyNoiseLevelExceptExpected = 60.0;
-        var anyTimestampUtcBeforeExpected = "2024-12-31T10:00:00Z";
-        
-        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(anyNoiseLevelExceptExpected, anyTimestampUtcBeforeExpected);
-        var secondMeasurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, expectedTimestampUtcString);
+        var matchingDate = "31.12.2024";
+        var matchingTime = "12:00:00";
+        var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
+
+        var otherTime = "11:00:00";
+        var otherNoiseLevel = 60.0;
+
+        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(otherNoiseLevel, matchingDate, otherTime);
+        var secondMeasurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, matchingDate, matchingTime);
 
         var dfldHtmlResponse = $"""
                                 <html>
@@ -66,9 +67,7 @@ public class InMemoryMeasurementProviderTests
         var measurementList = measurements.ToList();
         Assert.Single(measurementList);
         var firstMeasurement = measurementList.First();
-        var firstMeasurementTimestamp =
-            firstMeasurement.TimestampUtc.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
-        Assert.Equal(expectedTimestampUtcString, firstMeasurementTimestamp);
+        Assert.Equal(expectedTimestampUtc, firstMeasurement.TimestampUtc);
         Assert.Equal(expectedNoiseLevel, firstMeasurement.NoiseMeasurementDba);
     }
 
@@ -77,13 +76,18 @@ public class InMemoryMeasurementProviderTests
         GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesRange_ReturnsMeasurementList()
     {
         var expectedNoiseLevels = new List<double> { 42.0, 43.0, 44.0 };
-        var expectedTimestampsUtcStrings = new List<string> { "2024-12-31T10:58:00Z", "2024-12-31T10:59:00Z", "2024-12-31T11:00:00Z" };
-        var expectedTimestampsUtc = expectedTimestampsUtcStrings.Select(StringToTimestampUtc).ToList();
-        var anyNoiseLevelExceptExpected = 60.0;
-        var anyTimestampUtcBeforeExpected = "2024-12-31T10:00:00Z";
-        
-        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(anyNoiseLevelExceptExpected, anyTimestampUtcBeforeExpected);
-        var htmlForExpectedMeasurementAreas = expectedTimestampsUtcStrings.Zip(expectedNoiseLevels).Select(x => RenderHtmlAreasForMeasurement(x.Second, x.First)).ToList();
+        var matchingDate = "31.12.2024";
+        var matchingTimes = new List<string> { "11:58:00", "11:59:00", "12:00:00" };
+        var expectedTimestampsUtc = new List<DateTime> {
+            new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc),
+            new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc),
+            new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+        };
+        var otherNoiseLevel = 60.0;
+        var otherTime = "10:00:00";
+
+        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(otherNoiseLevel, matchingDate, otherTime);
+        var htmlForExpectedMeasurementAreas = expectedNoiseLevels.Zip(matchingTimes).Select(x => RenderHtmlAreasForMeasurement(x.First, matchingDate, x.Second)).ToList();
 
         var dfldHtmlResponse = $"""
                                 <html>
@@ -103,33 +107,15 @@ public class InMemoryMeasurementProviderTests
         Assert.Equal(expectedTimestampsUtc, actualTimestampsUtc);
     }
 
-    private static string RenderHtmlAreasForMeasurement(double configuredNoiseLevel, string configuredPeakTimestamp)
+    private static string RenderHtmlAreasForMeasurement(double configuredNoiseLevel, string configuredPeakDate, string configuredPeakTime)
     {
-        var noiseLevel = configuredNoiseLevel.ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
-
-        // Avoid time zone issues when running tests on different systems.
-        //
-        // To have a system and location independent test, the timestamp is given in UTC time.
-        // The DFLD response is always in the W. Europe Standard Time zone.
-        // This procedure avoids problems, if a developer runs the test in a different time zone.
-
-        // Set up peak time on 2024-12-31 at 12:00:00 CET (UTC+01:00).
-        var peakTimestampUtc = DateTime.Parse(configuredPeakTimestamp, CultureInfo.InvariantCulture,
-            DateTimeStyles.AdjustToUniversal);
-        var timeZoneCet = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
-        var peakTimestampCet = TimeZoneInfo.ConvertTimeFromUtc(peakTimestampUtc, timeZoneCet);
-        var peakTime = peakTimestampCet.ToString("HH:mm:ss");
-        var peakDate = peakTimestampCet.ToString("dd.MM.yyyy");
+        var noiseLevel = configuredNoiseLevel.ToString("F1", CultureInfo.InvariantCulture);
 
         var HtmlAreas = $"""
-                                 <area href="javascript:SetMultiParaUrl('form1','Z','{peakTime}','ShowTrack.php?R=3&S=032&D={peakDate}&N=900&Z={peakTime}');"
-                                       title="Flugspuren: {peakTime}" />
-                                 <area title="Beschwerde zu {peakTime} Uhr versenden [{noiseLevel} dBA]" />
+                                 <area href="javascript:SetMultiParaUrl('form1','Z','{configuredPeakTime}','ShowTrack.php?R=3&S=032&D={configuredPeakDate}&N=900&Z={configuredPeakTime}');"
+                                       title="Flugspuren: {configuredPeakTime}" />
+                                 <area title="Beschwerde zu {configuredPeakTime} Uhr versenden [{noiseLevel} dBA]" />
                          """;
         return HtmlAreas;
     }
-
-    private static DateTime StringToTimestampUtc(string expectedTimestampUtcString) =>
-        DateTime.Parse(expectedTimestampUtcString, CultureInfo.InvariantCulture,
-            DateTimeStyles.AdjustToUniversal);
 }

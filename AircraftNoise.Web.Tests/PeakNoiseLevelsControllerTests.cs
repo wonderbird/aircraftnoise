@@ -7,6 +7,8 @@ namespace AircraftNoise.Web.Tests;
 
 public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
+    private const double ExpectedNoiseLevelInDataFile = 13.0;
+    
     private readonly WebApplicationFactory<Program> _factory;
 
     private readonly NoiseMeasurementRequest _searchRequest = new()
@@ -46,7 +48,7 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         Assert.NotNull(result);
-        Assert.Equal(13.0, result.NoiseMeasurementDba);
+        Assert.Equal(ExpectedNoiseLevelInDataFile, result.NoiseMeasurementDba);
         Assert.True(result.HasMeasurement);
     }
 }

@@ -11,8 +11,7 @@ builder.Services.AddSingleton<ICanFindMeasurementStation, MeasurementStationRepo
 
 // TODO: Hemingway Bridge - I want to replace the MeasurementFileReader with InMemoryMeasurementProvider, but using the factory function seems not to work.
 var dfldHtmlResponse = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "measurements.html"));
-var implementationFactory = new Func<ICanProvideMeasurements>(() => new InMemoryMeasurementProvider(dfldHtmlResponse));
-builder.Services.AddSingleton<ICanProvideMeasurements, MeasurementFileReader>(_ => new MeasurementFileReader(Path.Combine(AppContext.BaseDirectory, "Data", "measurements.html")));
+builder.Services.AddSingleton<ICanProvideMeasurements, InMemoryMeasurementProvider>(_ => new InMemoryMeasurementProvider(dfldHtmlResponse));
 
 var app = builder.Build();
 

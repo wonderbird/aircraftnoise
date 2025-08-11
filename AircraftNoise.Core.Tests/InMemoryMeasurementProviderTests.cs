@@ -7,27 +7,21 @@ public class InMemoryMeasurementProviderTests
 {
     // TODO: Test edge cases later
     [Fact]
-    public async Task
-        GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
+    public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
     {
         var expectedNoiseLevel = 55.0;
-        var matchingDate = "31.12.2024";
-        var matchingTime = "12:00:00";
         var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var measurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, matchingDate, matchingTime); 
-
-        var dfldHtmlResponse = $"""
-                                <html>
-                                    <body>
-                                {measurementHtml}
-                                    </body>
-                                </html>
-                                """;
+        var dfldHtmlResponse = new MeasurementHtmlRenderer(
+            [new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]
+        ).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(expectedTimestampUtc, TimeSpan.Zero);
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
+            expectedTimestampUtc,
+            TimeSpan.Zero
+        );
 
         var measurementList = measurements.ToList();
         Assert.Single(measurementList);
@@ -37,32 +31,24 @@ public class InMemoryMeasurementProviderTests
     }
 
     [Fact]
-    public async Task
-        GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
+    public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
     {
         var expectedNoiseLevel = 55.0;
-        var matchingDate = "31.12.2024";
-        var matchingTime = "12:00:00";
         var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var otherTime = "11:00:00";
-        var otherNoiseLevel = 60.0;
-
-        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(otherNoiseLevel, matchingDate, otherTime);
-        var secondMeasurementHtml = RenderHtmlAreasForMeasurement(expectedNoiseLevel, matchingDate, matchingTime);
-
-        var dfldHtmlResponse = $"""
-                                <html>
-                                    <body>
-                                {firstMeasurementHtml}
-                                {secondMeasurementHtml}
-                                    </body>
-                                </html>
-                                """;
+        var dfldHtmlResponse = new MeasurementHtmlRenderer(
+            [
+                new MeasurementValue("31.12.2024", "11:00:00", 60.0),
+                new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel),
+            ]
+        ).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(expectedTimestampUtc, TimeSpan.Zero);
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
+            expectedTimestampUtc,
+            TimeSpan.Zero
+        );
 
         var measurementList = measurements.ToList();
         Assert.Single(measurementList);
@@ -72,50 +58,74 @@ public class InMemoryMeasurementProviderTests
     }
 
     [Fact]
-    public async Task
-        GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesRange_ReturnsMeasurementList()
+    public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesRange_ReturnsMeasurementList()
     {
         var expectedNoiseLevels = new List<double> { 42.0, 43.0, 44.0 };
-        var matchingDate = "31.12.2024";
-        var matchingTimes = new List<string> { "11:58:00", "11:59:00", "12:00:00" };
-        var expectedTimestampsUtc = new List<DateTime> {
+        var expectedTimestampsUtc = new List<DateTime>
+        {
             new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc),
             new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc),
             new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc),
         };
-        var otherNoiseLevel = 60.0;
-        var otherTime = "10:00:00";
 
-        var firstMeasurementHtml = RenderHtmlAreasForMeasurement(otherNoiseLevel, matchingDate, otherTime);
-        var htmlForExpectedMeasurementAreas = expectedNoiseLevels.Zip(matchingTimes).Select(x => RenderHtmlAreasForMeasurement(x.First, matchingDate, x.Second)).ToList();
-
-        var dfldHtmlResponse = $"""
-                                <html>
-                                    <body>
-                                {firstMeasurementHtml}
-                                {string.Join("\n", htmlForExpectedMeasurementAreas)}
-                                    </body>
-                                </html>
-                                """;
+        var dfldHtmlResponse = new MeasurementHtmlRenderer(
+            [
+                new MeasurementValue("31.12.2024", "11:00:00", 60.0),
+                new MeasurementValue("31.12.2024", "11:58:00", expectedNoiseLevels[0]),
+                new MeasurementValue("31.12.2024", "11:59:00", expectedNoiseLevels[1]),
+                new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevels[2]),
+            ]
+        ).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(expectedTimestampsUtc.Last(), TimeSpan.FromMinutes(2));
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
+            expectedTimestampsUtc.Last(),
+            TimeSpan.FromMinutes(2)
+        );
 
         var measurementList = measurements.ToList();
         var actualTimestampsUtc = measurementList.Select(x => x.TimestampUtc).ToList();
         Assert.Equal(expectedTimestampsUtc, actualTimestampsUtc);
     }
 
-    private static string RenderHtmlAreasForMeasurement(double configuredNoiseLevel, string configuredPeakDate, string configuredPeakTime)
-    {
-        var noiseLevel = configuredNoiseLevel.ToString("F1", CultureInfo.InvariantCulture);
+    private readonly record struct MeasurementValue(string date, string time, double NoiseLevel);
 
-        var HtmlAreas = $"""
-                                 <area href="javascript:SetMultiParaUrl('form1','Z','{configuredPeakTime}','ShowTrack.php?R=3&S=032&D={configuredPeakDate}&N=900&Z={configuredPeakTime}');"
-                                       title="Flugspuren: {configuredPeakTime}" />
-                                 <area title="Beschwerde zu {configuredPeakTime} Uhr versenden [{noiseLevel} dBA]" />
-                         """;
-        return HtmlAreas;
+    private class MeasurementHtmlRenderer
+    {
+        private readonly List<MeasurementValue> _measurements = new();
+
+        public MeasurementHtmlRenderer(IEnumerable<MeasurementValue> measurements)
+        {
+            _measurements.AddRange(measurements);
+        }
+
+        public string Render()
+        {
+            var result = """
+                <html>
+                    <body>
+                """;
+
+            foreach (var measurement in _measurements)
+            {
+                var noiseLevel = measurement.NoiseLevel.ToString(
+                    "F1",
+                    CultureInfo.InvariantCulture
+                );
+                result += $"""
+                            <area href="javascript:SetMultiParaUrl('form1','Z','{measurement.time}','ShowTrack.php?R=3&S=032&D={measurement.date}&N=900&Z={measurement.time}');"
+                                  title="Flugspuren: {measurement.time}" />
+                            <area title="Beschwerde zu {measurement.time} Uhr versenden [{noiseLevel} dBA]" />
+                    """;
+            }
+
+            result += """
+                    </body>
+                </html>
+                """;
+
+            return result;
+        }
     }
 }

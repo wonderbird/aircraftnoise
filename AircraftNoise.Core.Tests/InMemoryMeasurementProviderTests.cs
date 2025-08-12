@@ -1,5 +1,6 @@
 using System.Globalization;
 using AircraftNoise.Core.Adapters.Outbound;
+using AircraftNoise.Core.Domain;
 
 namespace AircraftNoise.Core.Tests;
 
@@ -23,11 +24,11 @@ public class InMemoryMeasurementProviderTests
             TimeSpan.Zero
         );
 
-        var measurementList = measurements.ToList();
-        Assert.Single(measurementList);
-        var firstMeasurement = measurementList.First();
-        Assert.Equal(expectedTimestampUtc, firstMeasurement.TimestampUtc);
-        Assert.Equal(expectedNoiseLevel, firstMeasurement.NoiseMeasurementDba);
+        List<NoiseMeasurement> expectedMeasurements =
+        [
+            new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel),
+        ];
+        Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 
     [Fact]

@@ -13,11 +13,11 @@ public class InMemoryMeasurementProviderTests
         var expectedNoiseLevel = 55.0;
         var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var dfldHtmlResponse = new MeasurementHtmlRenderer(
+        var dfldHtml = new DfldHtml(
             [new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]
         ).Render();
 
-        var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
+        var provider = new InMemoryMeasurementProvider(dfldHtml);
 
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
             expectedTimestampUtc,
@@ -37,14 +37,14 @@ public class InMemoryMeasurementProviderTests
         var expectedNoiseLevel = 55.0;
         var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var dfldHtmlResponse = new MeasurementHtmlRenderer(
+        var dfldHtml = new DfldHtml(
             [
                 new MeasurementValue("31.12.2024", "11:00:00", 60.0),
                 new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel),
             ]
         ).Render();
 
-        var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
+        var provider = new InMemoryMeasurementProvider(dfldHtml);
 
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
             expectedTimestampUtc,
@@ -69,7 +69,7 @@ public class InMemoryMeasurementProviderTests
             new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc),
         };
 
-        var dfldHtmlResponse = new MeasurementHtmlRenderer(
+        var dfldHtml = new DfldHtml(
             [
                 new MeasurementValue("31.12.2024", "11:00:00", 60.0),
                 new MeasurementValue("31.12.2024", "11:58:00", expectedNoiseLevels[0]),
@@ -78,7 +78,7 @@ public class InMemoryMeasurementProviderTests
             ]
         ).Render();
 
-        var provider = new InMemoryMeasurementProvider(dfldHtmlResponse);
+        var provider = new InMemoryMeasurementProvider(dfldHtml);
 
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
             expectedTimestampsUtc.Last(),
@@ -92,11 +92,11 @@ public class InMemoryMeasurementProviderTests
 
     private readonly record struct MeasurementValue(string date, string time, double NoiseLevel);
 
-    private class MeasurementHtmlRenderer
+    private class DfldHtml
     {
         private readonly List<MeasurementValue> _measurements = new();
 
-        public MeasurementHtmlRenderer(IEnumerable<MeasurementValue> measurements)
+        public DfldHtml(IEnumerable<MeasurementValue> measurements)
         {
             _measurements.AddRange(measurements);
         }

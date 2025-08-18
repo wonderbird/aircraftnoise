@@ -89,8 +89,8 @@ public class InMemoryMeasurementProviderTests
             [
                 new MeasurementValue("31.12.2024", "11:00:00", 60.0),
                 new MeasurementValue("31.12.2024", "11:58:00", 42.0),
-                new MeasurementValue("31.12.2024", "11:59:00", expectedNoiseLevels[1]),
-                new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevels[2]),
+                new MeasurementValue("31.12.2024", "11:59:00", 43.0),
+                new MeasurementValue("31.12.2024", "12:00:00", 44.0),
             ]
         ).Render();
 

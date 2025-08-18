@@ -75,8 +75,14 @@ public class InMemoryMeasurementProviderTests
                 new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc),
                 42.0
             ),
-            new NoiseMeasurement(expectedTimestampsUtc[1], 43.0),
-            new NoiseMeasurement(expectedTimestampsUtc[2], 44.0),
+            new NoiseMeasurement(
+                new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc),
+                43.0
+            ),
+            new NoiseMeasurement(
+                new DateTime(2024, 12, 31, 11, 00, 0, 0, 0, DateTimeKind.Utc),
+                44.0
+            ),
         ];
 
         var dfldHtml = new DfldHtml(

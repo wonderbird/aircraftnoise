@@ -73,14 +73,8 @@ public class InMemoryMeasurementProviderTests
         List<NoiseMeasurement> expectedMeasurements =
         [
             new NoiseMeasurement(day.AddHours(10).AddMinutes(58), 42.0),
-            new NoiseMeasurement(
-                new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc),
-                43.0
-            ),
-            new NoiseMeasurement(
-                new DateTime(2024, 12, 31, 11, 00, 0, 0, 0, DateTimeKind.Utc),
-                44.0
-            ),
+            new NoiseMeasurement(day.AddHours(10).AddMinutes(59), 43.0),
+            new NoiseMeasurement(day.AddHours(11).AddMinutes(0), 44.0),
         ];
 
         var dfldHtml = new DfldHtml(

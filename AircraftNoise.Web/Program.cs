@@ -6,8 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
-var dfldHtmlResponse = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Data", "measurements.html"));
-builder.Services.AddSingleton<ICanProvideMeasurements, InMemoryMeasurementProvider>(_ => new InMemoryMeasurementProvider(dfldHtmlResponse));
+var dfldHtmlResponse = File.ReadAllText(
+    Path.Combine(AppContext.BaseDirectory, "Data", "measurements.html")
+);
+builder.Services.AddSingleton<ICanProvideMeasurements, InMemoryMeasurementProvider>(
+    _ => new InMemoryMeasurementProvider(dfldHtmlResponse)
+);
 builder.Services.AddSingleton<ICanFindLocation, LocationLookupService>();
 builder.Services.AddSingleton<ICanFindRegion, RegionRepository>();
 builder.Services.AddSingleton<ICanFindMeasurementStation, MeasurementStationRepository>();

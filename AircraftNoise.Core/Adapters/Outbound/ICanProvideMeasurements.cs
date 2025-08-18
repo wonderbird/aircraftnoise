@@ -10,6 +10,8 @@ public interface ICanProvideMeasurements
     /// <param name="endTimeUtc">Last timestamp to consider</param>
     /// <param name="duration">Interval length. If zero, then return only an exact match of endTimeUtc</param>
     /// <returns>List of measurements starting at or after endTimeUtc - duration and ending at or before endTimeUtc</returns>
-    Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(DateTime endTimeUtc,
-        TimeSpan duration);
+    Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(
+        DateTime endTimeUtc,
+        TimeSpan duration
+    );
 }

@@ -72,10 +72,7 @@ public class InMemoryMeasurementProviderTests
         var day = new DateTime(2024, 12, 31, 0, 0, 0, 0, 0, DateTimeKind.Utc);
         List<NoiseMeasurement> expectedMeasurements =
         [
-            new NoiseMeasurement(
-                new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc),
-                42.0
-            ),
+            new NoiseMeasurement(day.AddHours(10).AddMinutes(58), 42.0),
             new NoiseMeasurement(
                 new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc),
                 43.0

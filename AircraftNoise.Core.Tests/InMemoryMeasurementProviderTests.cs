@@ -96,9 +96,6 @@ public class InMemoryMeasurementProviderTests
             TimeSpan.FromMinutes(2)
         );
 
-        var measurementList = measurements.ToList();
-        var actualTimestampsUtc = measurementList.Select(x => x.TimestampUtc).ToList();
-        Assert.Equal(expectedTimestampsUtc, actualTimestampsUtc);
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 

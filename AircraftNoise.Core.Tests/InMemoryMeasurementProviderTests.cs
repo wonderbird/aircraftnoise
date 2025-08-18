@@ -19,7 +19,9 @@ public class InMemoryMeasurementProviderTests
         var expectedNoiseLevel = 55.0;
         var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var dfldHtml = new DfldHtml([new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]).Render();
+        var dfldHtml = new DfldHtml(
+            [new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]
+        ).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
@@ -28,7 +30,10 @@ public class InMemoryMeasurementProviderTests
             TimeSpan.Zero
         );
 
-        List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel)];
+        List<NoiseMeasurement> expectedMeasurements =
+        [
+            new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel),
+        ];
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 
@@ -38,12 +43,18 @@ public class InMemoryMeasurementProviderTests
         List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(At_11_00, 42.0)];
 
         var dfldHtml = new DfldHtml(
-            [new MeasurementValue("31.12.2024", "11:00:00", 60.0), new MeasurementValue("31.12.2024", "12:00:00", 42.0)]
+            [
+                new MeasurementValue("31.12.2024", "11:00:00", 60.0),
+                new MeasurementValue("31.12.2024", "12:00:00", 42.0),
+            ]
         ).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(At_11_00, TimeSpan.Zero);
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
+            At_11_00,
+            TimeSpan.Zero
+        );
 
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
@@ -69,7 +80,10 @@ public class InMemoryMeasurementProviderTests
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(At_11_00, TimeSpan.FromMinutes(2));
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
+            At_11_00,
+            TimeSpan.FromMinutes(2)
+        );
 
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
@@ -94,7 +108,10 @@ public class InMemoryMeasurementProviderTests
 
             foreach (var measurement in _measurements)
             {
-                var noiseLevel = measurement.NoiseLevel.ToString("F1", CultureInfo.InvariantCulture);
+                var noiseLevel = measurement.NoiseLevel.ToString(
+                    "F1",
+                    CultureInfo.InvariantCulture
+                );
                 result += $"""
                             <area href="javascript:SetMultiParaUrl('form1','Z','{measurement.time}','ShowTrack.php?R=3&S=032&D={measurement.date}&N=900&Z={measurement.time}');"
                                   title="Flugspuren: {measurement.time}" />

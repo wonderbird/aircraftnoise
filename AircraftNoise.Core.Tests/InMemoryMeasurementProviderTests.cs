@@ -71,7 +71,10 @@ public class InMemoryMeasurementProviderTests
 
         List<NoiseMeasurement> expectedMeasurements =
         [
-            new NoiseMeasurement(expectedTimestampsUtc[0], 42.0),
+            new NoiseMeasurement(
+                new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc),
+                42.0
+            ),
             new NoiseMeasurement(expectedTimestampsUtc[1], 43.0),
             new NoiseMeasurement(expectedTimestampsUtc[2], 44.0),
         ];

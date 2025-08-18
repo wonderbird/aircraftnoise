@@ -61,14 +61,6 @@ public class InMemoryMeasurementProviderTests
     [Fact]
     public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesRange_ReturnsMeasurementList()
     {
-        var expectedNoiseLevels = new List<double> { 42.0, 43.0, 44.0 };
-        var expectedTimestampsUtc = new List<DateTime>
-        {
-            new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc),
-            new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc),
-            new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-        };
-
         var at_00_00 = new DateTime(2024, 12, 31, 0, 0, 0, 0, 0, DateTimeKind.Utc);
         var at_10_58 = at_00_00.AddHours(10).AddMinutes(58);
         var at_10_59 = at_00_00.AddHours(10).AddMinutes(59);

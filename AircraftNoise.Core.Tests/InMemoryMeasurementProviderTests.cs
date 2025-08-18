@@ -69,6 +69,13 @@ public class InMemoryMeasurementProviderTests
             new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc),
         };
 
+        List<NoiseMeasurement> expectedMeasurements =
+        [
+            new NoiseMeasurement(expectedTimestampsUtc[0], expectedNoiseLevels[0]),
+            new NoiseMeasurement(expectedTimestampsUtc[1], expectedNoiseLevels[1]),
+            new NoiseMeasurement(expectedTimestampsUtc[2], expectedNoiseLevels[2]),
+        ];
+
         var dfldHtml = new DfldHtml(
             [
                 new MeasurementValue("31.12.2024", "11:00:00", 60.0),
@@ -88,13 +95,6 @@ public class InMemoryMeasurementProviderTests
         var measurementList = measurements.ToList();
         var actualTimestampsUtc = measurementList.Select(x => x.TimestampUtc).ToList();
         Assert.Equal(expectedTimestampsUtc, actualTimestampsUtc);
-
-        List<NoiseMeasurement> expectedMeasurements =
-        [
-            new NoiseMeasurement(expectedTimestampsUtc[0], expectedNoiseLevels[0]),
-            new NoiseMeasurement(expectedTimestampsUtc[1], expectedNoiseLevels[1]),
-            new NoiseMeasurement(expectedTimestampsUtc[2], expectedNoiseLevels[2]),
-        ];
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 

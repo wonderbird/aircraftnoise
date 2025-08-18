@@ -6,6 +6,40 @@ namespace AircraftNoise.Core.Tests;
 
 public class InMemoryMeasurementProviderTests
 {
+    private readonly DateTime At_10_58 = new DateTime(
+        2024,
+        12,
+        31,
+        10,
+        58,
+        0,
+        0,
+        0,
+        DateTimeKind.Utc
+    );
+    private readonly DateTime At_10_59 = new DateTime(
+        2024,
+        12,
+        31,
+        10,
+        59,
+        0,
+        0,
+        0,
+        DateTimeKind.Utc
+    );
+    private readonly DateTime At_11_00 = new DateTime(
+        2024,
+        12,
+        31,
+        11,
+        0,
+        0,
+        0,
+        0,
+        DateTimeKind.Utc
+    );
+
     // TODO: Test edge cases later
     [Fact]
     public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()

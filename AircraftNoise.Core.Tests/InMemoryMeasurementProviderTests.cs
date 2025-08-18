@@ -88,6 +88,14 @@ public class InMemoryMeasurementProviderTests
         var measurementList = measurements.ToList();
         var actualTimestampsUtc = measurementList.Select(x => x.TimestampUtc).ToList();
         Assert.Equal(expectedTimestampsUtc, actualTimestampsUtc);
+
+        List<NoiseMeasurement> expectedMeasurements =
+        [
+            new NoiseMeasurement(expectedTimestampsUtc[0], expectedNoiseLevels[0]),
+            new NoiseMeasurement(expectedTimestampsUtc[1], expectedNoiseLevels[1]),
+            new NoiseMeasurement(expectedTimestampsUtc[2], expectedNoiseLevels[2]),
+        ];
+        Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 
     private readonly record struct MeasurementValue(string date, string time, double NoiseLevel);

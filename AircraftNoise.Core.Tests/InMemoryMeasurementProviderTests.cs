@@ -71,9 +71,9 @@ public class InMemoryMeasurementProviderTests
 
         List<NoiseMeasurement> expectedMeasurements =
         [
-            new NoiseMeasurement(expectedTimestampsUtc[0], expectedNoiseLevels[0]),
-            new NoiseMeasurement(expectedTimestampsUtc[1], expectedNoiseLevels[1]),
-            new NoiseMeasurement(expectedTimestampsUtc[2], expectedNoiseLevels[2]),
+            new NoiseMeasurement(expectedTimestampsUtc[0], 42.0),
+            new NoiseMeasurement(expectedTimestampsUtc[1], 43.0),
+            new NoiseMeasurement(expectedTimestampsUtc[2], 44.0),
         ];
 
         var dfldHtml = new DfldHtml(

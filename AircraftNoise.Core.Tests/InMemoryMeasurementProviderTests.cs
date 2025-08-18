@@ -6,39 +6,11 @@ namespace AircraftNoise.Core.Tests;
 
 public class InMemoryMeasurementProviderTests
 {
-    private readonly DateTime At_10_58 = new DateTime(
-        2024,
-        12,
-        31,
-        10,
-        58,
-        0,
-        0,
-        0,
-        DateTimeKind.Utc
-    );
-    private readonly DateTime At_10_59 = new DateTime(
-        2024,
-        12,
-        31,
-        10,
-        59,
-        0,
-        0,
-        0,
-        DateTimeKind.Utc
-    );
-    private readonly DateTime At_11_00 = new DateTime(
-        2024,
-        12,
-        31,
-        11,
-        0,
-        0,
-        0,
-        0,
-        DateTimeKind.Utc
-    );
+    // csharpier-ignore-start
+    private readonly DateTime At_10_58 = new DateTime(2024, 12, 31, 10, 58, 0, 0, 0, DateTimeKind.Utc);
+    private readonly DateTime At_10_59 = new DateTime(2024, 12, 31, 10, 59, 0, 0, 0, DateTimeKind.Utc);
+    private readonly DateTime At_11_00 = new DateTime(2024, 12, 31, 11,  0, 0, 0, 0, DateTimeKind.Utc);
+    // csharpier-ignore-end
 
     // TODO: Test edge cases later
     [Fact]
@@ -47,9 +19,7 @@ public class InMemoryMeasurementProviderTests
         var expectedNoiseLevel = 55.0;
         var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
 
-        var dfldHtml = new DfldHtml(
-            [new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]
-        ).Render();
+        var dfldHtml = new DfldHtml([new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
@@ -58,10 +28,7 @@ public class InMemoryMeasurementProviderTests
             TimeSpan.Zero
         );
 
-        List<NoiseMeasurement> expectedMeasurements =
-        [
-            new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel),
-        ];
+        List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel)];
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 
@@ -85,10 +52,7 @@ public class InMemoryMeasurementProviderTests
             TimeSpan.Zero
         );
 
-        List<NoiseMeasurement> expectedMeasurements =
-        [
-            new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel),
-        ];
+        List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel)];
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 
@@ -117,10 +81,7 @@ public class InMemoryMeasurementProviderTests
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
-            at_11_00,
-            TimeSpan.FromMinutes(2)
-        );
+        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(at_11_00, TimeSpan.FromMinutes(2));
 
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
@@ -145,10 +106,7 @@ public class InMemoryMeasurementProviderTests
 
             foreach (var measurement in _measurements)
             {
-                var noiseLevel = measurement.NoiseLevel.ToString(
-                    "F1",
-                    CultureInfo.InvariantCulture
-                );
+                var noiseLevel = measurement.NoiseLevel.ToString("F1", CultureInfo.InvariantCulture);
                 result += $"""
                             <area href="javascript:SetMultiParaUrl('form1','Z','{measurement.time}','ShowTrack.php?R=3&S=032&D={measurement.date}&N=900&Z={measurement.time}');"
                                   title="Flugspuren: {measurement.time}" />

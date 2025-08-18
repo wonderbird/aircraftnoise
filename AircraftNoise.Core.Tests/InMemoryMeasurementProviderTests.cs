@@ -70,11 +70,14 @@ public class InMemoryMeasurementProviderTests
         };
 
         var day = new DateTime(2024, 12, 31, 0, 0, 0, 0, 0, DateTimeKind.Utc);
+        var day_10_58 = day.AddHours(10).AddMinutes(58);
+        var day_10_59 = day.AddHours(10).AddMinutes(59);
+        var day_11_00 = day.AddHours(11).AddMinutes(0);
         List<NoiseMeasurement> expectedMeasurements =
         [
-            new NoiseMeasurement(day.AddHours(10).AddMinutes(58), 42.0),
-            new NoiseMeasurement(day.AddHours(10).AddMinutes(59), 43.0),
-            new NoiseMeasurement(day.AddHours(11).AddMinutes(0), 44.0),
+            new NoiseMeasurement(day_10_58, 42.0),
+            new NoiseMeasurement(day_10_59, 43.0),
+            new NoiseMeasurement(day_11_00, 44.0),
         ];
 
         var dfldHtml = new DfldHtml(

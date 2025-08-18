@@ -16,24 +16,19 @@ public class InMemoryMeasurementProviderTests
     [Fact]
     public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
     {
-        var expectedNoiseLevel = 55.0;
-        var expectedTimestampUtc = new DateTime(2024, 12, 31, 11, 0, 0, 0, 0, DateTimeKind.Utc);
+        List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(At_11_00, 55.0)];
 
         var dfldHtml = new DfldHtml(
-            [new MeasurementValue("31.12.2024", "12:00:00", expectedNoiseLevel)]
+            [new MeasurementValue("31.12.2024", "12:00:00", 55.0)]
         ).Render();
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
-            expectedTimestampUtc,
+            At_11_00,
             TimeSpan.Zero
         );
 
-        List<NoiseMeasurement> expectedMeasurements =
-        [
-            new NoiseMeasurement(expectedTimestampUtc, expectedNoiseLevel),
-        ];
         Assert.Equal(expectedMeasurements, measurements.ToList());
     }
 

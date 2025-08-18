@@ -92,7 +92,7 @@ public class InMemoryMeasurementProviderTests
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
         var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
-            expectedTimestampsUtc.Last(),
+            at_11_00,
             TimeSpan.FromMinutes(2)
         );
 

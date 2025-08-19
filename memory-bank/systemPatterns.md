@@ -46,7 +46,7 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 ### Backend Patterns
 - **Repository Pattern**: Data access abstraction (MeasurementStationRepository)
 - **Service Pattern**: Business logic encapsulation (LocationLookupService)
-- **Adapter Pattern**: External integration (MeasurementFileReader)
+- **Adapter Pattern**: External integration (InMemoryMeasurementProvider)
 - **Dependency Injection**: Loose coupling between components
 
 ### Frontend Patterns
@@ -66,8 +66,8 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 ### Noise Level Mapping Flow
 1. EventView → NoiseLevelMapper (outbound adapter)
 2. NoiseLevelMapper → PeakNoiseLevelsController (REST API)
-3. Controller → MeasurementFileReader (infrastructure)
-4. FileReader → DFLD HTML parsing → NoiseMeasurement domain objects
+3. Controller → InMemoryMeasurementProvider (infrastructure)
+4. Provider → DFLD HTML parsing → NoiseMeasurement domain objects
 
 ### Location Discovery Flow
 1. MeasurementStationView → LocationProvider (browser geolocation)
@@ -78,10 +78,10 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 ## Integration Patterns
 
 ### External Data Sources
-- **DFLD HTML Parsing**: Scraping approach for measurement data (with embedded sample data)
+- **DFLD HTML Parsing**: Scraping approach for measurement data using InMemoryMeasurementProvider
 - **Browser Geolocation**: Standard HTML5 API integration
 - **Manual Export**: User-driven data transfer to complaint systems
-- **Static Data Integration**: Sample measurements.html for development and testing
+- **Flexible Data Integration**: Supports both test data and live DFLD endpoints
 
 ### Error Handling Strategy
 - Graceful degradation for missing geolocation

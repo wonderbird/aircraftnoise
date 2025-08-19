@@ -21,12 +21,6 @@ to install the dotnet tools listed in [.config/dotnet-tools.json](.config/dotnet
 
 ### Development Recommendations
 
-#### Test Commit Revert Driven Development
-
-If you have adopted the Test Commit Revert Driven Development (TCRDD) workflow, then consider installing the tools listed at the git gamble website. There you can also find a quick introduction into TCRDD.
-
-[Git Gamble Home](https://git-gamble.is-cool.dev)
-
 #### Automatic Quality Checks and Code Formatting Before Committing
 
 To have automatic code quality checks and code formatting before committing, install [pre-commit](https://pre-commit.com) and install the pre-commit hooks before committing to this repository:

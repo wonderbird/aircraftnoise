@@ -1,4 +1,5 @@
 using AircraftNoise.Core.Adapters.Outbound;
+using AircraftNoise.Core.Domain;
 using AircraftNoise.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,37 +22,18 @@ public class PeakNoiseLevelsController : ControllerBase
         [FromBody] NoiseMeasurementRequest request
     )
     {
-        // TODO: Replace temporary test data here with properly initialized empty response
-        var response = new NoiseMeasurementResponse
-        {
-            NoiseMeasurementDba = 55.5,
-            TimestampUtc = DateTime.UtcNow,
-            HasMeasurement = true,
-        };
-
+        // TODO: Clarify error handling - what happens if there is no data?
         var endTimeUtc = request.EndTimeUtc ?? DateTime.UtcNow;
         var duration = TimeSpan.FromMinutes(request.DurationMinutes);
 
-        var measurements = (
-            await _measurementProvider.GetNoiseMeasurementsForPastTimePeriodAsync(
-                endTimeUtc,
-                duration
-            )
-        ).ToList();
-        if (measurements.Count > 0)
-        {
-            // TODO: Test peak measurement logic
-            var peakMeasurement = measurements
-                .OrderByDescending(m => m.NoiseMeasurementDba)
-                .First();
-            response = new NoiseMeasurementResponse
-            {
-                NoiseMeasurementDba = peakMeasurement.NoiseMeasurementDba,
-                TimestampUtc = peakMeasurement.TimestampUtc,
-                HasMeasurement = true,
-            };
-        }
+        var range = (await _measurementProvider.GetMeasurementsBeforeAsync(endTimeUtc, duration));
+        var peak = range.GetPeak();
 
-        return response;
+        return new NoiseMeasurementResponse
+        {
+            NoiseMeasurementDba = peak.NoiseMeasurementDba,
+            TimestampUtc = peak.TimestampUtc,
+            HasMeasurement = true,
+        };
     }
 }

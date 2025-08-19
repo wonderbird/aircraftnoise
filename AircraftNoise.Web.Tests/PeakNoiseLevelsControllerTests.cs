@@ -13,6 +13,10 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
 
     private readonly NoiseMeasurementRequest _searchRequest = new()
     {
+        // In Program.cs the data source is configured to return measurements from the file ./Data/measurements.html
+        // The contained measurement data span the 2 hours range from
+        // 09.04.2025 00:00:00 CET - 09.04.2025 02:00:00 CEST (UTC+02:00, daylight saving time)
+        // We pick the center of these data for our tests.
         EndTimeUtc = TimeZoneInfo.ConvertTimeToUtc(
             DateTime.Parse("2025-04-09T01:00:00"),
             TimeZoneInfo.FindSystemTimeZoneById("Europe/Berlin")

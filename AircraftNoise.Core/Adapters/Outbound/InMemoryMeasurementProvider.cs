@@ -18,7 +18,7 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
         _dfldHtmlResponse = dfldHtmlResponse;
     }
 
-    public Task<IEnumerable<NoiseMeasurement>> GetNoiseMeasurementsForPastTimePeriodAsync(
+    public Task<NoiseMeasurementRange> GetMeasurementsBeforeAsync(
         DateTime endTimeUtc,
         TimeSpan duration
     )
@@ -28,12 +28,12 @@ public class InMemoryMeasurementProvider : ICanProvideMeasurements
 
         var areaNodes = html.DocumentNode.SelectNodes("//area");
 
-        var result = areaNodes
+        var measurements = areaNodes
             .Select(ParseHtmlAreaElement)
             .GroupBy(x => x.Index / 2, x => x, ParseNoiseMeasurement)
             .Where(x => x.TimestampUtc >= endTimeUtc - duration && x.TimestampUtc <= endTimeUtc);
 
-        return Task.FromResult(result);
+        return Task.FromResult(new NoiseMeasurementRange(measurements));
     }
 
     private static HtmlAreaElement ParseHtmlAreaElement(HtmlNode x, int index)

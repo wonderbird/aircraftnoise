@@ -14,7 +14,7 @@ public class InMemoryMeasurementProviderTests
 
     // TODO: Test edge cases later
     [Fact]
-    public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
+    public async Task GetMeasurementsBeforeAsync_RequestedEndTimeMatchesFirstMeasurement_ReturnsFirstMeasurement()
     {
         List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(At_11_00, 55.0)];
 
@@ -24,16 +24,13 @@ public class InMemoryMeasurementProviderTests
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
-            At_11_00,
-            TimeSpan.Zero
-        );
+        var range = await provider.GetMeasurementsBeforeAsync(At_11_00, TimeSpan.Zero);
 
-        Assert.Equal(expectedMeasurements, measurements.ToList());
+        Assert.Equal(expectedMeasurements, range.Measurements);
     }
 
     [Fact]
-    public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
+    public async Task GetMeasurementsBeforeAsync_RequestedEndTimeMatchesLastMeasurement_ReturnsLastMeasurement()
     {
         List<NoiseMeasurement> expectedMeasurements = [new NoiseMeasurement(At_11_00, 42.0)];
 
@@ -46,16 +43,13 @@ public class InMemoryMeasurementProviderTests
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
-            At_11_00,
-            TimeSpan.Zero
-        );
+        var range = await provider.GetMeasurementsBeforeAsync(At_11_00, TimeSpan.Zero);
 
-        Assert.Equal(expectedMeasurements, measurements.ToList());
+        Assert.Equal(expectedMeasurements, range.Measurements);
     }
 
     [Fact]
-    public async Task GetNoiseMeasurementsForPastTimePeriodAsync_RequestedEndTimeMatchesRange_ReturnsMeasurementList()
+    public async Task GetMeasurementsBeforeAsync_RequestedEndTimeMatchesRange_ReturnsMeasurementList()
     {
         List<NoiseMeasurement> expectedMeasurements =
         [
@@ -75,12 +69,9 @@ public class InMemoryMeasurementProviderTests
 
         var provider = new InMemoryMeasurementProvider(dfldHtml);
 
-        var measurements = await provider.GetNoiseMeasurementsForPastTimePeriodAsync(
-            At_11_00,
-            TimeSpan.FromMinutes(2)
-        );
+        var range = await provider.GetMeasurementsBeforeAsync(At_11_00, TimeSpan.FromMinutes(2));
 
-        Assert.Equal(expectedMeasurements, measurements.ToList());
+        Assert.Equal(expectedMeasurements, range.Measurements);
     }
 
     private readonly record struct MeasurementValue(string date, string time, double NoiseLevel);

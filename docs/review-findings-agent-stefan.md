@@ -4,50 +4,33 @@
 **Reviewer**: Claude Code Agent  
 **Scope**: Complete codebase review for architecture, design, and code quality
 
-## Executive Summary
+## Goal
 
-The Aircraft Noise Complaint Assistant demonstrates a well-structured Clean Architecture implementation with clear separation of concerns. The codebase is generally well-organized, but contains several critical issues that pose risks to business functionality and technical maintainability.
+The goal is to identify
 
-**Overall Assessment**: ⚠️ **MEDIUM RISK** - Requires immediate attention to resolve critical business logic gaps and improve error handling.
+- risks of malfunction from business process perspective
+- risks of malfunction from a technical perspective
+- architecture and design flaws
+- code quality problems reducing maintainability and extensibility
 
 ## Critical Findings
 
+### TODO Comments in the Code
+
+- AircraftNoise.Core/Domain/NoiseMeasurementRange.cs:18 // TODO: Edge case "no data" is not considered
+- AircraftNoise.Web/Controllers/PeakNoiseLevelsController.cs:24 // TODO: Clarify error handling - what happens if there is no data?
+- AircraftNoise.Web/wwwroot/ts/Adapters/Outbound/NoiseLevelMapper.ts:31,41,50 // TODO: take end time and duration from the current event
+
 ### 🚨 HIGH SEVERITY
 
-#### 1. Business Logic Risk - Empty Result Set Handling
-**Location**: `AircraftNoise.Core/Domain/NoiseMeasurementRange.cs:18`  
-**Risk**: Application crash when no measurements are available  
-**Impact**: Complete user workflow failure  
+#### Data Parsing Vulnerabilities
 
-```csharp
-public NoiseMeasurement GetPeak()
-{
-    // TODO: Edge case "no data" is not considered
-    return _measurements.OrderByDescending(m => m.NoiseMeasurementDba).First();
-}
-```
-
-**Consequence**: When DFLD provides no measurements for a requested time period, `First()` will throw `InvalidOperationException`, crashing the application during peak functionality.
-
-**Recommendation**: Implement proper empty collection handling with fallback behavior or clear user communication.
-
-#### 2. Critical Error Handling Gap
-**Location**: `AircraftNoise.Web/Controllers/PeakNoiseLevelsController.cs:24`  
-**Risk**: Unhandled exceptions and undefined behavior  
-**Impact**: Service unavailability and data inconsistency  
-
-```csharp
-// TODO: Clarify error handling - what happens if there is no data?
-```
-
-**Consequence**: Controller lacks proper error handling for empty measurement ranges, potentially exposing stack traces to users and causing service failures.
-
-#### 3. Data Parsing Vulnerabilities
 **Location**: `AircraftNoise.Core/Adapters/Outbound/InMemoryMeasurementProvider.cs:44,56`  
 **Risk**: Runtime exceptions from malformed DFLD data  
 **Impact**: Complete measurement parsing failure  
 
 Multiple unvalidated parsing operations:
+
 - HTML structure validation missing
 - Regex match validation missing  
 - Empty string handling missing
@@ -56,20 +39,8 @@ Multiple unvalidated parsing operations:
 
 ### ⚠️ MEDIUM SEVERITY
 
-#### 4. Incomplete Frontend Functionality
-**Location**: `AircraftNoise.Web/wwwroot/ts/Adapters/Outbound/NoiseLevelMapper.ts:31,41,50`  
-**Risk**: Poor user experience and incorrect data correlation  
-**Impact**: Users cannot effectively map events to measurements  
+#### 1. Hardcoded External Dependencies
 
-```typescript
-// TODO: take end time and duration from the current event
-EndTimeUtc: new Date().toISOString(),  // Always uses current time instead of event time
-DurationMinutes: 5                     // Hardcoded duration
-```
-
-**Consequence**: Events are not properly correlated with actual measurement times, defeating the core business purpose.
-
-#### 5. Hardcoded External Dependencies
 **Location**: Multiple locations in infrastructure layer  
 **Risk**: Scalability and maintainability issues  
 **Impact**: Cannot expand beyond Cologne/Bonn region  
@@ -80,7 +51,8 @@ DurationMinutes: 5                     // Hardcoded duration
 
 **Consequence**: System cannot serve other regions without code changes.
 
-#### 6. DFLD Integration Fragility
+#### 2. DFLD Integration Fragility
+
 **Location**: `AircraftNoise.Core/Adapters/Outbound/InMemoryMeasurementProvider.cs`  
 **Risk**: Complete measurement parsing failure if DFLD changes HTML structure  
 **Impact**: Service becomes completely non-functional  
@@ -92,31 +64,7 @@ The system depends on:
 
 **Consequence**: Any DFLD website update could break the entire measurement retrieval system.
 
-## Architecture Assessment
-
-### ✅ Strengths
-
-1. **Clean Architecture Implementation**
-   - Proper separation between Core and Web layers
-   - Clear dependency direction (Web → Core)
-   - Effective use of ports and adapters pattern
-
-2. **Modern .NET Practices**
-   - .NET 8.0 with nullable reference types
-   - Immutable record structs for domain models
-   - Proper async/await patterns
-
-3. **TypeScript Architecture**
-   - Good separation between Domain, Services, Adapters, and Views
-   - ES6 modules with proper import/export
-   - Strong typing with strict configuration
-
-4. **Testing Infrastructure**
-   - Separate test projects for Core and Web layers
-   - Integration testing with WebApplicationFactory
-   - Code coverage tools configured
-
-### ⚠️ Areas for Improvement
+## Architecture Areas for Improvement
 
 1. **Domain Model Design**
    - `NoiseMeasurementRange` should be immutable but has mutable list
@@ -184,6 +132,8 @@ The system depends on:
 ## Recommendations
 
 ### Immediate Actions (Critical)
+
+We need a robust and user friendly error handling strategy. Design it such that the user stays motivated to finish their desired complaint process.
 
 1. **Fix Empty Collection Handling**
    ```csharp

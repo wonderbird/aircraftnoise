@@ -23,6 +23,10 @@ The goal is to identify
 
 ### 🚨 HIGH SEVERITY
 
+#### Side Effects of Code Changes may Break Application Without Notice
+
+An automatic end-to-end test should ensure that the happy path of the desired process works. This would reduce the risk of breaking the process while refactoring significantly.
+
 #### Data Parsing Vulnerabilities
 
 **Location**: `AircraftNoise.Core/Adapters/Outbound/InMemoryMeasurementProvider.cs:44,56`  
@@ -115,7 +119,7 @@ The system depends on:
 3. **Inconsistent Code Style**
    - Mixed nullable DateTime handling patterns
    - Inconsistent async method naming
-   - Variable naming inconsistencies
+   - Variable naming inconsistencies, e.g. `DBA` suffixes in TypeScript, `Dba` in CSharp; other inconsistencies need to be identified
 
 ### Extensibility Issues
 

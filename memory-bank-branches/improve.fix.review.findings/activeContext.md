@@ -17,17 +17,31 @@
 
 ## Next Steps - Current Sprint
 
-### 1. Polish Existing Functionality
-- Remove TODO comments in controller and add proper tests
-- Complete test coverage for peak measurement selection logic
-- Consider controller renaming (PeakNoiseLevelController vs PeakNoiseLevelsController)
+### 1. Establish TDD Workflow with End-to-End Test
+- Write failing end-to-end test that demonstrates the correlation bug
+- Test should cover complete user journey: record event → get correct noise level for that event's timestamp
+- This establishes TDD practice and catches the critical bug in test form
 
-### 2. End-to-End Workflow Validation
-- Test complete user journey: event recording → noise level retrieval → results display
+### 2. Fix Critical Event-to-Measurement Correlation Bug (TDD: Red → Green)
+- NoiseLevelMapper queries current time instead of actual event timestamps
+- Fix TODO on line 31: "take end time and duration from the current event"  
+- Make the end-to-end test pass, proving the bug is resolved
+
+### 3. Apply TDD to Remaining TODO Comments
+- Write failing tests first for controller TODOs
+- Write failing tests first for peak measurement selection logic
+- Then implement fixes to make tests pass (Red → Green → Refactor)
+
+### 4. Complete End-to-End Workflow Validation
 - Validate with real DFLD data from Rösrath-Forsbach station
 - Ensure error handling for edge cases
 
-### 3. Complaint Export Feature
+### 3. Production Logging Strategy
+- Add proper logging for debugging and monitoring
+- Essential for production troubleshooting when users report issues
+- Focus on key workflow points: event recording, DFLD data retrieval, noise level mapping
+
+### 4. Complaint Export Feature
 - Implement structured data export for official complaint submission
 - Design export format (JSON, CSV, or structured text)
 - Connect export to recorded events and their noise level mappings
@@ -35,9 +49,10 @@
 ## Active Decisions and Considerations
 
 ### Current Technical Decisions
+- **TDD Transition**: Establish Test-Driven Development workflow starting with end-to-end test
 - **Production Readiness Focus**: Move from prototype to production-quality implementation
 - **User Experience Priority**: Complete the full complaint preparation workflow
-- **Test Coverage**: Maintain comprehensive testing as functionality is polished
+- **Test Coverage**: Write tests first, then implement (Red → Green → Refactor)
 
 ### Development Standards
 - **Clean Architecture**: Continue maintaining clear separation of concerns
@@ -55,8 +70,11 @@
 
 ## Current Sprint Definition of Done
 
-- [ ] TODO comments resolved with proper test coverage
-- [ ] Peak measurement selection logic fully tested
-- [ ] Complete user workflow validated (event recording → noise level display)
+- [ ] End-to-end test written (TDD: Red phase)
+- [ ] Critical event-to-measurement correlation bug fixed (TDD: Green phase)
+- [ ] TDD applied to remaining TODO comments (test-first approach)
+- [ ] Peak measurement selection logic fully tested with TDD
+- [ ] Production logging strategy implemented
+- [ ] Complete user workflow validated with real DFLD data
 - [ ] Complaint export functionality implemented
 - [ ] Error handling verified for edge cases

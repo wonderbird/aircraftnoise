@@ -61,7 +61,6 @@ private static double ParseNoiseLevel(string titleAttribute)
 ### Security Considerations
 
 - **External data trust**: DFLD HTML content processed without validation
-- **XSS potential**: User-generated event data not properly sanitized
 - **Error information exposure**: Stack traces may be exposed in error responses
 
 ### Maintainability Concerns

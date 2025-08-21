@@ -3,6 +3,8 @@ import {EventView} from "../../Views/EventView.js";
 
 interface NoiseMeasurementResponse {
     noiseMeasurementDba: number;
+    timestampUtc: string | null;
+    hasMeasurement: boolean;
 }
 
 export class NoiseLevelMapper {
@@ -17,25 +19,33 @@ export class NoiseLevelMapper {
         let noiseEvents = this.noiseEventRepository.noiseEvents;
 
         for (const event of noiseEvents) {
-            event.noiseLevelDBA = await this.fetchNoiseLevel();
+            event.noiseLevelDBA = await this.queryNoiseLevel();
             this.noiseEventRepository.update(event);
         }
         
         this.view.update(noiseEvents);
     }
 
-    private async fetchNoiseLevel(): Promise<number | null> {
+    private async queryNoiseLevel(): Promise<number | null> {
         try {
-            const response = await fetch('/PeakNoiseLevels');
+            // TODO: take end time and duration from the current event
+            const response = await fetch('/PeakNoiseLevels', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ 
+                    EndTimeUtc: new Date().toISOString(), 
+                    DurationMinutes: 5 
+                })
+            });
 
             // TODO: Implement proper error handling if the backend fails to respond
             if (!response.ok) {
-                console.error('Error fetching noise level:', response.status);
+                console.error(`Error fetching noise level: ERR ${response.status} - ${response.statusText}`);
                 return null;
             }
 
             const data: NoiseMeasurementResponse = await response.json();
-            return data.noiseMeasurementDba;
+            return data.hasMeasurement ? data.noiseMeasurementDba : null;
         } catch (error) {
             // TODO: Implement proper error handling if there is a communication error
             console.error('Failed to fetch noise level:', error);

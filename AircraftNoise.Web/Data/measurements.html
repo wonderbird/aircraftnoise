@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Messwerte</title>
+    <meta name="Title" content="Deutscher Flugl&auml;rmdienst: Flugl&auml;rmmessung und Flugspurerfassung">
+    <meta name="Description" content="Wir bringen Transparenz in Flugl&auml;rmmessungen und Flugspurerfassung">
+    <meta name="Abstract" content="Wir machen L&auml;rm sichtbar">
+    <meta name="Keywords"
+          content="Flugl&auml;rm, Flugl&auml;rmmessung, Flugl&auml;rmmessger&auml;t, Flugl&auml;rm-Messung, Flugl&auml;rm-Monitoring, Flugspuren, Flugrouten">
+    <meta name="Author" content="Deutscher Flugl&auml;rmdienst e.V.">
+    <meta name="Copyright" content="Copyright 2002 Deutscher Flugl&auml;rmdienst e.V. Alle Rechte vorbehalten.">
+    <meta name="Language" content="deutsch, de, german, at, ch">
+    <meta name="Robots" content="index, follow">
+    <meta name="Revisit-After" content="7 days">
+    <meta name="expires" content="0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../Basics/favicons/DFLD/apple-touch-icon.png?v=wAOPdxyPJl">
+    <link rel="icon" type="image/png" sizes="32x32" href="../Basics/favicons/DFLD/favicon-32x32.png?v=wAOPdxyPJl">
+    <link rel="icon" type="image/png" sizes="16x16" href="../Basics/favicons/DFLD/favicon-16x16.png?v=wAOPdxyPJl">
+    <link rel="manifest" href="../Basics/favicons/DFLD/manifest.json?v=wAOPdxyPJl">
+    <link rel="mask-icon" href="../Basics/favicons/DFLD/safari-pinned-tab.svg?v=wAOPdxyPJl" color="#426275">
+    <link rel="shortcut icon" href="../Basics/favicons/DFLD/favicon.ico?v=wAOPdxyPJl">
+    <meta name="msapplication-config" content="../Basics/favicons/DFLD/browserconfig.xml?v=wAOPdxyPJl">
+    <meta name="theme-color" content="#426275">
+    <link href="../Basics/fonts/Font.css?family=Open+Sans:300,400,600" rel="stylesheet">
+    <link rel="stylesheet" href="../Basics/styles/vendor.css">
+    <link rel="stylesheet" href="../Basics/styles/main.css">
+    <script src="../Basics/scripts/Script.js"></script>
+    <script src="../Basics/scripts/JavaScript.js"></script>
+</head>
+<body>
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- Sticky-Header -->
+<header class="header">
+    <form class="form" method="post" name="formnavi" id="formnavi">
+        <input type="hidden" name="NaviDo" id="NaviDo" value="D">
+        <input type="hidden" name="NaviL" id="NaviL" value="G">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__logo-wrapper">
+                    <!-- Logo -->
+                    <div class="header__logo">
+                        <a href="../DFLDindex.php?L=G" title="Home"><img src="../Basics/images/Logo-DFLD.svg"
+                                                                         alt="Logo"></a>
+                    </div>
+                    <!-- Subline -->
+                    <span class="header__subline">Deutscher Flugl&auml;rmdienst e.V.</span>
+                </div>
+                <div class="navigation-shadow js-navigation-shadow"></div>
+                <div class="navigation">
+                    <div class="navigation__toggle js-navigation-toggle"></div>
+                    <div class="navigation__content">
+                        <nav class="menu">
+                            <div class="menu__item">
+                                <div class="dropdown js-dropdown">
+                                    <a class="menu__item__link" href="../Mess/Language/MessR001.php">Messwerte</a>
+                                </div>
+                            </div>
+                            <div class="menu__item">
+                                <div class="dropdown js-dropdown">
+                                    <a class="menu__item__link dropdown__toggle js-dropdown-toggle" href="#">Infos</a>
+                                    <ul class="dropdown__menu">
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               href="../Presse/PresseAkt.html">Presse</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link" href="../DFLD/Links.php">Links</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               href="../DFLD/Downloads.php">Downloads</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link" href="../DFLD/A-Z.php">A-Z</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="menu__item">
+                                <div class="dropdown js-dropdown">
+                                    <a class="menu__item__link dropdown__toggle js-dropdown-toggle" href="#">DFLD</a>
+                                    <ul class="dropdown__menu dropdown__menu--right">
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link" href="../Downloads/DFLD_Satzung.pdf"
+                                               target="blank">Unsere Satzung</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               href="../Downloads/DFLD_Aufnahme-Antrag.pdf" target="blank">Beitrittserkl&auml;rung</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               href="https://www.paypal.com/donate?hosted_button_id=7VYPYLP2BVL2S">Spenden</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link" href="../DFLD/DFLD.php">Presse &uuml;ber
+                                                den DFLD</a>
+                                            <hr>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               style="line-height: 24px; padding-bottom: 6px;"
+                                               href="//www.DFLD.de/DFLDindex.php">Deutschland:<br>DFLD.de</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               style="line-height: 24px; padding-bottom: 6px;"
+                                               href="//www.EANS.net/EANSindex.php">Europa:<br>EANS.net</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               style="line-height: 24px; padding-bottom: 6px;"
+                                               href="//www.WW-ANS.net/WW-ANSindex.php">Welt:<br>WW-ANS.net</a>
+                                        </li>
+                                        <li class="dropdown__menu__item">
+                                            <a class="dropdown__menu__item__link"
+                                               style="line-height: 24px; padding-bottom: 6px;"
+                                               href="//www.DSLD.info/DSLDindex.php">Schiene:<br>DSLD.info</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <nav class="toolbar">
+                            <div class="toolbar__item">
+                                <a class="toolbar__item__link" href="../DFLD/Internes.php?Do=D"
+                                   title="Interner Bereich f&uuml;r Stationsbetreiber"><i
+                                        class="icon-login toolbar__item__link__icon"></i>Login</a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</header>
+<main>
+    <section class="section">
+        <form class="form" name="form1" id="form1" method="post">
+            <div class="container">
+                <input type="hidden" name="Do" id="Do" value="D">
+                <input type="hidden" name="L" id="L" value="G">
+                <input type="hidden" name="R" id="R" value="3">
+                <input type="hidden" name="S" id="S" value="032">
+                <input type="hidden" name="K" id="K" value="0">
+                <input type="hidden" name="D" id="D" value="09.04.2025">
+                <input type="hidden" name="ST" id="ST" value="0">
+                <input type="hidden" name="Z" id="Z" value="00:00:00">
+                <input type="hidden" name="ZT" id="ZT" value="00">
+                <input type="hidden" name="A" id="A" value="1">
+                <input type="hidden" name="Ps" id="Ps" value="">
+                <input type="hidden" name="MNr" id="MNr" value="0">
+                <input type="hidden" name="NoOpt" id="NoOpt" value="0">
+                <input type="hidden" name="UFPcolor" id="UFPcolor" value="#b0b0b0">
+                <input type="hidden" name="zoom" id="zoom" value="1">
+                <input type="hidden" name="depth" id="depth" value="0">
+                <input type="hidden" name="parent_depth" id="parent_depth" value="0">
+                <input type="hidden" name="mask" id="mask" value="">
+                <input type="hidden" name="estr" id="estr" value="">
+                <input type="hidden" name="edir" id="edir" value="QmFzaWNzL3N0eWxlcw==">
+                <input type="hidden" name="etyp" id="etyp" value="ZEJB">
+                <input type="hidden" name="elan" id="elan" value="RGljRy5waHA=">
+                <input type="hidden" name="ereg" id="ereg" value="MDAz">
+                <input type="hidden" name="estat" id="estat" value="MDMy">
+                <input type="hidden" name="edat" id="edat" value="MDkuMDQuMjAyNQ==">
+                <input type="hidden" name="NoCal" id="NoCal" value="0">
+                <input type="hidden" name="AS" id="AS" value="0">
+                <input type="hidden" name="source" id="source" value='MDAzLzIwMjUvMjAyNTA0MDktMDMyLnd3eA=='>
+                <script type="text/javascript">
+                    InitComplainArr('');
+                </script>
+                <div class="row">
+                    <div class="col-9"><h1><a href="javascript:ShowZusFenster('003/Stat-032.html',600,300);"
+                                              title="Stationsbeschreibung">R&ouml;srath-Forsbach &bull;&bull;&bull;</a>
+                    </h1></div>
+                    <div class="col-3 rechts"><p style="margin-top: 3px;"><a
+                            href="Mess.php?AiO=RG89RCRATD1HJEBSPTMkQFM9MDMyJEBLPTAkQEQ9MDkuMDQuMjAyNSRAU1Q9MCRAWj0wMDowMDowMCRAWlQ9MDAkQEE9MSRAUHM9JEBNTnI9MCRATm9PcHQ9MA!!">Regions
+                        Men&uuml;</a></p></div>
+                </div>
+                <p style="padding-top: 0px; padding-bottom: 6px;"><b>09.04.2025 (Mittwoch)</b></p>
+                <div class="inline-block">
+                    <a onClick="SetMultiParaUrl('form1','D','08.04.2025','Messwerte.php','R','003','S','032','D','08.04.2025','ZT','00');"
+                       type="button" class="icon-button" title="1 Tag zur&uuml;ck">&#xe919;</a>
+                    <div class="date-input" style="display:inline-block"><input type="text"
+                                                                                onchange="SetMultiParaUrl('form1','D',this.value         ,'Messwerte.php','R','003','S','032','D',this.value         ,'ZT','00');"
+                                                                                size="10" maxlength="10"
+                                                                                value="09.04.2025">
+                        <div class="date-input__container"></div>
+                    </div>
+                    <a onClick="SetMultiParaUrl('form1','D','10.04.2025'    ,'Messwerte.php','R','003','S','032','D','10.04.2025'    ,'ZT','00');"
+                       class="icon-button" title="1 Tag vorw&auml;rts">&#xe91c;</a>
+                </div>
+                <div class="inline-block">
+                    <a onClick="SetParaOhneSubmit('D','08.04.2025');  InitComplainArr(''); SetMultiParaUrl('form1','ZT','22','Messwerte.php','R','003','S','032','D','08.04.2025','ZT','22');"
+                       class="icon-button" title="2 h zur&uuml;ck">&#xe91a;</a>
+                    <div class="select-wrapper einzeilig">
+                        <select onchange="SetMultiParaUrl('form1','ZT',this.value,'Messwerte.php','R','003','S','032','D','09.04.2025','ZT',this.value);">
+                            <option value="00" selected>00:00&ndash;02:00</option>
+                            <option value="02">02:00&ndash;04:00</option>
+                            <option value="04">04:00&ndash;06:00</option>
+                            <option value="06">06:00&ndash;08:00</option>
+                            <option value="08">08:00&ndash;10:00</option>
+                            <option value="10">10:00&ndash;12:00</option>
+                            <option value="12">12:00&ndash;14:00</option>
+                            <option value="14">14:00&ndash;16:00</option>
+                            <option value="16">16:00&ndash;18:00</option>
+                            <option value="18">18:00&ndash;20:00</option>
+                            <option value="20">20:00&ndash;22:00</option>
+                            <option value="22">22:00&ndash;24:00</option>
+                        </select>
+                    </div>
+                    <a onClick="SetParaOhneSubmit('D','09.04.2025'    );  SetMultiParaUrl('form1','ZT','02'    ,'Messwerte.php','R','003','S','032','D','09.04.2025'    ,'ZT','02'    );"
+                       class="icon-button" title="2 h vorw&auml;rts">&#xe91b;</a>
+                </div>
+                <div class="inline-block">
+                    <a onClick="SetMultiParaUrl('form1','ZT','GT'           ,'Messwerte.php','R','003','S','032','D','09.04.2025'                     );"
+                       class="icon-button" title="Zur&uuml;ck zur ganztags Ansicht">&#xe914;</a>
+                    <a class="icon-button disabled" title="00:00&ndash;24:00">&#xe915;</a>
+                </div>
+                <div class="inline-block">
+                    <div class="select-wrapper">
+                        <select id="selected_station"
+                                onchange="SetMultiParaUrl('form1','S',this.value,'Messwerte.php','R','003','S',this.value,'D','09.04.2025','ZT','00');">
+                            <option value="" style="display: none;" disabled selected>Andere Messstation</option>
+                            <option value="022">Asbach Ww &bull;&bull;&bull;</option>
+                            <option value="012">Bergisch Gladbach-Bensberg &bull;&bull;&bull;</option>
+                            <option value="021">Buchholz Ww &bull;&bull;&bull;</option>
+                            <option value="014">Hennef-Happerscho&szlig; &bull;&bull;&bull;</option>
+                            <option value="023">Hennef-Lichtenberg &bull;&bull;&bull;</option>
+                            <option value="011">Hennef-Rathaus &bull;&bull;&bull;</option>
+                            <option value="013">Hennef-Sto&szlig;dorf &bull;&bull;&bull;</option>
+                            <option value="010">K&ouml;ln-Heumar &bull;&bull;&bull;</option>
+                            <option value="027">K&ouml;ln-Neubr&uuml;ck &bull;&bull;&bull;</option>
+                            <option value="001">K&ouml;ln/S&uuml;d</option>
+                            <option value="016">K&ouml;ln-Porz/Grengel &bull;&bull;&bull;</option>
+                            <option value="041">K&uuml;rten</option>
+                            <option value="005">Merheim</option>
+                            <option value="035">Much</option>
+                            <option value="042">N&uuml;mbrecht</option>
+                            <option value="043">R&uuml;nderoth</option>
+                            <option value="033">Windeck-Dattenfeld</option>
+                            <option value="037">Windhagen &bull;&bull;&bull;</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="container container--2h">
+                <div class="image-LaermGraph js-image-LaermGraph show-scrollbar">
+                    <img src="../Scratch/Cache/003-032-20250409-10-G-1-1-100-1-0-0.png" class="image-LaermGraph__image"
+                         usemap="#Zoom" title="L&auml;rm-Graph">
+                    <div class="LaermGraphLegende--2h"><img src="../nil.gif" class="LaermGraphLegendeStart"><img
+                            src="../Mess/Menu/060.gif" class="LaermGraphLegendeBild--2h"
+                            title="Windrichtung ONO / 50&deg;, 6kn"><img src="../Mess/Menu/000.gif"
+                                                                         class="LaermGraphLegendeBild--2h"
+                                                                         title="Windrichtung N / 0&deg;, 2kn"><img
+                            src="../Mess/Menu/060.gif" class="LaermGraphLegendeBild--2h"
+                            title="Windrichtung ONO / 60&deg;, 3kn"><img src="../Mess/Menu/120.gif"
+                                                                         class="LaermGraphLegendeBild--2h"
+                                                                         title="Windrichtung OSO / 130&deg;, 1kn"></div>
+
+                    <map name="Zoom">
+                        <area shape="RECT" coords="37,357,41,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:00:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:00:00');"
+                              title="Flugspuren: 00:00:00">
+                        <area shape="RECT" coords="37,20,41,357"
+                              href="javascript:showComplainWindow('MDA6MDA6MDAsNDAuMA==','');"
+                              title="Beschwerde zu 00:00:00 Uhr versenden [40.0 dBA Rot]">
+                        <area shape="RECT" coords="41,357,49,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:01:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:01:00');"
+                              title="Flugspuren: 00:01:00">
+                        <area shape="RECT" coords="41,20,49,357"
+                              href="javascript:showComplainWindow('MDA6MDE6MDAsNDEuNA==','');"
+                              title="Beschwerde zu 00:01:00 Uhr versenden [41.4 dBA Rot]">
+                        <area shape="RECT" coords="49,357,59,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:02:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:02:00');"
+                              title="Flugspuren: 00:02:00">
+                        <area shape="RECT" coords="49,20,59,357"
+                              href="javascript:showComplainWindow('MDA6MDI6MDAsNDIuMg==','');"
+                              title="Beschwerde zu 00:02:00 Uhr versenden [42.2 dBA Rot]">
+                        <area shape="RECT" coords="59,357,69,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:03:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:03:00');"
+                              title="Flugspuren: 00:03:00">
+                        <area shape="RECT" coords="59,20,69,357"
+                              href="javascript:showComplainWindow('MDA6MDM6MDAsMzYuOQ==','');"
+                              title="Beschwerde zu 00:03:00 Uhr versenden [36.9 dBA Rot]">
+                        <area shape="RECT" coords="69,357,79,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:04:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:04:00');"
+                              title="Flugspuren: 00:04:00">
+                        <area shape="RECT" coords="69,20,79,357"
+                              href="javascript:showComplainWindow('MDA6MDQ6MDAsNDIuMA==','');"
+                              title="Beschwerde zu 00:04:00 Uhr versenden [42.0 dBA Rot]">
+                        <area shape="RECT" coords="79,357,89,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:05:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:05:00');"
+                              title="Flugspuren: 00:05:00">
+                        <area shape="RECT" coords="79,20,89,357"
+                              href="javascript:showComplainWindow('MDA6MDU6MDAsNDEuNQ==','');"
+                              title="Beschwerde zu 00:05:00 Uhr versenden [41.5 dBA Rot]">
+                        <area shape="RECT" coords="89,357,99,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:06:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:06:00');"
+                              title="Flugspuren: 00:06:00">
+                        <area shape="RECT" coords="89,20,99,357"
+                              href="javascript:showComplainWindow('MDA6MDY6MDAsNDAuOQ==','');"
+                              title="Beschwerde zu 00:06:00 Uhr versenden [40.9 dBA Rot]">
+                        <area shape="RECT" coords="99,357,109,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:07:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:07:00');"
+                              title="Flugspuren: 00:07:00">
+                        <area shape="RECT" coords="99,20,109,357"
+                              href="javascript:showComplainWindow('MDA6MDc6MDAsMzguMA==','');"
+                              title="Beschwerde zu 00:07:00 Uhr versenden [38.0 dBA Rot]">
+                        <area shape="RECT" coords="109,357,119,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:08:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:08:00');"
+                              title="Flugspuren: 00:08:00">
+                        <area shape="RECT" coords="109,20,119,357"
+                              href="javascript:showComplainWindow('MDA6MDg6MDAsMzkuNA==','');"
+                              title="Beschwerde zu 00:08:00 Uhr versenden [39.4 dBA Rot]">
+                        <area shape="RECT" coords="119,357,129,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:09:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:09:00');"
+                              title="Flugspuren: 00:09:00">
+                        <area shape="RECT" coords="119,20,129,357"
+                              href="javascript:showComplainWindow('MDA6MDk6MDAsMzcuNA==','');"
+                              title="Beschwerde zu 00:09:00 Uhr versenden [37.4 dBA Rot]">
+                        <area shape="RECT" coords="129,357,139,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:10:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:10:00');"
+                              title="Flugspuren: 00:10:00">
+                        <area shape="RECT" coords="129,20,137,357"
+                              href="javascript:showComplainWindow('MDA6MTA6MDAsNTIuMA==','');"
+                              title="Beschwerde zu 00:10:00 Uhr versenden [52.0 dBA Rot]">
+                        <area shape="RECT" coords="139,357,149,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:11:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:11:00');"
+                              title="Flugspuren: 00:11:00">
+                        <area shape="RECT" coords="137,20,149,357"
+                              href="javascript:showComplainWindow('MDA6MTE6MDAsNTcuMA==','');"
+                              title="Beschwerde zu 00:11:00 Uhr versenden [57.0 dBA Rot]">
+                        <area shape="RECT" coords="149,357,159,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:12:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:12:00');"
+                              title="Flugspuren: 00:12:00">
+                        <area shape="RECT" coords="149,20,159,357"
+                              href="javascript:showComplainWindow('MDA6MTI6MDAsNDIuOA==','');"
+                              title="Beschwerde zu 00:12:00 Uhr versenden [42.8 dBA Rot]">
+                        <area shape="RECT" coords="159,357,169,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:13:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:13:00');"
+                              title="Flugspuren: 00:13:00">
+                        <area shape="RECT" coords="159,20,169,357"
+                              href="javascript:showComplainWindow('MDA6MTM6MDAsNDMuNw==','');"
+                              title="Beschwerde zu 00:13:00 Uhr versenden [43.7 dBA Rot]">
+                        <area shape="RECT" coords="169,357,179,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:14:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:14:00');"
+                              title="Flugspuren: 00:14:00">
+                        <area shape="RECT" coords="169,20,179,357"
+                              href="javascript:showComplainWindow('MDA6MTQ6MDAsNDcuNQ==','');"
+                              title="Beschwerde zu 00:14:00 Uhr versenden [47.5 dBA Rot]">
+                        <area shape="RECT" coords="179,357,189,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:15:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:15:00');"
+                              title="Flugspuren: 00:15:00">
+                        <area shape="RECT" coords="179,20,189,357"
+                              href="javascript:showComplainWindow('MDA6MTU6MDAsMzkuNw==','');"
+                              title="Beschwerde zu 00:15:00 Uhr versenden [39.7 dBA Rot]">
+                        <area shape="RECT" coords="189,357,199,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:16:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:16:00');"
+                              title="Flugspuren: 00:16:00">
+                        <area shape="RECT" coords="189,20,199,357"
+                              href="javascript:showComplainWindow('MDA6MTY6MDAsNDIuNw==','');"
+                              title="Beschwerde zu 00:16:00 Uhr versenden [42.7 dBA Rot]">
+                        <area shape="RECT" coords="199,357,209,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:17:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:17:00');"
+                              title="Flugspuren: 00:17:00">
+                        <area shape="RECT" coords="199,20,209,357"
+                              href="javascript:showComplainWindow('MDA6MTc6MDAsNDEuOQ==','');"
+                              title="Beschwerde zu 00:17:00 Uhr versenden [41.9 dBA Rot]">
+                        <area shape="RECT" coords="209,357,219,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:18:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:18:00');"
+                              title="Flugspuren: 00:18:00">
+                        <area shape="RECT" coords="209,20,219,357"
+                              href="javascript:showComplainWindow('MDA6MTg6MDAsNDcuNg==','');"
+                              title="Beschwerde zu 00:18:00 Uhr versenden [47.6 dBA Rot]">
+                        <area shape="RECT" coords="219,357,229,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:19:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:19:00');"
+                              title="Flugspuren: 00:19:00">
+                        <area shape="RECT" coords="219,20,229,357"
+                              href="javascript:showComplainWindow('MDA6MTk6MDAsNTEuOA==','');"
+                              title="Beschwerde zu 00:19:00 Uhr versenden [51.8 dBA Rot]">
+                        <area shape="RECT" coords="229,357,239,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:20:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:20:00');"
+                              title="Flugspuren: 00:20:00">
+                        <area shape="RECT" coords="229,20,239,357"
+                              href="javascript:showComplainWindow('MDA6MjA6MDAsNDIuMA==','');"
+                              title="Beschwerde zu 00:20:00 Uhr versenden [42.0 dBA Rot]">
+                        <area shape="RECT" coords="239,357,249,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:21:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:21:00');"
+                              title="Flugspuren: 00:21:00">
+                        <area shape="RECT" coords="239,20,249,357"
+                              href="javascript:showComplainWindow('MDA6MjE6MDAsMzcuMg==','');"
+                              title="Beschwerde zu 00:21:00 Uhr versenden [37.2 dBA Rot]">
+                        <area shape="RECT" coords="249,357,259,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:22:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:22:00');"
+                              title="Flugspuren: 00:22:00">
+                        <area shape="RECT" coords="249,20,259,357"
+                              href="javascript:showComplainWindow('MDA6MjI6MDAsNDAuNw==','');"
+                              title="Beschwerde zu 00:22:00 Uhr versenden [40.7 dBA Rot]">
+                        <area shape="RECT" coords="259,357,269,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:23:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:23:00');"
+                              title="Flugspuren: 00:23:00">
+                        <area shape="RECT" coords="259,20,269,357"
+                              href="javascript:showComplainWindow('MDA6MjM6MDAsNDMuNQ==','');"
+                              title="Beschwerde zu 00:23:00 Uhr versenden [43.5 dBA Rot]">
+                        <area shape="RECT" coords="269,357,279,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:24:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:24:00');"
+                              title="Flugspuren: 00:24:00">
+                        <area shape="RECT" coords="269,20,279,357"
+                              href="javascript:showComplainWindow('MDA6MjQ6MDAsNDIuMg==','');"
+                              title="Beschwerde zu 00:24:00 Uhr versenden [42.2 dBA Rot]">
+                        <area shape="RECT" coords="279,357,289,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:25:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:25:00');"
+                              title="Flugspuren: 00:25:00">
+                        <area shape="RECT" coords="279,20,289,357"
+                              href="javascript:showComplainWindow('MDA6MjU6MDAsNDUuMQ==','');"
+                              title="Beschwerde zu 00:25:00 Uhr versenden [45.1 dBA Rot]">
+                        <area shape="RECT" coords="289,357,299,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:26:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:26:00');"
+                              title="Flugspuren: 00:26:00">
+                        <area shape="RECT" coords="289,20,299,357"
+                              href="javascript:showComplainWindow('MDA6MjY6MDAsNDIuNQ==','');"
+                              title="Beschwerde zu 00:26:00 Uhr versenden [42.5 dBA Rot]">
+                        <area shape="RECT" coords="299,357,309,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:27:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:27:00');"
+                              title="Flugspuren: 00:27:00">
+                        <area shape="RECT" coords="299,20,309,357"
+                              href="javascript:showComplainWindow('MDA6Mjc6MDAsNDMuMg==','');"
+                              title="Beschwerde zu 00:27:00 Uhr versenden [43.2 dBA Rot]">
+                        <area shape="RECT" coords="309,357,319,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:28:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:28:00');"
+                              title="Flugspuren: 00:28:00">
+                        <area shape="RECT" coords="309,20,319,357"
+                              href="javascript:showComplainWindow('MDA6Mjg6MDAsNDEuNQ==','');"
+                              title="Beschwerde zu 00:28:00 Uhr versenden [41.5 dBA Rot]">
+                        <area shape="RECT" coords="319,357,329,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:29:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:29:00');"
+                              title="Flugspuren: 00:29:00">
+                        <area shape="RECT" coords="319,20,329,357"
+                              href="javascript:showComplainWindow('MDA6Mjk6MDAsNDMuMQ==','');"
+                              title="Beschwerde zu 00:29:00 Uhr versenden [43.1 dBA Rot]">
+                        <area shape="RECT" coords="329,357,339,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:30:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:30:00');"
+                              title="Flugspuren: 00:30:00">
+                        <area shape="RECT" coords="329,20,339,357"
+                              href="javascript:showComplainWindow('MDA6MzA6MDAsNDQuNQ==','');"
+                              title="Beschwerde zu 00:30:00 Uhr versenden [44.5 dBA Rot]">
+                        <area shape="RECT" coords="339,357,349,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:31:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:31:00');"
+                              title="Flugspuren: 00:31:00">
+                        <area shape="RECT" coords="339,20,349,357"
+                              href="javascript:showComplainWindow('MDA6MzE6MDAsMzYuOA==','');"
+                              title="Beschwerde zu 00:31:00 Uhr versenden [36.8 dBA Rot]">
+                        <area shape="RECT" coords="349,357,359,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:32:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:32:00');"
+                              title="Flugspuren: 00:32:00">
+                        <area shape="RECT" coords="349,20,359,357"
+                              href="javascript:showComplainWindow('MDA6MzI6MDAsMzcuNQ==','');"
+                              title="Beschwerde zu 00:32:00 Uhr versenden [37.5 dBA Rot]">
+                        <area shape="RECT" coords="359,357,369,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:33:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:33:00');"
+                              title="Flugspuren: 00:33:00">
+                        <area shape="RECT" coords="359,20,369,357"
+                              href="javascript:showComplainWindow('MDA6MzM6MDAsNDUuMg==','');"
+                              title="Beschwerde zu 00:33:00 Uhr versenden [45.2 dBA Rot]">
+                        <area shape="RECT" coords="369,357,379,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:34:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:34:00');"
+                              title="Flugspuren: 00:34:00">
+                        <area shape="RECT" coords="369,20,379,357"
+                              href="javascript:showComplainWindow('MDA6MzQ6MDAsMzguNg==','');"
+                              title="Beschwerde zu 00:34:00 Uhr versenden [38.6 dBA Rot]">
+                        <area shape="RECT" coords="379,357,389,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:35:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:35:00');"
+                              title="Flugspuren: 00:35:00">
+                        <area shape="RECT" coords="379,20,389,357"
+                              href="javascript:showComplainWindow('MDA6MzU6MDAsMzQuNA==','');"
+                              title="Beschwerde zu 00:35:00 Uhr versenden [34.4 dBA Rot]">
+                        <area shape="RECT" coords="389,357,399,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:36:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:36:00');"
+                              title="Flugspuren: 00:36:00">
+                        <area shape="RECT" coords="389,20,399,357"
+                              href="javascript:showComplainWindow('MDA6MzY6MDAsNDUuMg==','');"
+                              title="Beschwerde zu 00:36:00 Uhr versenden [45.2 dBA Rot]">
+                        <area shape="RECT" coords="399,357,409,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:37:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:37:00');"
+                              title="Flugspuren: 00:37:00">
+                        <area shape="RECT" coords="399,20,409,357"
+                              href="javascript:showComplainWindow('MDA6Mzc6MDAsMzQuNA==','');"
+                              title="Beschwerde zu 00:37:00 Uhr versenden [34.4 dBA Rot]">
+                        <area shape="RECT" coords="409,357,419,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:38:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:38:00');"
+                              title="Flugspuren: 00:38:00">
+                        <area shape="RECT" coords="409,20,419,357"
+                              href="javascript:showComplainWindow('MDA6Mzg6MDAsMzYuOA==','');"
+                              title="Beschwerde zu 00:38:00 Uhr versenden [36.8 dBA Rot]">
+                        <area shape="RECT" coords="419,357,429,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:39:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:39:00');"
+                              title="Flugspuren: 00:39:00">
+                        <area shape="RECT" coords="419,20,429,357"
+                              href="javascript:showComplainWindow('MDA6Mzk6MDAsMzguNA==','');"
+                              title="Beschwerde zu 00:39:00 Uhr versenden [38.4 dBA Rot]">
+                        <area shape="RECT" coords="429,357,439,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:40:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:40:00');"
+                              title="Flugspuren: 00:40:00">
+                        <area shape="RECT" coords="429,20,439,357"
+                              href="javascript:showComplainWindow('MDA6NDA6MDAsMzUuMQ==','');"
+                              title="Beschwerde zu 00:40:00 Uhr versenden [35.1 dBA Rot]">
+                        <area shape="RECT" coords="439,357,449,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:41:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:41:00');"
+                              title="Flugspuren: 00:41:00">
+                        <area shape="RECT" coords="439,20,449,357"
+                              href="javascript:showComplainWindow('MDA6NDE6MDAsMzQuNw==','');"
+                              title="Beschwerde zu 00:41:00 Uhr versenden [34.7 dBA Rot]">
+                        <area shape="RECT" coords="449,357,459,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:42:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:42:00');"
+                              title="Flugspuren: 00:42:00">
+                        <area shape="RECT" coords="449,20,459,357"
+                              href="javascript:showComplainWindow('MDA6NDI6MDAsMzkuOQ==','');"
+                              title="Beschwerde zu 00:42:00 Uhr versenden [39.9 dBA Rot]">
+                        <area shape="RECT" coords="459,357,469,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:43:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:43:00');"
+                              title="Flugspuren: 00:43:00">
+                        <area shape="RECT" coords="459,20,469,357"
+                              href="javascript:showComplainWindow('MDA6NDM6MDAsMzcuOA==','');"
+                              title="Beschwerde zu 00:43:00 Uhr versenden [37.8 dBA Rot]">
+                        <area shape="RECT" coords="469,357,479,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:44:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:44:00');"
+                              title="Flugspuren: 00:44:00">
+                        <area shape="RECT" coords="469,20,479,357"
+                              href="javascript:showComplainWindow('MDA6NDQ6MDAsMzYuNA==','');"
+                              title="Beschwerde zu 00:44:00 Uhr versenden [36.4 dBA Rot]">
+                        <area shape="RECT" coords="479,357,489,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:45:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:45:00');"
+                              title="Flugspuren: 00:45:00">
+                        <area shape="RECT" coords="479,20,489,357"
+                              href="javascript:showComplainWindow('MDA6NDU6MDAsMzguNw==','');"
+                              title="Beschwerde zu 00:45:00 Uhr versenden [38.7 dBA Rot]">
+                        <area shape="RECT" coords="489,357,499,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:46:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:46:00');"
+                              title="Flugspuren: 00:46:00">
+                        <area shape="RECT" coords="489,20,499,357"
+                              href="javascript:showComplainWindow('MDA6NDY6MDAsMzcuNw==','');"
+                              title="Beschwerde zu 00:46:00 Uhr versenden [37.7 dBA Rot]">
+                        <area shape="RECT" coords="499,357,509,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:47:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:47:00');"
+                              title="Flugspuren: 00:47:00">
+                        <area shape="RECT" coords="499,20,509,357"
+                              href="javascript:showComplainWindow('MDA6NDc6MDAsNDEuMA==','');"
+                              title="Beschwerde zu 00:47:00 Uhr versenden [41.0 dBA Rot]">
+                        <area shape="RECT" coords="509,357,519,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:48:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:48:00');"
+                              title="Flugspuren: 00:48:00">
+                        <area shape="RECT" coords="509,20,519,357"
+                              href="javascript:showComplainWindow('MDA6NDg6MDAsMzYuOQ==','');"
+                              title="Beschwerde zu 00:48:00 Uhr versenden [36.9 dBA Rot]">
+                        <area shape="RECT" coords="519,357,529,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:49:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:49:00');"
+                              title="Flugspuren: 00:49:00">
+                        <area shape="RECT" coords="519,20,529,357"
+                              href="javascript:showComplainWindow('MDA6NDk6MDAsNDAuMA==','');"
+                              title="Beschwerde zu 00:49:00 Uhr versenden [40.0 dBA Rot]">
+                        <area shape="RECT" coords="529,357,539,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:50:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:50:00');"
+                              title="Flugspuren: 00:50:00">
+                        <area shape="RECT" coords="529,20,539,357"
+                              href="javascript:showComplainWindow('MDA6NTA6MDAsMzguNQ==','');"
+                              title="Beschwerde zu 00:50:00 Uhr versenden [38.5 dBA Rot]">
+                        <area shape="RECT" coords="539,357,549,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:51:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:51:00');"
+                              title="Flugspuren: 00:51:00">
+                        <area shape="RECT" coords="539,20,549,357"
+                              href="javascript:showComplainWindow('MDA6NTE6MDAsNDQuNg==','');"
+                              title="Beschwerde zu 00:51:00 Uhr versenden [44.6 dBA Rot]">
+                        <area shape="RECT" coords="549,357,559,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:52:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:52:00');"
+                              title="Flugspuren: 00:52:00">
+                        <area shape="RECT" coords="549,20,559,357"
+                              href="javascript:showComplainWindow('MDA6NTI6MDAsNDIuMw==','');"
+                              title="Beschwerde zu 00:52:00 Uhr versenden [42.3 dBA Rot]">
+                        <area shape="RECT" coords="559,357,569,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:53:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:53:00');"
+                              title="Flugspuren: 00:53:00">
+                        <area shape="RECT" coords="559,20,569,357"
+                              href="javascript:showComplainWindow('MDA6NTM6MDAsNDQuMA==','');"
+                              title="Beschwerde zu 00:53:00 Uhr versenden [44.0 dBA Rot]">
+                        <area shape="RECT" coords="569,357,579,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:54:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:54:00');"
+                              title="Flugspuren: 00:54:00">
+                        <area shape="RECT" coords="569,20,579,357"
+                              href="javascript:showComplainWindow('MDA6NTQ6MDAsNTkuMw==','');"
+                              title="Beschwerde zu 00:54:00 Uhr versenden [59.3 dBA Rot]">
+                        <area shape="RECT" coords="579,357,589,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:55:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:55:00');"
+                              title="Flugspuren: 00:55:00">
+                        <area shape="RECT" coords="579,20,589,357"
+                              href="javascript:showComplainWindow('MDA6NTU6MDAsNTkuNA==','');"
+                              title="Beschwerde zu 00:55:00 Uhr versenden [59.4 dBA Rot]">
+                        <area shape="RECT" coords="589,357,599,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:56:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:56:00');"
+                              title="Flugspuren: 00:56:00">
+                        <area shape="RECT" coords="589,20,599,357"
+                              href="javascript:showComplainWindow('MDA6NTY6MDAsMzcuMA==','');"
+                              title="Beschwerde zu 00:56:00 Uhr versenden [37.0 dBA Rot]">
+                        <area shape="RECT" coords="599,357,609,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:57:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:57:00');"
+                              title="Flugspuren: 00:57:00">
+                        <area shape="RECT" coords="599,20,609,357"
+                              href="javascript:showComplainWindow('MDA6NTc6MDAsMzkuMg==','');"
+                              title="Beschwerde zu 00:57:00 Uhr versenden [39.2 dBA Rot]">
+                        <area shape="RECT" coords="609,357,619,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:58:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:58:00');"
+                              title="Flugspuren: 00:58:00">
+                        <area shape="RECT" coords="609,20,619,357"
+                              href="javascript:showComplainWindow('MDA6NTg6MDAsNDEuMA==','');"
+                              title="Beschwerde zu 00:58:00 Uhr versenden [41.0 dBA Rot]">
+                        <area shape="RECT" coords="619,357,629,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','00:59:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=00:59:00');"
+                              title="Flugspuren: 00:59:00">
+                        <area shape="RECT" coords="619,20,634,357"
+                              href="javascript:showComplainWindow('MDA6NTk6MDAsNTguMA==','');"
+                              title="Beschwerde zu 00:59:00 Uhr versenden [58.0 dBA Rot]">
+                        <area shape="RECT" coords="629,357,639,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:00:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:00:00');"
+                              title="Flugspuren: 01:00:00">
+                        <area shape="RECT" coords="634,20,639,357"
+                              href="javascript:showComplainWindow('MDE6MDA6MDAsNTUuNQ==','');"
+                              title="Beschwerde zu 01:00:00 Uhr versenden [55.5 dBA Rot]">
+                        <area shape="RECT" coords="639,357,649,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:01:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:01:00');"
+                              title="Flugspuren: 01:01:00">
+                        <area shape="RECT" coords="639,20,649,357"
+                              href="javascript:showComplainWindow('MDE6MDE6MDAsNDEuMQ==','');"
+                              title="Beschwerde zu 01:01:00 Uhr versenden [41.1 dBA Rot]">
+                        <area shape="RECT" coords="649,357,659,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:02:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:02:00');"
+                              title="Flugspuren: 01:02:00">
+                        <area shape="RECT" coords="649,20,659,357"
+                              href="javascript:showComplainWindow('MDE6MDI6MDAsMzYuMA==','');"
+                              title="Beschwerde zu 01:02:00 Uhr versenden [36.0 dBA Rot]">
+                        <area shape="RECT" coords="659,357,669,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:03:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:03:00');"
+                              title="Flugspuren: 01:03:00">
+                        <area shape="RECT" coords="659,20,669,357"
+                              href="javascript:showComplainWindow('MDE6MDM6MDAsMzguMQ==','');"
+                              title="Beschwerde zu 01:03:00 Uhr versenden [38.1 dBA Rot]">
+                        <area shape="RECT" coords="669,357,679,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:04:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:04:00');"
+                              title="Flugspuren: 01:04:00">
+                        <area shape="RECT" coords="669,20,679,357"
+                              href="javascript:showComplainWindow('MDE6MDQ6MDAsMzguNA==','');"
+                              title="Beschwerde zu 01:04:00 Uhr versenden [38.4 dBA Rot]">
+                        <area shape="RECT" coords="679,357,689,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:05:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:05:00');"
+                              title="Flugspuren: 01:05:00">
+                        <area shape="RECT" coords="679,20,689,357"
+                              href="javascript:showComplainWindow('MDE6MDU6MDAsNDQuMQ==','');"
+                              title="Beschwerde zu 01:05:00 Uhr versenden [44.1 dBA Rot]">
+                        <area shape="RECT" coords="689,357,699,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:06:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:06:00');"
+                              title="Flugspuren: 01:06:00">
+                        <area shape="RECT" coords="689,20,699,357"
+                              href="javascript:showComplainWindow('MDE6MDY6MDAsNDcuNw==','');"
+                              title="Beschwerde zu 01:06:00 Uhr versenden [47.7 dBA Rot]">
+                        <area shape="RECT" coords="699,357,709,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:07:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:07:00');"
+                              title="Flugspuren: 01:07:00">
+                        <area shape="RECT" coords="699,20,709,357"
+                              href="javascript:showComplainWindow('MDE6MDc6MDAsNjMuMA==','');"
+                              title="Beschwerde zu 01:07:00 Uhr versenden [63.0 dBA Rot]">
+                        <area shape="RECT" coords="709,357,719,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:08:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:08:00');"
+                              title="Flugspuren: 01:08:00">
+                        <area shape="RECT" coords="709,20,719,357"
+                              href="javascript:showComplainWindow('MDE6MDg6MDAsNDcuOQ==','');"
+                              title="Beschwerde zu 01:08:00 Uhr versenden [47.9 dBA Rot]">
+                        <area shape="RECT" coords="719,357,729,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:09:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:09:00');"
+                              title="Flugspuren: 01:09:00">
+                        <area shape="RECT" coords="719,20,729,357"
+                              href="javascript:showComplainWindow('MDE6MDk6MDAsNDYuOQ==','');"
+                              title="Beschwerde zu 01:09:00 Uhr versenden [46.9 dBA Rot]">
+                        <area shape="RECT" coords="729,357,739,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:10:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:10:00');"
+                              title="Flugspuren: 01:10:00">
+                        <area shape="RECT" coords="729,20,739,357"
+                              href="javascript:showComplainWindow('MDE6MTA6MDAsNDIuMA==','');"
+                              title="Beschwerde zu 01:10:00 Uhr versenden [42.0 dBA Rot]">
+                        <area shape="RECT" coords="739,357,749,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:11:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:11:00');"
+                              title="Flugspuren: 01:11:00">
+                        <area shape="RECT" coords="739,20,749,357"
+                              href="javascript:showComplainWindow('MDE6MTE6MDAsNDEuOA==','');"
+                              title="Beschwerde zu 01:11:00 Uhr versenden [41.8 dBA Rot]">
+                        <area shape="RECT" coords="749,357,759,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:12:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:12:00');"
+                              title="Flugspuren: 01:12:00">
+                        <area shape="RECT" coords="749,20,759,357"
+                              href="javascript:showComplainWindow('MDE6MTI6MDAsNDIuMg==','');"
+                              title="Beschwerde zu 01:12:00 Uhr versenden [42.2 dBA Rot]">
+                        <area shape="RECT" coords="759,357,769,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:13:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:13:00');"
+                              title="Flugspuren: 01:13:00">
+                        <area shape="RECT" coords="759,20,769,357"
+                              href="javascript:showComplainWindow('MDE6MTM6MDAsMzcuOA==','');"
+                              title="Beschwerde zu 01:13:00 Uhr versenden [37.8 dBA Rot]">
+                        <area shape="RECT" coords="769,357,779,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:14:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:14:00');"
+                              title="Flugspuren: 01:14:00">
+                        <area shape="RECT" coords="769,20,779,357"
+                              href="javascript:showComplainWindow('MDE6MTQ6MDAsMzguOQ==','');"
+                              title="Beschwerde zu 01:14:00 Uhr versenden [38.9 dBA Rot]">
+                        <area shape="RECT" coords="779,357,789,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:15:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:15:00');"
+                              title="Flugspuren: 01:15:00">
+                        <area shape="RECT" coords="779,20,789,357"
+                              href="javascript:showComplainWindow('MDE6MTU6MDAsNDEuNA==','');"
+                              title="Beschwerde zu 01:15:00 Uhr versenden [41.4 dBA Rot]">
+                        <area shape="RECT" coords="789,357,799,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:16:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:16:00');"
+                              title="Flugspuren: 01:16:00">
+                        <area shape="RECT" coords="789,20,799,357"
+                              href="javascript:showComplainWindow('MDE6MTY6MDAsNTEuMQ==','');"
+                              title="Beschwerde zu 01:16:00 Uhr versenden [51.1 dBA Rot]">
+                        <area shape="RECT" coords="799,357,809,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:17:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:17:00');"
+                              title="Flugspuren: 01:17:00">
+                        <area shape="RECT" coords="799,20,809,357"
+                              href="javascript:showComplainWindow('MDE6MTc6MDAsNDIuNA==','');"
+                              title="Beschwerde zu 01:17:00 Uhr versenden [42.4 dBA Rot]">
+                        <area shape="RECT" coords="809,357,819,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:18:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:18:00');"
+                              title="Flugspuren: 01:18:00">
+                        <area shape="RECT" coords="809,20,819,357"
+                              href="javascript:showComplainWindow('MDE6MTg6MDAsMzYuNg==','');"
+                              title="Beschwerde zu 01:18:00 Uhr versenden [36.6 dBA Rot]">
+                        <area shape="RECT" coords="819,357,829,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:19:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:19:00');"
+                              title="Flugspuren: 01:19:00">
+                        <area shape="RECT" coords="819,20,829,357"
+                              href="javascript:showComplainWindow('MDE6MTk6MDAsMzcuOA==','');"
+                              title="Beschwerde zu 01:19:00 Uhr versenden [37.8 dBA Rot]">
+                        <area shape="RECT" coords="829,357,839,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:20:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:20:00');"
+                              title="Flugspuren: 01:20:00">
+                        <area shape="RECT" coords="829,20,839,357"
+                              href="javascript:showComplainWindow('MDE6MjA6MDAsMzYuNQ==','');"
+                              title="Beschwerde zu 01:20:00 Uhr versenden [36.5 dBA Rot]">
+                        <area shape="RECT" coords="839,357,849,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:21:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:21:00');"
+                              title="Flugspuren: 01:21:00">
+                        <area shape="RECT" coords="839,20,849,357"
+                              href="javascript:showComplainWindow('MDE6MjE6MDAsMzkuOQ==','');"
+                              title="Beschwerde zu 01:21:00 Uhr versenden [39.9 dBA Rot]">
+                        <area shape="RECT" coords="849,357,859,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:22:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:22:00');"
+                              title="Flugspuren: 01:22:00">
+                        <area shape="RECT" coords="849,20,859,357"
+                              href="javascript:showComplainWindow('MDE6MjI6MDAsNDAuOA==','');"
+                              title="Beschwerde zu 01:22:00 Uhr versenden [40.8 dBA Rot]">
+                        <area shape="RECT" coords="859,357,869,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:23:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:23:00');"
+                              title="Flugspuren: 01:23:00">
+                        <area shape="RECT" coords="859,20,869,357"
+                              href="javascript:showComplainWindow('MDE6MjM6MDAsMzguMg==','');"
+                              title="Beschwerde zu 01:23:00 Uhr versenden [38.2 dBA Rot]">
+                        <area shape="RECT" coords="869,357,879,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:24:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:24:00');"
+                              title="Flugspuren: 01:24:00">
+                        <area shape="RECT" coords="869,20,879,357"
+                              href="javascript:showComplainWindow('MDE6MjQ6MDAsMzguMA==','');"
+                              title="Beschwerde zu 01:24:00 Uhr versenden [38.0 dBA Rot]">
+                        <area shape="RECT" coords="879,357,889,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:25:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:25:00');"
+                              title="Flugspuren: 01:25:00">
+                        <area shape="RECT" coords="879,20,889,357"
+                              href="javascript:showComplainWindow('MDE6MjU6MDAsMzguNg==','');"
+                              title="Beschwerde zu 01:25:00 Uhr versenden [38.6 dBA Rot]">
+                        <area shape="RECT" coords="889,357,899,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:26:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:26:00');"
+                              title="Flugspuren: 01:26:00">
+                        <area shape="RECT" coords="889,20,899,357"
+                              href="javascript:showComplainWindow('MDE6MjY6MDAsMzkuMA==','');"
+                              title="Beschwerde zu 01:26:00 Uhr versenden [39.0 dBA Rot]">
+                        <area shape="RECT" coords="899,357,909,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:27:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:27:00');"
+                              title="Flugspuren: 01:27:00">
+                        <area shape="RECT" coords="899,20,909,357"
+                              href="javascript:showComplainWindow('MDE6Mjc6MDAsMzYuNw==','');"
+                              title="Beschwerde zu 01:27:00 Uhr versenden [36.7 dBA Rot]">
+                        <area shape="RECT" coords="909,357,919,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:28:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:28:00');"
+                              title="Flugspuren: 01:28:00">
+                        <area shape="RECT" coords="909,20,919,357"
+                              href="javascript:showComplainWindow('MDE6Mjg6MDAsNDQuNQ==','');"
+                              title="Beschwerde zu 01:28:00 Uhr versenden [44.5 dBA Rot]">
+                        <area shape="RECT" coords="919,357,929,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:29:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:29:00');"
+                              title="Flugspuren: 01:29:00">
+                        <area shape="RECT" coords="919,20,929,357"
+                              href="javascript:showComplainWindow('MDE6Mjk6MDAsNDAuOQ==','');"
+                              title="Beschwerde zu 01:29:00 Uhr versenden [40.9 dBA Rot]">
+                        <area shape="RECT" coords="929,357,939,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:30:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:30:00');"
+                              title="Flugspuren: 01:30:00">
+                        <area shape="RECT" coords="929,20,939,357"
+                              href="javascript:showComplainWindow('MDE6MzA6MDAsNDAuNw==','');"
+                              title="Beschwerde zu 01:30:00 Uhr versenden [40.7 dBA Rot]">
+                        <area shape="RECT" coords="939,357,949,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:31:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:31:00');"
+                              title="Flugspuren: 01:31:00">
+                        <area shape="RECT" coords="939,20,949,357"
+                              href="javascript:showComplainWindow('MDE6MzE6MDAsNDUuOA==','');"
+                              title="Beschwerde zu 01:31:00 Uhr versenden [45.8 dBA Rot]">
+                        <area shape="RECT" coords="949,357,959,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:32:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:32:00');"
+                              title="Flugspuren: 01:32:00">
+                        <area shape="RECT" coords="949,20,959,357"
+                              href="javascript:showComplainWindow('MDE6MzI6MDAsNDQuNA==','');"
+                              title="Beschwerde zu 01:32:00 Uhr versenden [44.4 dBA Rot]">
+                        <area shape="RECT" coords="959,357,969,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:33:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:33:00');"
+                              title="Flugspuren: 01:33:00">
+                        <area shape="RECT" coords="959,20,969,357"
+                              href="javascript:showComplainWindow('MDE6MzM6MDAsNDAuMw==','');"
+                              title="Beschwerde zu 01:33:00 Uhr versenden [40.3 dBA Rot]">
+                        <area shape="RECT" coords="969,357,979,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:34:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:34:00');"
+                              title="Flugspuren: 01:34:00">
+                        <area shape="RECT" coords="969,20,979,357"
+                              href="javascript:showComplainWindow('MDE6MzQ6MDAsNDIuNA==','');"
+                              title="Beschwerde zu 01:34:00 Uhr versenden [42.4 dBA Rot]">
+                        <area shape="RECT" coords="979,357,989,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:35:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:35:00');"
+                              title="Flugspuren: 01:35:00">
+                        <area shape="RECT" coords="979,20,989,357"
+                              href="javascript:showComplainWindow('MDE6MzU6MDAsNDIuMw==','');"
+                              title="Beschwerde zu 01:35:00 Uhr versenden [42.3 dBA Rot]">
+                        <area shape="RECT" coords="989,357,999,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:36:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:36:00');"
+                              title="Flugspuren: 01:36:00">
+                        <area shape="RECT" coords="989,20,999,357"
+                              href="javascript:showComplainWindow('MDE6MzY6MDAsMzcuNA==','');"
+                              title="Beschwerde zu 01:36:00 Uhr versenden [37.4 dBA Rot]">
+                        <area shape="RECT" coords="999,357,1009,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:37:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:37:00');"
+                              title="Flugspuren: 01:37:00">
+                        <area shape="RECT" coords="999,20,1009,357"
+                              href="javascript:showComplainWindow('MDE6Mzc6MDAsNDMuNQ==','');"
+                              title="Beschwerde zu 01:37:00 Uhr versenden [43.5 dBA Rot]">
+                        <area shape="RECT" coords="1009,357,1019,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:38:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:38:00');"
+                              title="Flugspuren: 01:38:00">
+                        <area shape="RECT" coords="1009,20,1019,357"
+                              href="javascript:showComplainWindow('MDE6Mzg6MDAsMzguNw==','');"
+                              title="Beschwerde zu 01:38:00 Uhr versenden [38.7 dBA Rot]">
+                        <area shape="RECT" coords="1019,357,1029,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:39:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:39:00');"
+                              title="Flugspuren: 01:39:00">
+                        <area shape="RECT" coords="1019,20,1029,357"
+                              href="javascript:showComplainWindow('MDE6Mzk6MDAsNDAuMQ==','');"
+                              title="Beschwerde zu 01:39:00 Uhr versenden [40.1 dBA Rot]">
+                        <area shape="RECT" coords="1029,357,1039,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:40:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:40:00');"
+                              title="Flugspuren: 01:40:00">
+                        <area shape="RECT" coords="1029,20,1039,357"
+                              href="javascript:showComplainWindow('MDE6NDA6MDAsNDAuMQ==','');"
+                              title="Beschwerde zu 01:40:00 Uhr versenden [40.1 dBA Rot]">
+                        <area shape="RECT" coords="1039,357,1049,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:41:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:41:00');"
+                              title="Flugspuren: 01:41:00">
+                        <area shape="RECT" coords="1039,20,1049,357"
+                              href="javascript:showComplainWindow('MDE6NDE6MDAsMzguMQ==','');"
+                              title="Beschwerde zu 01:41:00 Uhr versenden [38.1 dBA Rot]">
+                        <area shape="RECT" coords="1049,357,1059,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:42:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:42:00');"
+                              title="Flugspuren: 01:42:00">
+                        <area shape="RECT" coords="1049,20,1059,357"
+                              href="javascript:showComplainWindow('MDE6NDI6MDAsMzYuOA==','');"
+                              title="Beschwerde zu 01:42:00 Uhr versenden [36.8 dBA Rot]">
+                        <area shape="RECT" coords="1059,357,1069,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:43:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:43:00');"
+                              title="Flugspuren: 01:43:00">
+                        <area shape="RECT" coords="1059,20,1069,357"
+                              href="javascript:showComplainWindow('MDE6NDM6MDAsMzUuNw==','');"
+                              title="Beschwerde zu 01:43:00 Uhr versenden [35.7 dBA Rot]">
+                        <area shape="RECT" coords="1069,357,1079,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:44:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:44:00');"
+                              title="Flugspuren: 01:44:00">
+                        <area shape="RECT" coords="1069,20,1079,357"
+                              href="javascript:showComplainWindow('MDE6NDQ6MDAsMzkuMA==','');"
+                              title="Beschwerde zu 01:44:00 Uhr versenden [39.0 dBA Rot]">
+                        <area shape="RECT" coords="1079,357,1089,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:45:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:45:00');"
+                              title="Flugspuren: 01:45:00">
+                        <area shape="RECT" coords="1079,20,1089,357"
+                              href="javascript:showComplainWindow('MDE6NDU6MDAsNDAuMw==','');"
+                              title="Beschwerde zu 01:45:00 Uhr versenden [40.3 dBA Rot]">
+                        <area shape="RECT" coords="1089,357,1099,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:46:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:46:00');"
+                              title="Flugspuren: 01:46:00">
+                        <area shape="RECT" coords="1089,20,1099,357"
+                              href="javascript:showComplainWindow('MDE6NDY6MDAsNDIuNA==','');"
+                              title="Beschwerde zu 01:46:00 Uhr versenden [42.4 dBA Rot]">
+                        <area shape="RECT" coords="1099,357,1109,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:47:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:47:00');"
+                              title="Flugspuren: 01:47:00">
+                        <area shape="RECT" coords="1099,20,1109,357"
+                              href="javascript:showComplainWindow('MDE6NDc6MDAsMzguOA==','');"
+                              title="Beschwerde zu 01:47:00 Uhr versenden [38.8 dBA Rot]">
+                        <area shape="RECT" coords="1109,357,1119,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:48:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:48:00');"
+                              title="Flugspuren: 01:48:00">
+                        <area shape="RECT" coords="1109,20,1119,357"
+                              href="javascript:showComplainWindow('MDE6NDg6MDAsMzYuNQ==','');"
+                              title="Beschwerde zu 01:48:00 Uhr versenden [36.5 dBA Rot]">
+                        <area shape="RECT" coords="1119,357,1129,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:49:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:49:00');"
+                              title="Flugspuren: 01:49:00">
+                        <area shape="RECT" coords="1119,20,1129,357"
+                              href="javascript:showComplainWindow('MDE6NDk6MDAsMzkuNA==','');"
+                              title="Beschwerde zu 01:49:00 Uhr versenden [39.4 dBA Rot]">
+                        <area shape="RECT" coords="1129,357,1139,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:50:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:50:00');"
+                              title="Flugspuren: 01:50:00">
+                        <area shape="RECT" coords="1129,20,1139,357"
+                              href="javascript:showComplainWindow('MDE6NTA6MDAsNDQuNQ==','');"
+                              title="Beschwerde zu 01:50:00 Uhr versenden [44.5 dBA Rot]">
+                        <area shape="RECT" coords="1139,357,1149,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:51:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:51:00');"
+                              title="Flugspuren: 01:51:00">
+                        <area shape="RECT" coords="1139,20,1146,357"
+                              href="javascript:showComplainWindow('MDE6NTE6MDAsNTguOQ==','');"
+                              title="Beschwerde zu 01:51:00 Uhr versenden [58.9 dBA Rot]">
+                        <area shape="RECT" coords="1149,357,1159,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:52:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:52:00');"
+                              title="Flugspuren: 01:52:00">
+                        <area shape="RECT" coords="1146,20,1159,357"
+                              href="javascript:showComplainWindow('MDE6NTI6MDAsNjUuMA==','');"
+                              title="Beschwerde zu 01:52:00 Uhr versenden [65.0 dBA Rot]">
+                        <area shape="RECT" coords="1159,357,1169,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:53:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:53:00');"
+                              title="Flugspuren: 01:53:00">
+                        <area shape="RECT" coords="1159,20,1169,357"
+                              href="javascript:showComplainWindow('MDE6NTM6MDAsNDAuNQ==','');"
+                              title="Beschwerde zu 01:53:00 Uhr versenden [40.5 dBA Rot]">
+                        <area shape="RECT" coords="1169,357,1179,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:54:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:54:00');"
+                              title="Flugspuren: 01:54:00">
+                        <area shape="RECT" coords="1169,20,1179,357"
+                              href="javascript:showComplainWindow('MDE6NTQ6MDAsMzUuNg==','');"
+                              title="Beschwerde zu 01:54:00 Uhr versenden [35.6 dBA Rot]">
+                        <area shape="RECT" coords="1179,357,1189,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:55:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:55:00');"
+                              title="Flugspuren: 01:55:00">
+                        <area shape="RECT" coords="1179,20,1189,357"
+                              href="javascript:showComplainWindow('MDE6NTU6MDAsMzQuMA==','');"
+                              title="Beschwerde zu 01:55:00 Uhr versenden [34.0 dBA Rot]">
+                        <area shape="RECT" coords="1189,357,1199,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:56:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:56:00');"
+                              title="Flugspuren: 01:56:00">
+                        <area shape="RECT" coords="1189,20,1199,357"
+                              href="javascript:showComplainWindow('MDE6NTY6MDAsNDQuMA==','');"
+                              title="Beschwerde zu 01:56:00 Uhr versenden [44.0 dBA Rot]">
+                        <area shape="RECT" coords="1199,357,1209,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:57:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:57:00');"
+                              title="Flugspuren: 01:57:00">
+                        <area shape="RECT" coords="1199,20,1209,357"
+                              href="javascript:showComplainWindow('MDE6NTc6MDAsMzkuNA==','');"
+                              title="Beschwerde zu 01:57:00 Uhr versenden [39.4 dBA Rot]">
+                        <area shape="RECT" coords="1209,357,1219,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:58:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:58:00');"
+                              title="Flugspuren: 01:58:00">
+                        <area shape="RECT" coords="1209,20,1219,357"
+                              href="javascript:showComplainWindow('MDE6NTg6MDAsNDEuNw==','');"
+                              title="Beschwerde zu 01:58:00 Uhr versenden [41.7 dBA Rot]">
+                        <area shape="RECT" coords="1219,357,1229,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','01:59:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=01:59:00');"
+                              title="Flugspuren: 01:59:00">
+                        <area shape="RECT" coords="1219,20,1229,357"
+                              href="javascript:showComplainWindow('MDE6NTk6MDAsMzMuMg==','');"
+                              title="Beschwerde zu 01:59:00 Uhr versenden [33.2 dBA Rot]">
+                        <area shape="RECT" coords="1229,357,1239,370"
+                              href="javascript:SetMultiParaUrl('form1','Z','02:00:00','ShowTrack.php?R=3&S=032&D=09.04.2025&N=900&Z=02:00:00');"
+                              title="Flugspuren: 02:00:00">
+                        <area shape="RECT" coords="1229,20,1239,357"
+                              href="javascript:showComplainWindow('MDI6MDA6MDAsMzQuMg==','');"
+                              title="Beschwerde zu 02:00:00 Uhr versenden [34.2 dBA Rot]">
+                    </map>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="h5">Ansicht</div>
+                        <div class="form__group"><input type="radio" id="A1" value="1" checked
+                                                        onClick="SetParaOhneSubmit('ZT','00'); SetMultiParaUrl('form1','A','1','Messwerte.php','R','003','S','032','D','09.04.2025','ZT','00');"><label
+                                for="A1"><span class="radio"></span>klassisch</label></div>
+                        <div class="form__group"><input type="radio" id="A2" value="0"
+                                                        onClick="SetMultiParaUrl('form1','A','0','Messwerte.php','R','003','S','032','D','09.04.2025','ZT','00');"><label
+                                for="A2"><span class="radio"></span>wissenschaftlich</label></div>
+                    </div>
+                    <div class="col-7">
+                        <div class="h5">Kurve <b>&uuml;berlagern</b> mit anderer Messstation</div>
+                        <div class="select-wrapper">
+                            <select id="selected_station_sub"
+                                    onchange="SetMultiParaUrl('form1','S','032_'+this.value,'Messwerte.php','R','003','S','032_'+this.value,'D','09.04.2025','ZT','00');">
+                                <option value="" style="display: none;" disabled selected>Auswahl Messstation</option>
+                                <option value="022">Asbach Ww &bull;&bull;&bull;</option>
+                                <option value="012">Bergisch Gladbach-Bensberg &bull;&bull;&bull;</option>
+                                <option value="021">Buchholz Ww &bull;&bull;&bull;</option>
+                                <option value="014">Hennef-Happerscho&szlig; &bull;&bull;&bull;</option>
+                                <option value="023">Hennef-Lichtenberg &bull;&bull;&bull;</option>
+                                <option value="011">Hennef-Rathaus &bull;&bull;&bull;</option>
+                                <option value="013">Hennef-Sto&szlig;dorf &bull;&bull;&bull;</option>
+                                <option value="010">K&ouml;ln-Heumar &bull;&bull;&bull;</option>
+                                <option value="027">K&ouml;ln-Neubr&uuml;ck &bull;&bull;&bull;</option>
+                                <option value="001">K&ouml;ln/S&uuml;d</option>
+                                <option value="016">K&ouml;ln-Porz/Grengel &bull;&bull;&bull;</option>
+                                <option value="041">K&uuml;rten</option>
+                                <option value="005">Merheim</option>
+                                <option value="035">Much</option>
+                                <option value="042">N&uuml;mbrecht</option>
+                                <option value="043">R&uuml;nderoth</option>
+                                <option value="033">Windeck-Dattenfeld</option>
+                                <option value="037">Windhagen &bull;&bull;&bull;</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-1"><p><a href="javascript:ShowRchtg2('BetRchtg/Bet-003G.html','EDDK',250,250)"><img
+                            src="Menu/WindroseG.gif" width="50" height="50"></a></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <h4>Statistiken</h4>
+                        <a href="StatTag.php?L=G&E=D&D=09.04.2025&R=003&StatNr=032" class="PfeilVor">Tages-Statistik</a><br>
+                        <a href="StatMon.php?AiO=RG89RCRATD1HJEBSPTMkQFM9MDMyJEBLPTAkQEQ9MDkuMDQuMjAyNSRAU1Q9MCRAWj0wMDowMDowMCRAWlQ9MDAkQEE9MSRAUHM9JEBNTnI9MCRATm9PcHQ9MA!!"
+                           class="PfeilVor">Monats-Statistik</a><br>
+                        <a href="StatJah.php?AiO=RG89RCRATD1HJEBSPTMkQFM9MDMyJEBLPTAkQEQ9MDkuMDQuMjAyNSRAU1Q9MCRAWj0wMDowMDowMCRAWlQ9MDAkQEE9MSRAUHM9JEBNTnI9MCRATm9PcHQ9MA!!"
+                           class="PfeilVor">Jahres-Statistik</a><br>
+                        <a href="StatVStat.php?AiO=RG89RCRATD1HJEBSPTMkQFM9MDMyJEBLPTAkQEQ9MDkuMDQuMjAyNSRAU1Q9MCRAWj0wMDowMDowMCRAWlQ9MDAkQEE9MSRAUHM9JEBNTnI9MCRATm9PcHQ9MA!!"
+                           class="PfeilVor">Verf&uuml;gbarkeit</a>
+                    </div>
+                    <div class="col-8">
+                        <h4>Hilfe</h4>
+                        <a href="javascript:showWindow('003/Stat-032.html',600,300);" class="PfeilVor">Stationsbeschreibung</a><br>
+                        <a href="Language/MessHelpG.html" class="PfeilVor">Erl&auml;uterung</a><br>
+                        <a href="Language/BeschHelpG.html" class="PfeilVor">Wie erstelle ich eine Flugl&auml;rm-Beschwerde
+                            ?</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <div class="container"><a class="back-link PfeilZurueck" href="javascript:history.back()">Zur&uuml;ck</a></div>
+    <div class="js-image-LaermGraph"></div>
+</main>
+<footer class="footer">
+    <form class="form" method="post" name="formfooter" id="formfooter">
+        <input type="hidden" name="Do" id="Do" value="D">
+        <input type="hidden" name="L" id="L" value="G">
+        <div class="footer__content">
+            <div class="icon-logo icon-logo--inverted">
+                <i class="icon-logo__icon icon-donate"></i>
+            </div>
+            <div class="footer__sidenote">
+                <h1>Bitte unterst&uuml;tzen Sie uns</h1>
+                <p>Um die Unabh&auml;ngigkeit des DFLD zu sch&uuml;tzen sind wir werbefrei und finanzieren uns durch
+                    Mitgliedsbeitr&auml;ge und Spenden.</p>
+                <div style="text-align:center">
+                    <button type="button"
+                            onclick="SetMultiParaUrl('formfooter','L','G','https://www.paypal.com/donate?hosted_button_id=7VYPYLP2BVL2S');"
+                            class="button_gross button_gross--hollow">Jetzt spenden!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="footer__subline">
+            Danke auch allen die uns unterst&uuml;tzen: z.B. <a href="https://opensky-network.org" target="_blank">OpenSky</a>
+            und <a href="https://www.vlieghinder.nl" target="_blank">Vlieghinder</a><br/> Mitglied in der <a
+                href="https://www.fluglaerm.de/" target="_blank" style="color: #e0e0e0; text-decoration: none;">Bundesvereinigung
+            gegen Flugl&auml;rm e.V.</a> und der <a href="https://www.uecna.eu/" target="_blank"
+                                                    style="color: #e0e0e0; text-decoration: none;">UECNA</a>.<br>Betreiber
+            von <a href="https://www.eans.net/" target="_blank"
+                   style="color: #e0e0e0; text-decoration: none;">EANS.net</a>, <a href="https://www.ww-ans.net/"
+                                                                                   target="_blank"
+                                                                                   style="color: #e0e0e0; text-decoration: none;">WW-ANS.net</a>
+            und <a href="https://www.dsld.info/" target="_blank" style="color: #e0e0e0; text-decoration: none;">DSLD.info</a>.
+        </div>
+    </div>
+</footer>
+<div class="footer_impressum"><a href="../DFLDimprint.php?L=G">Impressum</a> &nbsp; &middot; &nbsp; <a
+        href="../DFLDimprint.php?L=G#Datenschutz">Datenschutzerkl&auml;rung</a></div>
+<script src="../Basics/scripts/vendor.js"></script>
+<script src="../Basics/scripts/jquery-3.3.1.min.js"></script>
+<script src="../Basics/imageMapResizer/imageMapResizer.js"></script>
+<script>
+    $('map').imageMapResize();
+</script>
+<script src="../Basics/scripts/main.js"></script>
+</body>
+</html>

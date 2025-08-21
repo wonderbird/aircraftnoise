@@ -1,7 +1,7 @@
 using System.Net;
-using AircraftNoise.Web.Domain;
+using AircraftNoise.Core.Domain;
 
-namespace AircraftNoise.Web.Adapters.Outbound;
+namespace AircraftNoise.Core.Adapters.Outbound;
 
 public class LocationLookupService : ICanFindLocation
 {

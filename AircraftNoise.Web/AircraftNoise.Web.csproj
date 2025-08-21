@@ -20,4 +20,14 @@
     <TypeScriptCompile Remove="wwwroot\ts\Adapters\Inbound\NoiseLevelMapper.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AircraftNoise.Core\AircraftNoise.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\measurements.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

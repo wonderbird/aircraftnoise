@@ -47,12 +47,10 @@
 ## Known Constraints
 
 ### External Dependencies
-- **DFLD HTML Structure**: HTML parsing depends on stable `<area>` tag title structure
 - **Browser Requirements**: Geolocation requires HTTPS and user permission  
 - **Manual Export**: Users must manually transfer data to complaint systems (no direct API integration available)
 
 ### Technical Limitations
-- **Single Region Support**: Currently limited to Cologne/Bonn region with hardcoded station data
 - **In-Memory Storage**: No persistence between sessions (acceptable for current scope)
 
 ## Current Sprint Definition of Done

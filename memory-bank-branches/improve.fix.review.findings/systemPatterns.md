@@ -113,8 +113,6 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 
 ### DFLD Integration Flow
 1. **URL Construction**: Region/Station/Date/Time parameters → DFLD endpoint
-2. **HTML Retrieval**: HTTP GET to DFLD measurement page
-3. **HTML Parsing**: HtmlAgilityPack → `<area>` tag extraction
-4. **Regex Extraction**: Title attributes → timestamps and noise levels
-5. **Time Filtering**: Date range filtering for requested time periods
-6. **Domain Mapping**: HTML data → NoiseMeasurement record structs
+2. **HTML Retrieval**: HTTP GET to DFLD measurement page  
+3. **Data Extraction**: Parse measurement data from HTML response
+4. **Domain Mapping**: External data → NoiseMeasurement record structs

@@ -73,15 +73,13 @@
 ## Known Issues
 
 ### Technical Considerations
-1. **DFLD HTML Structure Dependency**: Parsing depends on stable `<area>` tag title structure (external risk)
-2. **Browser Requirements**: Geolocation API requires HTTPS and user permission
-3. **Controller TODOs**: Some TODO comments need resolution with proper test coverage
+1. **Browser Requirements**: Geolocation API requires HTTPS and user permission
+2. **Controller TODOs**: Some TODO comments need resolution with proper test coverage
 
 ### Current Scope Limitations
 1. **Manual Export**: Users must manually transfer data to complaint systems (no direct API integration available)
-2. **Single Region**: Limited to Cologne/Bonn region with one measurement station
-3. **No Persistence**: Events lost on browser refresh (acceptable for current scope)
-4. **TypeScript Module Complexity**: Browser ES6 modules require .js extensions in imports
+2. **No Persistence**: Events lost on browser refresh (acceptable for current scope)
+3. **TypeScript Module Complexity**: Browser ES6 modules require .js extensions in imports
 
 ## Next Milestones
 

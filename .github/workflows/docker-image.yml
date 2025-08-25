@@ -8,11 +8,45 @@ on:
 
 jobs:
 
+  vars:
+    name: Determine tag
+    runs-on: ubuntu-latest
+
+    outputs:
+      container_tag: ${{ steps.container_tag.outputs.container_tag }}
+
+    steps:
+      - name: Determine tag
+        id: container_tag
+        run: echo "containter_tag=aircraftnoise:$(date +%Y%m%d%H%M%S)" >> "$GITHUB_OUTPUT"
+
   build:
 
+    name: Build image
+    needs: vars
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag aircraftnoise:$(date "+%Y%m%d%H%M%S")
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $CONTAINER_TAG
+        env:
+          CONTAINER_TAG: ${{ needs.vars.outputs.container_tag }}
+
+  e2e:
+
+    name: E2E tests
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: docker run -p 8080:8080 $CONTAINER_TAG
+          wait-on: 'http://localhost:8080'
+          browser: chrome
+        env:
+          CONTAINER_TAG: ${{ needs.vars.outputs.container_tag }}
+          CYPRESS_port: 8080

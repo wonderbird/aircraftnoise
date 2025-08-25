@@ -20,7 +20,7 @@ jobs:
         id: image_tag
         run: |
           echo "IMAGE_TAG=aircraftnoise:$(date +%Y%m%d%H%M%S)" >> "$GITHUB_ENV"
-          echo "image_tag=${IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "image_tag=aircraftnoise:$(date +%Y%m%d%H%M%S)" >> "$GITHUB_OUTPUT"
 
       - name: Display tag
         run: echo "IMAGE_TAG=$IMAGE_TAG"

@@ -44,6 +44,24 @@ docker run -p 8080:8080 aircraftnoise
 
 ## Running the Tests
 
+### End-to-End Tests
+
+The end-to-end tests are stored in [AircraftNoise.E2E.Tests](./AircraftNoise.E2E.Tests). To run them manually, you need to install the required npm modules once. Then you can execute them.
+
+```shell
+# Prequisite: Install npm modules
+cd AircraftNoise.E2E.Tests
+npm install
+
+# Execute Cypress tests
+npm test
+
+# Run the tests in the Cypress UI
+npx cypress open
+```
+
+### Unit Tests
+
 ```shell
 dotnet test
 ```

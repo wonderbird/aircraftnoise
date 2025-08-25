@@ -1,36 +1,36 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    
+
     /* Language and Environment */
-    "target": "ESNext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
 
     /* Modules */
-    "module": "ES2015",                                  /* Specify what module code is generated. */
-    "moduleResolution": "node",                        /* Specify how TypeScript looks up a file from a given module specifier. */
-    "rootDir": "./wwwroot/ts",                           /* Specify the root folder within your source files. */
+    "module": "ES2015" /* Specify what module code is generated. */,
+    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "rootDir": "./wwwroot/ts" /* Specify the root folder within your source files. */,
 
     /* JavaScript Support */
-    "allowJs": true,                                     /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
-    "checkJs": true,                                     /* Enable error reporting in type-checked JavaScript files. */
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+    "checkJs": true /* Enable error reporting in type-checked JavaScript files. */,
 
     /* Emit */
-    "sourceMap": true,                                   /* Create source map files for emitted JavaScript files. */
-    "outDir": "./wwwroot/js",                            /* Specify an output folder for all emitted files. */
-    "removeComments": false,                             /* Disable emitting comments. */
+    "sourceMap": true /* Create source map files for emitted JavaScript files. */,
+    "outDir": "./wwwroot/js" /* Specify an output folder for all emitted files. */,
+    "removeComments": false /* Disable emitting comments. */,
 
     /* Type Checking */
-    "strict": true,                                      /* Enable all strict type-checking options. */
-    "noImplicitAny": true,                               /* Enable error reporting for expressions and declarations with an implied 'any' type. */
-    "noUnusedLocals": true,                              /* Enable error reporting when local variables aren't read. */
-    "noUnusedParameters": true,                          /* Raise an error when a function parameter isn't read. */
-    "noImplicitReturns": true,                           /* Enable error reporting for codepaths that do not explicitly return in a function. */
-    "noUncheckedIndexedAccess": true,                    /* Add 'undefined' to a type when accessed using an index. */
-    "noImplicitOverride": true,                          /* Ensure overriding members in derived classes are marked with an override modifier. */
+    "strict": true /* Enable all strict type-checking options. */,
+    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+    "noUnusedLocals": true /* Enable error reporting when local variables aren't read. */,
+    "noUnusedParameters": true /* Raise an error when a function parameter isn't read. */,
+    "noImplicitReturns": true /* Enable error reporting for codepaths that do not explicitly return in a function. */,
+    "noUncheckedIndexedAccess": true /* Add 'undefined' to a type when accessed using an index. */,
+    "noImplicitOverride": true /* Ensure overriding members in derived classes are marked with an override modifier. */,
 
     /* Interop Constraints */
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */
   },
-  "include": [ "./wwwroot/ts" ]                                 /* Ensure only files in src are compiled. */
+  "include": ["./wwwroot/ts"] /* Ensure only files in src are compiled. */
 }

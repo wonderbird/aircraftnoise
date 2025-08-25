@@ -44,16 +44,17 @@ jobs:
   e2e:
 
     name: E2E tests
-    needs: build
+    needs: [determine_tag, build]
     runs-on: ubuntu-latest
 
     steps:
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:
-          start: docker run -p 8080:8080 "$IMAGE_TAG"
-          wait-on: 'http://localhost:8080'
-          browser: chrome
         env:
           IMAGE_TAG: ${{ needs.determine_tag.outputs.image_tag }}
           CYPRESS_port: 8080
+        with:
+          start: docker run -p 8080:8080 "$IMAGE_TAG"
+          working-directory: AircraftNoise.E2E.Tests
+          wait-on: 'http://localhost:8080'
+          browser: chrome

@@ -22,23 +22,20 @@ COPY *.sln ./
 COPY **/*.csproj ./
 RUN dotnet sln list \
     | grep ".csproj" \
-    | while read -r line; do \ 
+    | while read -r line; do \
         mkdir -p $(dirname $line); \
         mv $(basename $line) $(dirname $line); \
     done;
 
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    dotnet restore "AircraftNoise.Web/AircraftNoise.Web.csproj"
+RUN dotnet restore "AircraftNoise.Web/AircraftNoise.Web.csproj"
 
 COPY . .
 WORKDIR "/src/AircraftNoise.Web"
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    dotnet build --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
+RUN dotnet build --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    dotnet publish --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
+RUN dotnet publish --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

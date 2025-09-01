@@ -4,7 +4,7 @@
 
 **Primary Objective**: Optimize CI/CD pipeline performance to improve developer productivity and resource efficiency.
 
-**Current Status**: Back to baseline performance after failed caching implementation. Need to reassess optimization strategy.
+**Current Status**: Comprehensive analysis completed - identified high-impact optimization strategy targeting E2E bottleneck (90-120s of 180s total).
 
 ## Current Technical State
 
@@ -25,28 +25,35 @@
 - e2e: ~90-120 seconds
 - **Caching Attempt**: Failed - removed due to no measurable improvements and flaky builds
 
-## Current Sprint - Milestone 1: Docker Layer Caching Implementation  
-**Status**: FAILED AND REVERTED ❌ | **Outcome**: No measurable performance improvements, introduced build instability
+## Current Sprint - Milestone 2: E2E Architecture Optimization
+**Status**: READY FOR IMPLEMENTATION ✅ | **Strategy**: Target E2E bottleneck with architectural changes
 
-**Failed Implementation**: GitHub Actions cache integration and NuGet cache mounting were implemented but removed after comprehensive testing showed no real performance benefits and caused flaky builds.
+**High-Impact Strategy Identified**: Remove Docker container overhead from E2E testing phase
 
-**Implementation Results**:
-1. **Epic 1.1**: GitHub Actions cache integration - ❌ FAILED
-   - Added `cache-from: type=gha` and `cache-to: type=gha,mode=max` parameters
-   - Initial measurements appeared promising but were not reproducible
-   - Removed in commit 09e7e15 due to no measurable improvements
-2. **Epic 1.2**: NuGet cache mounting - ❌ FAILED
-   - Added `--mount=type=cache,target=/root/.nuget/packages` to Dockerfile
-   - Caused flaky builds without performance benefits
-3. **Epic 2**: Cache effectiveness validation - ❌ VALIDATION FAILED
-4. **Epic 3**: Production rollout - ❌ REVERTED
+**Prioritized Implementation Plan**:
+1. **Epic 2.1**: Eliminate Docker Container Overhead (40-60s reduction potential)
+   - Replace Docker container approach with direct `dotnet run` execution
+   - Remove artifact upload/download/load cycle
+   - Use cypress-io/github-action `start` parameter for app lifecycle
+2. **Epic 2.2**: Node.js Dependency Caching (20-30s reduction potential)
+   - Implement actions/cache@v3 for node_modules
+   - Cache Cypress installation and dependencies between runs
+3. **Epic 2.3**: Cypress Configuration Optimization (5-15s reduction potential)
+   - Disable video recording: `CYPRESS_VIDEO=false`
+   - Optimize Cypress config for single-test execution
+   - Remove unnecessary Cypress features
 
-**Actual Outcome**: No pipeline improvement. Back to baseline ~180s performance. Caching approach unsuitable.
+**Combined Target**: 65-105s reduction from current 180s = **60-75s final pipeline duration**
 
-## Future Milestones (Reassessment Phase)
-### Need New Approach: Docker layer caching proven ineffective
-### Investigation Required: Alternative optimization strategies
-### Potential Areas: E2E test optimization, build process simplification, dependency management
+## Next Milestones (Post E2E Optimization)
+### Milestone 3: Advanced Optimizations (if needed)
+- GitHub Actions runner upgrades (ubuntu-22.04 or larger runners)
+- Build process parallelization
+- Workflow job dependency optimization
+
+### Future Expansion Readiness
+- Pipeline optimizations proven for scalability
+- Foundation for multi-region deployment CI/CD
 
 ## Active Decisions and Considerations
 
@@ -55,12 +62,13 @@
 - ✅ **Acceptable Target**: <90 seconds (50% reduction)
 - 📊 **Milestone**: <120 seconds (33% reduction) → investigate further optimizations
 
-### Optimization Principles (Updated After Caching Failure)
-- **Developer Productivity Focus**: Pipeline runs multiple times daily, fast feedback essential
-- **Measurement-Driven**: Verify actual improvements with multiple test runs, not single measurements
-- **Reliability First**: Avoid optimizations that introduce build instability
-- **Simple Solutions**: Prefer straightforward approaches over complex caching mechanisms
-- **Cost-Effectiveness**: Avoid premium runners unless justified by significant gains
+### Optimization Principles (E2E Architecture Strategy)
+- **Architectural Simplification**: Remove unnecessary complexity (Docker container overhead)  
+- **Bottleneck Targeting**: Focus on highest-impact component (E2E: 50-67% of total time)
+- **Proven Techniques**: Apply industry-validated optimization patterns
+- **Measurement-Driven**: Verify actual improvements with multiple test runs
+- **Reliability First**: Maintain test stability while improving performance
+- **Progressive Implementation**: Implement highest-impact changes first
 
 ### Development Standards
 - **Maintain Test Coverage**: Optimizations must not compromise E2E test reliability

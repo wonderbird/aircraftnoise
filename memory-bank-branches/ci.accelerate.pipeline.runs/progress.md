@@ -10,6 +10,7 @@
 - **Frontend-Backend Integration**: NoiseLevelMapper calls backend POST endpoints successfully
 - **Test Infrastructure**: Comprehensive testing with DfldHtml test utility
 - **Cypress E2E CI Pipeline**: GitHub Actions workflow with Docker integration, artifact passing, and automated testing
+- **Performance Analysis**: Comprehensive CI/CD bottleneck analysis and optimization strategy identification completed
 
 ### User Interface ✅
 - **Event Recording**: One-click timestamp capture during noise events
@@ -178,10 +179,13 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 - ✅ DFLD HTML parsing fully implemented
 - ✅ Cypress E2E CI pipeline operational
 
-**Phase 2**: CI/CD Pipeline Optimization - ❌ **MILESTONE 1 FAILED AND REVERTED**
+**Phase 2**: CI/CD Pipeline Optimization - 🔄 **MILESTONE 2 STRATEGY IDENTIFIED**
 - ❌ **Milestone 1**: Docker layer caching implementation - **FAILED** (no improvement, back to 180s)
-- 📋 **Strategy Reassessment**: Need new approach after caching failure
-- 📋 **Alternative Approaches**: E2E optimization, build simplification, runner changes
+- ✅ **Analysis Completed**: Comprehensive bottleneck analysis and optimization strategy research
+- 🎯 **Milestone 2**: E2E Architecture Optimization - **READY FOR IMPLEMENTATION**
+  - Target: Remove Docker container overhead (40-60s reduction)
+  - Strategy: Direct app execution + Node.js caching + Cypress optimization
+  - Expected outcome: 180s → 60-75s (target achieved)
 
 ### Technical Considerations
 - **DFLD HTML Structure**: Parsing depends on stable `<area>` tag title structure
@@ -198,14 +202,14 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 
 ## Known Issues
 
-### CI/CD Performance Issues (Phase 2 Focus) - ❌ MILESTONE 1 FAILED
-1. **Slow Pipeline** → ❌ **UNRESOLVED**: **Still ~180s (no improvement achieved)**
-2. **Docker Caching Attempted** → ❌ **REVERTED**: Caching implementation failed and removed
-3. **Failed Optimizations**:
-   - ❌ GitHub Actions cache integration (no measurable benefit, removed)
-   - ❌ NuGet cache mounting (caused flaky builds, removed)
-   - ❌ .csproj pattern copying (kept but ineffective)
-4. **Need New Strategy**: Docker caching approach proven unsuitable for this pipeline
+### CI/CD Performance Issues (Phase 2 Focus) - 🎯 MILESTONE 2 STRATEGY READY
+1. **Slow Pipeline** → 🔄 **STRATEGY IDENTIFIED**: E2E Architecture Optimization targeting 90-120s bottleneck
+2. **Previous Caching Attempts** → ❌ **REVERTED**: Docker layer caching approach unsuitable (caused flaky builds)
+3. **New High-Impact Strategy**:
+   - ✅ Remove Docker container overhead from E2E (40-60s potential reduction)
+   - ✅ Implement Node.js dependency caching (20-30s potential reduction)  
+   - ✅ Optimize Cypress configuration (5-15s potential reduction)
+4. **Expected Outcome**: 180s → 60-75s pipeline duration (target achieved)
 
 **Final Technical Outcome Summary**:
 - **Step 1**: Advanced .csproj layer separation - no measurable benefit

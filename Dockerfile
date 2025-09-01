@@ -32,11 +32,13 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 
 COPY . .
 WORKDIR "/src/AircraftNoise.Web"
-RUN dotnet build --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet build --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

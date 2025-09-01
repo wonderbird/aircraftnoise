@@ -23,27 +23,21 @@
 - e2e: 112 seconds
 - **Resource Inefficiency**: No Docker layer caching, unnecessary buildx setup, large artifacts
 
-## Next Steps - CI Optimization Sprint
+## Current Sprint - Milestone 1: Docker Layer Caching Implementation
+**Status**: READY FOR IMPLEMENTATION | **Target**: Reduce build time from 49s to 9-19s (60-80% improvement)
 
-### 1. Docker Layer Caching Implementation (High Impact: ~30-40s savings)
-- Add GitHub Actions cache to Docker build process
-- Implement `cache-from: type=gha` and `cache-to: type=gha,mode=max`
-- Expected reduction: Build time from 49s to 10-15s for incremental changes
+**Current Focus**: Implementing GitHub Actions cache integration with Docker Buildx to achieve 30-40 second build time savings through intelligent layer caching.
 
-### 2. Remove Unnecessary Docker Buildx in E2E Job (Medium Impact: ~10-15s savings)
-- E2E job only loads existing tar file, doesn't need buildx setup
-- Eliminate redundant Docker setup steps
-- Streamline container loading process
+**Next Immediate Steps**:
+1. **Epic 1**: GitHub Actions cache integration - modify `.github/workflows/docker-image.yml` and optimize Dockerfile layer structure
+2. **Epic 2**: Cache effectiveness validation - implement performance monitoring and test suite
+3. **Epic 3**: Production rollout - gradual deployment and documentation updates
 
-### 3. Cypress Dependencies Caching Optimization (Medium Impact: ~10-20s savings)
-- Leverage built-in caching in `cypress-io/github-action@v6`
-- Cache npm dependencies and Cypress binary between runs
-- Optimize test execution environment setup
+**Expected Outcome**: Overall pipeline duration reduced from 180s to 140-150s with this milestone.
 
-### 4. Job Structure Optimization (Medium Impact: ~5-10s savings)
-- Eliminate redundant determine_tag job by generating tag within build job
-- Explore parallel execution opportunities where dependencies allow
-- Minimize job overhead and transitions
+## Future Milestones (Planning Phase)
+### Milestone 2: E2E Test Optimization (Target: 40-50s savings)
+### Milestone 3: Infrastructure Improvements (Target: 10-20s savings)
 
 ## Active Decisions and Considerations
 
@@ -76,16 +70,20 @@
 - **Artifact Size**: ~91MB Docker tar file for job transitions
 - **Test Dependencies**: Cypress requires full application stack running
 
-## Current Sprint Definition of Done
+## Milestone 1 Success Criteria
 
-- [ ] Docker layer caching implemented and validated (target: build <15s)
-- [ ] Unnecessary buildx setup removed from E2E job
-- [ ] Cypress caching optimized for faster test execution
-- [ ] Pipeline runtime measured and documented
-- [ ] Target performance achieved (<90s acceptable, <60s ideal)
-- [ ] Resource efficiency improvements validated (cache hit rates)
-- [ ] Developer workflow impact assessed
-- [ ] Documentation updated with optimization patterns
+**Primary KPI**: Build job duration reduced from 49s to 9-19s (60-80% improvement)
+**Secondary KPI**: Overall pipeline duration reduced from 180s to 140-150s  
+**Quality KPI**: No regression in build reliability or test effectiveness
+**Resource KPI**: Cache storage usage under GitHub Actions limits
+
+### Implementation Checklist
+- [ ] **Epic 1**: GitHub Actions cache integration completed (5 SP)
+- [ ] **Epic 2**: Cache effectiveness validation completed (3 SP)  
+- [ ] **Epic 3**: Production rollout completed (2 SP)
+- [ ] Cache hit rates >70% for incremental builds
+- [ ] Performance gains measured and documented
+- [ ] Team knowledge transfer completed
 
 ## Success Metrics
 

@@ -9,6 +9,7 @@
 - **Peak Measurement Selection**: Identifies highest noise levels from measurement periods
 - **Frontend-Backend Integration**: NoiseLevelMapper calls backend POST endpoints successfully
 - **Test Infrastructure**: Comprehensive testing with DfldHtml test utility
+- **Cypress E2E CI Pipeline**: GitHub Actions workflow with Docker integration, artifact passing, and automated testing
 
 ### User Interface ✅
 - **Event Recording**: One-click timestamp capture during noise events
@@ -66,8 +67,9 @@
 
 ### Deployment Status
 - **Development**: Fast iteration with hot reload working
-- **Testing**: Comprehensive test suite with DfldHtml test utility
+- **Testing**: Comprehensive test suite with DfldHtml test utility plus working Cypress E2E CI
 - **Containerization**: Docker deployment ready for production
+- **CI/CD Pipeline**: Automated testing with GitHub Actions, Docker artifact passing, and green E2E tests
 - **Architecture**: Supports current single-region deployment scope
 
 ## Known Issues

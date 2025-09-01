@@ -97,6 +97,8 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 
 ### Frontend Testing
 - **TypeScript Compilation**: Type checking as testing
+- **Cypress E2E Testing**: Automated user workflow testing with CI/CD integration
+- **GitHub Actions CI**: Automated testing pipeline with Docker container orchestration
 - **Manual Testing**: Browser-based validation
 
 ## Data Flow Patterns

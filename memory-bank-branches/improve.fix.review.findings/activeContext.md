@@ -14,13 +14,15 @@
 - Frontend-backend integration working
 - Peak measurement selection logic implemented
 - Comprehensive test infrastructure with DfldHtml test utility
+- **Cypress E2E CI Pipeline**: Fully operational with Docker integration and automated testing
 
 ## Next Steps - Current Sprint
 
-### 1. Establish TDD Workflow with End-to-End Test
-- Write failing end-to-end test that demonstrates the correlation bug
+### 1. Expand TDD Workflow with Comprehensive E2E Tests
+- Build upon successful Cypress CI foundation with comprehensive user journey tests
+- Write failing end-to-end test that demonstrates the correlation bug  
 - Test should cover complete user journey: record event → get correct noise level for that event's timestamp
-- This establishes TDD practice and catches the critical bug in test form
+- Leverage working CI pipeline to catch regressions early in development process
 
 ### 2. Fix Critical Event-to-Measurement Correlation Bug (TDD: Red → Green)
 - NoiseLevelMapper queries current time instead of actual event timestamps

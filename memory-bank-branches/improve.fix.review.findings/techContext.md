@@ -100,6 +100,8 @@ AircraftNoise.sln
 ### Testing Strategy
 - **Integration Tests**: WebApplicationFactory for API testing
 - **Unit Tests**: Isolated testing of business logic
+- **End-to-End Tests**: Cypress testing with GitHub Actions CI/CD pipeline
+- **Automated CI Testing**: Docker-based E2E testing with artifact passing and port conflict resolution
 - **Manual Testing**: Browser-based validation for UI workflows
 
 ### Build and Deployment
@@ -127,6 +129,27 @@ AircraftNoise.sln
 - **Time Zone Conversion**: Berlin time zone handling for accurate timestamp mapping
 - **German Date Parsing**: dd.MM.yyyy format parsing with CultureInfo.InvariantCulture
 - **TODO Management**: Development tasks tracked in code comments for test-driven development
+
+## CI/CD Pipeline Patterns
+
+### GitHub Actions Workflow
+- **Multi-stage Pipeline**: determine_tag → build → e2e testing with proper dependency management  
+- **Docker Artifact Passing**: Build once, test everywhere using GitHub artifact upload/download
+- **Environment Variable Handling**: Use `${{ env.VAR }}` syntax for GitHub Actions (not shell `${VAR}`)
+- **Port Conflict Resolution**: Avoid conflicting port assignments between Docker containers and test tools
+- **Detached Container Mode**: Use `--detach` flag for background container execution during testing
+
+### Cypress Integration Lessons
+- **Docker Integration**: `cypress-io/github-action@v6` with containerized application testing
+- **Wait Strategy**: Use `wait-on` to ensure application readiness before running tests
+- **Port Management**: Avoid `CYPRESS_port` environment variable conflicts with Docker port binding
+- **Geolocation Mocking**: Browser geolocation simulation for location-based testing
+
+### Troubleshooting Patterns
+- **Environment Variable Expansion**: GitHub Actions syntax differs from shell syntax
+- **Port Conflicts**: Docker `--publish` and test framework port usage must not overlap  
+- **Container Lifecycle**: Proper container startup/shutdown coordination with test execution
+- **Artifact Management**: Efficient Docker image passing between pipeline jobs
 
 ## Future Technical Considerations
 

@@ -15,20 +15,27 @@ RUN apt-get update && apt-get install -y curl \
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# Copy all project files with preserved directory structure
+# Copy only solution and project files, preserving directory structure
+# See Oleksandr Ktvytskyi's answer in
+# https://stackoverflow.com/questions/68597982/net-package-restore-in-docker-cached-separately-from-build/68619620#68619620
+COPY *.sln ./
 COPY **/*.csproj ./
+RUN dotnet sln list \
+    | grep ".csproj" \
+    | while read -r line; do \ 
+        mkdir -p $(dirname $line); \
+        mv $(basename $line) $(dirname $line); \
+    done;
 
-# Restore dependencies (this layer caches well)
 RUN dotnet restore "AircraftNoise.Web/AircraftNoise.Web.csproj"
 
-# Copy remaining source files (invalidates subsequent layers but preserves restore cache)
 COPY . .
 WORKDIR "/src/AircraftNoise.Web"
-RUN dotnet build "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
+RUN dotnet build --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
+RUN dotnet publish --no-build "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

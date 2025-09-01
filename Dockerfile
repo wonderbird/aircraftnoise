@@ -14,8 +14,14 @@ RUN apt-get update && apt-get install -y curl \
 
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["AircraftNoise.Web/AircraftNoise.Web.csproj", "AircraftNoise.Web/"]
+
+# Copy all project files with preserved directory structure
+COPY **/*.csproj ./
+
+# Restore dependencies (this layer caches well)
 RUN dotnet restore "AircraftNoise.Web/AircraftNoise.Web.csproj"
+
+# Copy remaining source files (invalidates subsequent layers but preserves restore cache)
 COPY . .
 WORKDIR "/src/AircraftNoise.Web"
 RUN dotnet build "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/build

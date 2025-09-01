@@ -151,13 +151,13 @@ AircraftNoise.sln
 - **Container Lifecycle**: Proper container startup/shutdown coordination with test execution
 - **Artifact Management**: Efficient Docker image passing between pipeline jobs
 
-### Performance Optimization Strategies (Phase 2 Focus)
-- **Docker Layer Caching**: ✅ **IMPLEMENTED** - GitHub Actions cache with `type=gha` and `mode=max` achieving 76% build improvement
-- **Cache Hit Rate Optimization**: ✅ **ACHIEVED** - 100% cache hit rate on all Docker layers
-- **Build Performance Results**: 49s → 12s build time, 180s → 120s total pipeline (33% overall improvement)
-- **Resource Efficiency**: Eliminate redundant setup steps and minimize artifact sizes (next priority)
-- **Pipeline Structure**: Remove unnecessary jobs and optimize job dependencies (next priority)
-- **Target Performance**: <60s ideal, <90s acceptable - **on track with 120s current, 33% improvement achieved**
+### Performance Optimization Strategies (Phase 2 - Post-Failure Analysis)
+- **Docker Layer Caching**: ❌ **FAILED AND REVERTED** - GitHub Actions cache provided no measurable improvements
+- **Cache Implementation Issues**: Caused flaky builds, removed in commit 09e7e15
+- **Build Performance Reality**: No improvement from baseline ~45-60s build time, ~180s total pipeline
+- **Resource Efficiency**: Need alternative approaches to reduce redundant setup
+- **Pipeline Structure**: Caching complexity removed, back to simple build process
+- **Target Performance**: <60s ideal, <90s acceptable - **need new optimization strategy**
 
 ## Future Technical Considerations
 

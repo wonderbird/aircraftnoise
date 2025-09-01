@@ -29,43 +29,43 @@
 
 ### Phase 2 Current Priorities 📋 - CI/CD Pipeline Optimization
 
-#### Milestone 1: Docker Layer Caching Implementation - ✅ SUCCESSFULLY COMPLETED WITH VERIFIED RESULTS
+#### Milestone 1: Docker Layer Caching Implementation - ❌ FAILED AND REVERTED
 
-**FINAL VERIFIED ACHIEVEMENT**: **180s → 147s (18% improvement, 33-second savings)**
+**FINAL OUTCOME**: **No measurable performance improvements, introduced flaky builds**
 
-##### Complete Pipeline Performance (Verified Run #22 - commit 206740b)
-- **determine_tag**: 4s (optimized)
-- **build**: 56s (NuGet cache working effectively)  
-- **e2e**: 87s (solid E2E performance)
-- **Total Pipeline**: **2m 27s (147s)** ✅
+##### Post-Implementation Reality (commit 09e7e15 - cache removal)
+- **determine_tag**: ~2-4s (unchanged)
+- **build**: ~45-60s (back to baseline, no cache benefits)
+- **e2e**: ~90-120s (standard performance)
+- **Total Pipeline**: **~180s (back to original baseline)** ❌
 
-##### Advanced Dependency Caching - ✅ SUCCESSFULLY IMPLEMENTED
-**Status**: Step 3 - NuGet Cache Mounting Implementation **COMPLETED AND VERIFIED**
-- ✅ **Step 1**: .csproj layer separation (sophisticated dependency caching)
-- ✅ **Step 2**: Validation testing identified package resolution challenges
-- ✅ **Step 3**: NuGet cache mounting fixed and verified (commit 206740b)
-- ✅ **Step 3.1**: Cache mount consistency fix - extended to all dotnet operations
-- 🎯 **Achievement**: Reliable 147s pipeline with working NuGet cache infrastructure
+##### Advanced Dependency Caching - ❌ FAILED IMPLEMENTATION
+**Status**: All caching approaches **REVERTED DUE TO INEFFECTIVENESS**
+- ❌ **Step 1**: .csproj layer separation (no measurable benefit)
+- ❌ **Step 2**: Validation testing showed misleading initial results
+- ❌ **Step 3**: NuGet cache mounting (caused flaky builds, removed in commit 09e7e15)
+- ❌ **Step 3.1**: Cache mount consistency attempts unsuccessful
+- ❌ **Reality**: Caching approach unsuitable for this pipeline architecture
 
 ##### Epic 1: GitHub Actions Cache Integration (5 Story Points)
 
-**Task 1.1: Implement Docker Buildx with GitHub Actions Cache (3 SP) - ✅ COMPLETED**
-- ✅ Added `cache-from: type=gha --cache-to: type=gha,mode=max` parameters to existing `docker/build-push-action@v6`
-- ✅ GitHub Actions cache automatically handles branch-based scoping
-- ✅ Cache key generation uses Dockerfile content hash
-- ✅ **Build time reduced by 76% improvement initially, now 85% with advanced optimizations**
+**Task 1.1: Implement Docker Buildx with GitHub Actions Cache (3 SP) - ❌ FAILED**
+- ❌ Added `cache-from: type=gha --cache-to: type=gha,mode=max` parameters (later removed)
+- ❌ Initial measurements appeared positive but were not reproducible  
+- ❌ Cache implementation caused build instability
+- ❌ **No actual build time improvements verified, removed in commit 09e7e15**
 
-**Task 1.2: Implement Advanced Dependency Caching (3 SP) - ✅ COMPLETED**
-- ✅ **Sophisticated .csproj pattern copying**: `COPY **/*.csproj ./` with directory structure preservation
-- ✅ **Separate dependency restoration layer**: `dotnet restore` isolated from source code changes
-- ✅ **Step 2 validation revealed optimization gap**: NuGet package downloads still occurring (9.8s)
-- ✅ **Step 3 NuGet cache mounting**: Added `--mount=type=cache,target=/root/.nuget/packages`
+**Task 1.2: Implement Advanced Dependency Caching (3 SP) - ❌ FAILED**
+- ❌ **Sophisticated .csproj pattern copying**: Kept but provided no measurable benefit
+- ❌ **Separate dependency restoration layer**: No significant optimization achieved
+- ❌ **NuGet cache mounting**: `--mount=type=cache,target=/root/.nuget/packages` caused flaky builds
+- ❌ **Outcome**: All cache-related changes removed due to ineffectiveness
 
-**Performance Results Evolution**:
+**Performance Results Reality**:
 - **Baseline**: 180 seconds (original pipeline)
-- **Step 1 optimization**: 41 seconds (77% improvement)
-- **Step 2 validation**: 27 seconds (85% improvement) - but NuGet restore not cached
-- **Step 3 target**: <20 seconds with perfect dependency caching
+- **After caching implementation**: ~180 seconds (no improvement)
+- **Post-revert**: ~180 seconds (back to baseline)
+- **Conclusion**: Docker layer caching ineffective for this project
 
 Technical Implementation:
 ```yaml
@@ -138,23 +138,24 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 - ✅ **Team knowledge sharing**: Real-time collaboration during implementation
 - ✅ **Performance improvements documented**: 76% build improvement, 33% overall pipeline improvement
 
-##### Success Metrics for Milestone 1 - ✅ VERIFIED ACHIEVEMENT WITH PRODUCTION RESULTS
-- **Primary KPI**: **Complete pipeline duration reduced from 180s to 147s (18% improvement)**
-- **Build Performance**: 56s build time with working NuGet cache mounting
-- **Quality KPI**: **100% pipeline reliability** - all tests passing, no build failures
-- **Resource KPI**: **Efficient caching** - GitHub Actions cache working effectively
-- **Developer Productivity**: **33-second reduction** in CI feedback time per pipeline run
+##### Success Metrics for Milestone 1 - ❌ FAILED TO ACHIEVE TARGETS
+- **Primary KPI**: **No pipeline duration improvement** - remained at ~180s
+- **Build Performance**: No measurable build time reduction
+- **Quality KPI**: **Pipeline reliability degraded** - flaky builds introduced by caching
+- **Resource KPI**: **Inefficient caching** - cache storage used but no benefits
+- **Developer Productivity**: **No improvement in CI feedback time**
 
-#### Step 3 Final Results - NuGet Cache Mounting ✅ SUCCESSFULLY COMPLETED
-- ✅ **Initial Implementation**: Commit 9d178ac - NuGet cache mounting added
-- ✅ **Issue Resolution**: Commit 206740b - Extended cache mount to all dotnet operations
-- ✅ **Final Validation**: Pipeline run #22 completed successfully with 147s total duration
-- ✅ **Achievement**: Reliable CI pipeline with working dependency caching infrastructure
+#### Step 3 Final Results - NuGet Cache Mounting ❌ FAILED AND REVERTED
+- ❌ **Initial Implementation**: Commit 9d178ac - NuGet cache mounting added
+- ❌ **Issue Identified**: Commit 206740b - Extended cache mount but no real benefits
+- ❌ **Final Revert**: Commit 09e7e15 - All caching removed due to ineffectiveness
+- ❌ **Reality**: Caching approach unsuitable, caused flaky builds without performance gains
 
-#### Future Optimization Opportunities (Milestone 2 & 3 Planning)
-**Milestone 2**: E2E Test Optimization (potential: 40-50s savings from current 87s)
-**Milestone 3**: Infrastructure Improvements (potential: 10-20s additional savings)
-**Combined Potential**: Could achieve <60s ideal target with future optimization phases
+#### Future Optimization Opportunities (Strategy Reassessment Required)
+**Need New Approach**: Docker caching proven ineffective for this pipeline
+**Investigation Areas**: E2E test optimization, build simplification, runner optimization
+**Reality Check**: <60s target may require different optimization strategies
+**Next Steps**: Analyze pipeline bottlenecks without caching assumptions
 
 ### Deferred Phase 1 Polish Items 📋
 - **Production Polish**: Controller TODO comments and test coverage
@@ -177,10 +178,10 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 - ✅ DFLD HTML parsing fully implemented
 - ✅ Cypress E2E CI pipeline operational
 
-**Phase 2**: CI/CD Pipeline Optimization - ✅ **MILESTONE 1 SUCCESSFULLY COMPLETED**
-- ✅ **Milestone 1**: Docker layer caching implementation - **VERIFIED COMPLETE** (180s → 147s, 18% improvement)
-- 📋 **Milestone 2**: E2E test optimization (potential: 87s → 40-50s) - FUTURE OPPORTUNITY
-- 📋 **Milestone 3**: Infrastructure improvements (potential: 10-20s additional) - FUTURE OPPORTUNITY
+**Phase 2**: CI/CD Pipeline Optimization - ❌ **MILESTONE 1 FAILED AND REVERTED**
+- ❌ **Milestone 1**: Docker layer caching implementation - **FAILED** (no improvement, back to 180s)
+- 📋 **Strategy Reassessment**: Need new approach after caching failure
+- 📋 **Alternative Approaches**: E2E optimization, build simplification, runner changes
 
 ### Technical Considerations
 - **DFLD HTML Structure**: Parsing depends on stable `<area>` tag title structure
@@ -197,20 +198,20 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 
 ## Known Issues
 
-### CI/CD Performance Issues (Phase 2 Focus) - ✅ MILESTONE 1 SUCCESSFULLY RESOLVED
-1. ~~**Slow Pipeline**~~ → ✅ **RESOLVED**: **180s → 147s (18% improvement, 33-second savings)**
-2. ~~**No Docker Caching**~~ → ✅ **RESOLVED**: Complete dependency caching infrastructure implemented
-3. **Verified Optimizations Deployed**:
-   - ✅ GitHub Actions cache integration (working effectively)
-   - ✅ Sophisticated .csproj pattern copying with directory structure preservation
-   - ✅ NuGet cache mounting with consistency fix (verified in production)
-4. **Future Opportunities**: E2E test optimization (87s → 40-50s) and infrastructure improvements
+### CI/CD Performance Issues (Phase 2 Focus) - ❌ MILESTONE 1 FAILED
+1. **Slow Pipeline** → ❌ **UNRESOLVED**: **Still ~180s (no improvement achieved)**
+2. **Docker Caching Attempted** → ❌ **REVERTED**: Caching implementation failed and removed
+3. **Failed Optimizations**:
+   - ❌ GitHub Actions cache integration (no measurable benefit, removed)
+   - ❌ NuGet cache mounting (caused flaky builds, removed)
+   - ❌ .csproj pattern copying (kept but ineffective)
+4. **Need New Strategy**: Docker caching approach proven unsuitable for this pipeline
 
-**Final Technical Achievement Summary**:
-- **Step 1**: Advanced .csproj layer separation for optimal dependency caching
-- **Step 2**: Systematic validation methodology identifying optimization gaps  
-- **Step 3**: NuGet cache mounting implementation and consistency fix (commits 9d178ac, 206740b)
-- **Result**: **Reliable 147s pipeline with 100% success rate**
+**Final Technical Outcome Summary**:
+- **Step 1**: Advanced .csproj layer separation - no measurable benefit
+- **Step 2**: Systematic validation revealed misleading initial results
+- **Step 3**: NuGet cache mounting caused flaky builds (reverted in commit 09e7e15)
+- **Result**: **Back to baseline 180s pipeline, caching approach failed**
 
 ### Application Technical Considerations (Phase 1 Complete)
 1. **Browser Requirements**: Geolocation API requires HTTPS and user permission

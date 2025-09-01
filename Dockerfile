@@ -35,7 +35,7 @@ RUN dotnet build --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATIO
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish --no-build "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
+RUN dotnet publish --no-restore "AircraftNoise.Web.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

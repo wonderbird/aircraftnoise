@@ -27,7 +27,8 @@ RUN dotnet sln list \
         mv $(basename $line) $(dirname $line); \
     done;
 
-RUN dotnet restore "AircraftNoise.Web/AircraftNoise.Web.csproj"
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AircraftNoise.Web/AircraftNoise.Web.csproj"
 
 COPY . .
 WORKDIR "/src/AircraftNoise.Web"

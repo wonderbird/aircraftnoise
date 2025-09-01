@@ -79,7 +79,7 @@ jobs:
           IMAGE_TAG: ${{ needs.determine_tag.outputs.image_tag }}
           CYPRESS_port: 8080
         with:
-          start: docker run -p 8080:8080 ${{ env.IMAGE_TAG }}
+          start: docker run --publish 8080:8080 --detach ${{ env.IMAGE_TAG }}
           working-directory: AircraftNoise.E2E.Tests
           wait-on: 'http://localhost:8080'
           browser: chrome

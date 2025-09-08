@@ -4,12 +4,11 @@ describe("Aircraft Noise App", () => {
   it("locates next measurement station", () => {
     cy.visit("/", fakeLocation(roesrathForsbach));
 
-    cy.get("#locate-button").click();
+    cy.get('[data-testid="locate-button"]').click();
 
-    cy.get("#next-measurement-station-info").should(
-      "contain",
-      "Rösrath-Forsbach",
-    );
+    cy.get('[data-testid="next-measurement-station-info"]')
+      .should("be.visible")
+      .and("contain", "Rösrath-Forsbach");
   });
 
   // https://www.browserstack.com/guide/cypress-geolocation-testing

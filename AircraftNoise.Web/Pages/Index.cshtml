@@ -14,7 +14,7 @@
     </p>
 
     <p>
-        <button id="locate-button" class="btn btn-primary">Meine Position ermitteln</button>
+        <button id="locate-button" class="btn btn-primary" data-testid="locate-button">Meine Position ermitteln</button>
     </p>
 
     <p>
@@ -34,7 +34,7 @@
         </p>
     </div>
 
-    <div id="next-measurement-station-info" hidden="hidden">
+    <div id="next-measurement-station-info" hidden="hidden" data-testid="next-measurement-station-info">
         <p>
             Anhand Deiner Position <span id="position"></span>wurde die Region
             <a href="@Html.DisplayFor(model => model.Region.MeasurementStationSelectionUrl)"

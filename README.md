@@ -2,8 +2,6 @@
 
 Motivate responsible parties to reduce aircraft noise
 
-<!-- Test comment for dependency caching validation -->
-
 ## Development Prerequisites
 
 ### Frameworks Required for Developing and Running
@@ -69,6 +67,8 @@ npx cypress open
 ```shell
 dotnet test
 ```
+
+### Mutation Tests (optional)
 
 To explore test reliability and code coverage you can run [Stryker Mutator](https://stryker-mutator.io/docs/stryker-net/getting-started/):
 

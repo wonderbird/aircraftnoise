@@ -1,8 +1,19 @@
 describe("Aircraft Noise App", () => {
-  let roesrathForsbach = { latitude: 50.92381, longitude: 7.18231 };
+  const roesrathForsbach = { latitude: 50.92381, longitude: 7.18231 };
+
+  it("locates next measurement station", () => {
+    cy.visit("/", fakeLocation(roesrathForsbach));
+
+    cy.get("#locate-button").click();
+
+    cy.get("#next-measurement-station-info").should(
+      "contain",
+      "Rösrath-Forsbach",
+    );
+  });
 
   // https://www.browserstack.com/guide/cypress-geolocation-testing
-  function fakeLocation(coords) {
+  function fakeLocation(coords: { latitude: number; longitude: number }) {
     return {
       onBeforeLoad(win) {
         cy.stub(win.navigator.geolocation, "getCurrentPosition").callsFake(
@@ -20,15 +31,4 @@ describe("Aircraft Noise App", () => {
       },
     };
   }
-
-  it("locates next measurement station", () => {
-    cy.visit("/", fakeLocation(roesrathForsbach));
-
-    cy.get("#locate-button").click();
-
-    cy.get("#next-measurement-station-info").should(
-      "contain",
-      "Rösrath-Forsbach",
-    );
-  });
 });

@@ -34,8 +34,10 @@ pre-commit install
 ## Run with Hot Reload
 
 ```shell
-dotnet watch --project AircraftNoise.Web
+dotnet watch --project AircraftNoise.Web -- --urls "http://localhost:8080"
 ```
+
+The `--urls` parameter will set the port to `8080` so that you can run the end-to-end tests on the running application.
 
 ## Run as Docker Container
 

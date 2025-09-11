@@ -100,7 +100,7 @@ AircraftNoise.sln
 ### Testing Strategy
 - **Integration Tests**: WebApplicationFactory for API testing
 - **Unit Tests**: Isolated testing of business logic
-- **End-to-End Tests**: Cypress testing with GitHub Actions CI/CD pipeline
+- **End-to-End Tests**: TypeScript-based Cypress testing with GitHub Actions CI/CD pipeline
 - **Automated CI Testing**: Docker-based E2E testing with artifact passing and port conflict resolution
 - **Manual Testing**: Browser-based validation for UI workflows
 

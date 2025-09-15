@@ -53,55 +53,6 @@
 - **Automated Submissions**: Direct integration with complaint systems
 - **Mobile Optimization**: Touch-friendly event recording interface
 
-## Technical Debt and Risk Assessment
-
-### Security Risks
-
-**Input Validation and XSS**:
-- **XSS potential**: User-generated event data not properly sanitized
-- Missing input validation across domain layers
-- Error messages may expose sensitive system information
-
-**Data Security**:
-- No validation logic in domain objects
-- User input processing lacks sanitization
-- Browser storage security considerations
-
-### Performance and Resource Risks
-
-**Memory Management**:
-- **Memory usage**: Measurement collections not disposed properly
-- HTML parsing efficiency concerns with large datasets
-- Global state management creates memory retention issues
-
-**Resource Disposal**:
-- Missing disposal patterns for external resources
-- Collection lifecycle management needs improvement
-- Browser memory usage monitoring required
-
-### Maintainability Issues
-
-**Code Quality Debt**:
-- TODO comments proliferation in production code paths
-- Missing validation implementations across layers
-- Incomplete error handling scenarios throughout system
-
-**Consistency Violations**:
-- Mixed coding patterns and conventions
-- Inconsistent async method patterns
-- Property naming variations between layers
-
-### Extensibility Concerns
-
-**Architecture Coupling**:
-- Tight coupling to DFLD HTML structure limits adaptability
-- No abstraction for different measurement providers
-- Frontend state management creates global coupling
-
-**Integration Flexibility**:
-- URL construction mixed with domain objects
-- Missing provider abstraction for future integrations
-- Static dependencies reduce extensibility options
 
 ## Current Status
 
@@ -115,29 +66,22 @@
 - 📋 Production hardening and complaint export (current focus)
 
 ### Technical Considerations
-- **DFLD HTML Structure**: Parsing depends on stable `<area>` tag title structure
-- **Single Region Scope**: Limited to Cologne/Bonn region with hardcoded station data (acceptable for current scope)
-- **Manual Export Required**: Users must manually transfer data to complaint systems (no direct API integration available)
-- **Error Handling Gaps**: GetPeak() method and frontend error handling need production-ready implementation
-
-### Deployment Status
-- **Development**: Fast iteration with hot reload working
-- **Testing**: Comprehensive test suite with DfldHtml test utility plus working Cypress E2E CI
-- **Containerization**: Docker deployment ready for production
-- **CI/CD Pipeline**: Automated testing with GitHub Actions, Docker artifact passing, and green E2E tests
-- **Architecture**: Supports current single-region deployment scope
+- DFLD HTML parsing depends on stable structure
+- Single region scope (acceptable for prototype)
+- Manual export required (no direct API integration)
+- Error handling gaps need addressing
 
 ## Known Issues
 
 ### Critical Production Issues
-1. **GetPeak() Safety**: Method crashes on empty measurement data (NoiseMeasurementRange.cs:18)
-2. **API Design**: HasMeasurement boolean violates REST principles (NoiseMeasurementResponse.cs:8)
-3. **Frontend Error Handling**: Incomplete user feedback for network/backend failures
+1. GetPeak() method crashes on empty measurement data
+2. API design uses HasMeasurement boolean instead of HTTP status codes
+3. Frontend error handling incomplete
 
 ### Current Scope Limitations
-1. **Manual Export**: Users must manually transfer data to complaint systems (no direct API integration available)
-2. **No Persistence**: Events lost on browser refresh (acceptable for current scope)
-3. **TypeScript Module Complexity**: Browser ES6 modules require .js extensions in imports
+1. Manual export required (no API integration available)
+2. No persistence (acceptable for prototype)
+3. Single region support only
 
 ## Next Milestones
 

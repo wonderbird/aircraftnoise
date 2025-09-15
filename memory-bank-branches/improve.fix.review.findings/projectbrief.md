@@ -6,11 +6,7 @@
 
 ## Core Problem
 
-Citizens affected by aircraft noise face barriers when filing complaints:
-- Manual process of correlating noise events with official measurement data
-- Complex workflow to access DFLD (German Aviation Noise Service) measurements  
-- Time-consuming manual data entry into complaint systems
-- Lack of structured event recording during noise disturbances
+Citizens struggle to file effective complaints due to manual correlation of noise events with official DFLD measurement data, complex workflows, and lack of structured event recording.
 
 ## Solution Approach
 
@@ -24,25 +20,9 @@ A web application that helps citizens:
 
 German citizens affected by aircraft noise, particularly in the Cologne/Bonn airport region.
 
-## Key Success Metrics
-
-- Reduction in time required to file noise complaints
-- Increase in complaint accuracy with official measurement data
-- Improved citizen engagement with noise reduction efforts
-- Higher complaint submission rates due to reduced friction
-
-## Technical Constraints
-
-- Integration with existing DFLD measurement stations (HTML parsing)
-- German-language UI for local users
-- Browser-based geolocation for station discovery
-- Manual submission to official systems (no direct API integration)
-
 ## Current Scope
 
-**Phase 1 (Current)**: Core functionality for Cologne/Bonn region
+**Phase 1**: Core functionality for Cologne/Bonn region
 - Single measurement station support (Rösrath-Forsbach)
-- Basic event recording and noise level mapping
+- Event recording and noise level mapping
 - Manual complaint preparation workflow
-
-**Future Expansion**: Multi-region support, persistent storage, automated submissions

@@ -28,29 +28,9 @@
 - Docker (optional, for containerized deployment)
 
 ### Key Commands
-```bash
-# Development with hot reload on port 8080
-dotnet watch --project AircraftNoise.Web -- --urls "http://localhost:8080"
-
-# Development with debug logging
-Logging__LogLevel__Default="Debug" dotnet watch --project=AircraftNoise.Web -- --urls "http://localhost:8080/"
-
-# Run tests
-dotnet test
-
-# Docker deployment
-docker build -t aircraftnoise .
-docker run -p 8080:8080 aircraftnoise
-```
-
-### Project Structure
-```
-AircraftNoise.sln
-├── AircraftNoise.Web/       # Web application
-├── AircraftNoise.Core/      # Domain logic
-├── AircraftNoise.Tests/     # Test suite
-└── Data/                    # Sample DFLD data
-```
+- Development: `dotnet watch --project AircraftNoise.Web`
+- Testing: `dotnet test`
+- Docker: `docker build -t aircraftnoise .`
 
 ## Technical Constraints
 
@@ -63,24 +43,16 @@ AircraftNoise.sln
 - **Flexible Data Source**: InMemoryMeasurementProvider supports both test and live DFLD data
 
 ### Performance Considerations
-- **HTML Parsing**: Synchronous parsing of DFLD measurement files using regex patterns
-- **Client-side Storage**: In-memory storage with no persistence
-- **Single Station**: Limited to one measurement station per region
-- **TypeScript Compilation**: Selective JS compilation (exclude compiled files, keep site.js)
-- **DFLD Parsing Complexity**: Regex pattern extraction from HTML image map areas
-- **API Integration**: POST requests with structured request/response models
-- **Test Data**: DfldHtml test utility for reliable development and testing
-- **Resource Management**: Proper disposal of measurement collections required
-- **Memory Efficiency**: Monitor HTML parsing memory usage with large datasets
-- **State Management**: Avoid global coupling in frontend state to prevent memory retention
+- HTML parsing using regex patterns
+- In-memory storage only
+- Single measurement station per region
+- Structured request/response models
 
 ### Security Requirements
-- **HTTPS**: Required for geolocation API access
-- **CORS**: Cross-origin requests for DFLD data integration
-- **Data Privacy**: No persistent storage of user events
-- **Input Sanitization**: All user-generated event data must be sanitized to prevent XSS
-- **Data Validation**: Implement validation logic in domain objects
-- **Error Information Disclosure**: Ensure error messages don't expose sensitive information
+- HTTPS required for geolocation
+- No persistent storage of user events
+- Input sanitization needed
+- Proper error handling without information disclosure
 
 ## Dependencies
 
@@ -95,9 +67,8 @@ AircraftNoise.sln
 - ES6 module support
 
 ### External APIs
-- **DFLD Measurement Stations**: HTML endpoints for noise data
-- **Browser Geolocation API**: HTML5 standard
-- **No formal API contracts**: Integration via HTML parsing
+- DFLD measurement stations (HTML parsing)
+- Browser Geolocation API
 
 ## Development Patterns
 
@@ -108,59 +79,29 @@ AircraftNoise.sln
 - **Async/Await**: Asynchronous operations for external calls
 
 ### Testing Strategy
-- **Integration Tests**: WebApplicationFactory for API testing
-- **Unit Tests**: Isolated testing of business logic
-- **End-to-End Tests**: TypeScript-based Cypress testing with GitHub Actions CI/CD pipeline
-- **Automated CI Testing**: Docker-based E2E testing with artifact passing and port conflict resolution
-- **Manual Testing**: Browser-based validation for UI workflows
+- Integration tests with WebApplicationFactory
+- Unit tests for business logic
+- Cypress E2E testing with CI/CD
+- Manual browser testing
 
 ### Build and Deployment
-- **Docker Multi-stage**: Optimized container builds
-- **Hot Reload**: Development productivity with automatic rebuilds
-- **Production Ready**: Containerized deployment with proper logging
+- Docker multi-stage builds
+- Hot reload for development
+- Containerized deployment ready
 
 ## Tool Usage Patterns
 
 ### Development Tools
-- **Visual Studio Code**: Primary IDE with TypeScript support
-- **JetBrains Rider**: Alternative IDE with .NET debugging
-- **Chrome DevTools**: Frontend debugging and network analysis
-- **Debug Logging**: Production-ready logging with configurable log levels for troubleshooting
-
-### Version Control
-- **Git**: Source control with conventional commits
-- **Feature Branches**: Development workflow with mob programming
+- Visual Studio Code or JetBrains Rider
+- Chrome DevTools for debugging
+- Git with conventional commits
 
 ### External Integration
-- **DFLD HTML Parsing**: Custom parser extracts data from `<area>` tag titles using regex `@"Beschwerde zu (\d{2}:\d{2}:\d{2}) Uhr versenden \[(\d+\.\d+) dBA"`
-- **Frontend-Backend Integration**: NoiseLevelMapper calls POST endpoints with structured requests
-- **DFLD Integration**: InMemoryMeasurementProvider with comprehensive HTML parsing and test utilities
-- **Manual Testing**: Browser-based validation of DFLD endpoints
-- **Error Handling**: Graceful degradation for external failures
-- **Time Zone Conversion**: Berlin time zone handling for accurate timestamp mapping
-- **German Date Parsing**: dd.MM.yyyy format parsing with CultureInfo.InvariantCulture
-- **TODO Management**: Development tasks tracked in code comments for test-driven development
+- DFLD HTML parsing from area tag titles
+- Frontend-backend integration via structured requests
+- Time zone conversion (CET to UTC)
+- German date format handling
 
-## CI/CD Pipeline Patterns
-
-### GitHub Actions Workflow
-- **Multi-stage Pipeline**: determine_tag → build → e2e testing with proper dependency management  
-- **Docker Artifact Passing**: Build once, test everywhere using GitHub artifact upload/download
-- **Environment Variable Handling**: Use `${{ env.VAR }}` syntax for GitHub Actions (not shell `${VAR}`)
-- **Port Conflict Resolution**: Avoid conflicting port assignments between Docker containers and test tools
-- **Detached Container Mode**: Use `--detach` flag for background container execution during testing
-
-### Cypress Integration Lessons
-- **Docker Integration**: `cypress-io/github-action@v6` with containerized application testing
-- **Wait Strategy**: Use `wait-on` to ensure application readiness before running tests
-- **Port Management**: Avoid `CYPRESS_port` environment variable conflicts with Docker port binding
-- **Geolocation Mocking**: Browser geolocation simulation for location-based testing
-
-### Troubleshooting Patterns
-- **Environment Variable Expansion**: GitHub Actions syntax differs from shell syntax
-- **Port Conflicts**: Docker `--publish` and test framework port usage must not overlap  
-- **Container Lifecycle**: Proper container startup/shutdown coordination with test execution
-- **Artifact Management**: Efficient Docker image passing between pipeline jobs
 
 ## Future Technical Considerations
 

@@ -47,17 +47,17 @@ export class NoiseLevelMapper {
           console.log(
             `Received status code ${response.status}: Noise measurements are not available yet.`,
           );
-          return null;
+          break;
 
         default:
           console.error(
             `Error fetching noise level: ERR ${response.status}: ${response.statusText}`,
           );
-          return null;
       }
     } catch (error) {
       console.error("Failed to fetch noise level:", error);
-      return null;
     }
+
+    return null;
   }
 }

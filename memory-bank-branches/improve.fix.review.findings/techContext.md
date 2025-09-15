@@ -70,11 +70,17 @@ AircraftNoise.sln
 - **DFLD Parsing Complexity**: Regex pattern extraction from HTML image map areas
 - **API Integration**: POST requests with structured request/response models
 - **Test Data**: DfldHtml test utility for reliable development and testing
+- **Resource Management**: Proper disposal of measurement collections required
+- **Memory Efficiency**: Monitor HTML parsing memory usage with large datasets
+- **State Management**: Avoid global coupling in frontend state to prevent memory retention
 
 ### Security Requirements
 - **HTTPS**: Required for geolocation API access
 - **CORS**: Cross-origin requests for DFLD data integration
 - **Data Privacy**: No persistent storage of user events
+- **Input Sanitization**: All user-generated event data must be sanitized to prevent XSS
+- **Data Validation**: Implement validation logic in domain objects
+- **Error Information Disclosure**: Ensure error messages don't expose sensitive information
 
 ## Dependencies
 

@@ -118,6 +118,44 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 
 ### DFLD Integration Flow
 1. **URL Construction**: Region/Station/Date/Time parameters → DFLD endpoint
-2. **HTML Retrieval**: HTTP GET to DFLD measurement page  
+2. **HTML Retrieval**: HTTP GET to DFLD measurement page
 3. **Data Extraction**: Parse measurement data from HTML response
 4. **Domain Mapping**: External data → NoiseMeasurement record structs
+
+## Architectural Debt and Anti-Patterns
+
+### Domain Model Issues
+
+**Immutability Violations**:
+- `NoiseMeasurementRange` should be immutable but has mutable list
+- Domain objects lack proper encapsulation of business rules
+- Missing validation logic in domain entities
+
+**Business Logic Concerns**:
+- Business rules not properly encapsulated in domain objects
+- Domain services missing for complex business operations
+- Validation scattered across layers instead of centralized
+
+### Dependency Management Problems
+
+**Static Dependencies**:
+- ApplicationState singleton creates static dependencies
+- Global state coupling reduces testability
+- Missing abstractions for external HTML parsing
+
+**Tight Coupling Issues**:
+- Direct coupling to DFLD-specific HTML structure
+- URL construction mixed with domain objects
+- No abstraction for different measurement providers
+
+### Code Consistency Violations
+
+**Naming Inconsistencies**:
+- Mixed property naming: `DBA` in TypeScript vs `Dba` in C#
+- Inconsistent async method naming patterns
+- Variable naming inconsistencies across layers
+
+**Pattern Inconsistencies**:
+- Mixed nullable DateTime handling patterns
+- Inconsistent error handling approaches
+- Different state management patterns between components

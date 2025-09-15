@@ -51,6 +51,43 @@
 - Design export format (JSON, CSV, or structured text)
 - Connect export to recorded events and their noise level mappings
 
+## Error Handling Implementation Strategy
+
+**User Experience Goal**: Design error handling to keep users motivated to complete their complaint process.
+
+### Critical Fixes with Ready-to-Implement Code
+
+**1. GetPeak() Safety Fix** (`NoiseMeasurementRange.cs:18`):
+```csharp
+public NoiseMeasurement GetPeak()
+{
+    if (!_measurements.Any())
+        throw new InvalidOperationException("No measurements available");
+    return _measurements.OrderByDescending(m => m.NoiseMeasurementDba).First();
+}
+```
+
+**2. Controller Error Handling** (`PeakNoiseLevelController.cs`):
+```csharp
+try
+{
+    var range = await _measurementProvider.GetMeasurementsBeforeAsync(endTimeUtc, duration);
+    var peak = range.GetPeak();
+    return new NoiseMeasurementResponse { /* ... */ };
+}
+catch (InvalidOperationException)
+{
+    return new NoiseMeasurementResponse { HasMeasurement = false };
+}
+```
+
+### Frontend Error Handling Requirements
+
+- **Replace Console Logging**: Transform console.error() calls into user-friendly messages
+- **Consistent Error Pattern**: Implement uniform error handling across all layers
+- **Business Failure Recovery**: Ensure measurement failures don't break user workflow
+- **Motivational Design**: Error messages should encourage users to try again or continue process
+
 ## Active Decisions and Considerations
 
 ### Current Technical Decisions

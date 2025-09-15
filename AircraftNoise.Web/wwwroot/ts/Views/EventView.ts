@@ -42,7 +42,7 @@ export class EventView {
 
     for (const event of noiseEvents) {
       // TODO: The noise level should be a value object, which can accept a value of "not available yet" and render itself to a text representation.
-      let stringRepresentation = event.timestamp.toLocaleString();
+      let stringRepresentation = event.timestampUtc.toLocaleString();
 
       if (event.noiseLevelDBA !== null) {
         stringRepresentation += `: ${event.noiseLevelDBA} dB(A)`;

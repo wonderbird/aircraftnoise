@@ -48,6 +48,8 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 - **Service Pattern**: Business logic encapsulation (LocationLookupService)
 - **Adapter Pattern**: External integration (InMemoryMeasurementProvider)
 - **Dependency Injection**: Loose coupling between components
+- **Controller Naming**: Singular resource names (PeakNoiseLevelController, not PeakNoiseLevelsController)
+- **Production Logging**: Structured logging in controllers for debugging and monitoring
 
 ### Frontend Patterns
 - **Singleton Pattern**: ApplicationState for global state management
@@ -107,6 +109,7 @@ Domain (NoiseEvent) ← Services (ApplicationState) ← Views (EventView, Measur
 - Domain objects as record structs
 - Value semantics for reliable state management
 - No shared mutable state between components
+- Property naming consistency: UTC suffix for timestamps, lowercase dBA for noise levels
 
 ### Unidirectional Data Flow
 - UI events → Services → Repositories → External APIs

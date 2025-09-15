@@ -29,8 +29,11 @@
 
 ### Key Commands
 ```bash
-# Development with hot reload
-dotnet watch --project AircraftNoise.Web
+# Development with hot reload on port 8080
+dotnet watch --project AircraftNoise.Web -- --urls "http://localhost:8080"
+
+# Development with debug logging
+Logging__LogLevel__Default="Debug" dotnet watch --project=AircraftNoise.Web -- --urls "http://localhost:8080/"
 
 # Run tests
 dotnet test
@@ -78,6 +81,7 @@ AircraftNoise.sln
 ### NuGet Packages (.NET)
 - Microsoft.AspNetCore.App (framework)
 - Microsoft.AspNetCore.Mvc.Testing (testing)
+- Microsoft.Extensions.Logging (production logging)
 - xunit, xunit.runner.visualstudio (testing)
 
 ### NPM Dependencies (Node.js)
@@ -115,6 +119,7 @@ AircraftNoise.sln
 - **Visual Studio Code**: Primary IDE with TypeScript support
 - **JetBrains Rider**: Alternative IDE with .NET debugging
 - **Chrome DevTools**: Frontend debugging and network analysis
+- **Debug Logging**: Production-ready logging with configurable log levels for troubleshooting
 
 ### Version Control
 - **Git**: Source control with conventional commits

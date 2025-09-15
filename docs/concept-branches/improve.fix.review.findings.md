@@ -2,19 +2,7 @@
 
 ### TODO Comments in the Code
 
-- AircraftNoise.Core/Domain/NoiseMeasurementRange.cs:18 // TODO: Edge case "no data" is not considered
-- AircraftNoise.Web/Controllers/PeakNoiseLevelsController.cs:24 // TODO: Clarify error handling - what happens if there is no data?
-- AircraftNoise.Web/wwwroot/ts/Adapters/Outbound/NoiseLevelMapper.ts:31,41,50 // TODO: take end time and duration from the current event
-
-### Side Effects of Code Changes may Break Application Without Notice
-
-An automatic end-to-end test should ensure that the happy path of the desired process works. This would reduce the risk of breaking the process while refactoring significantly.
-
-### Add Logging
-
-The earlier proper logging is introduced, the more long term benefit will be earned!
-
-**Add logging** for debugging and monitoring
+Prioritize and fix the TODOs
 
 ### Error Handling Strategy
 

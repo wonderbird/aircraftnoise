@@ -2,7 +2,7 @@
 
 ## Current Work Focus
 
-**Primary Objective**: Complete the user experience and prepare for production deployment.
+**Primary Objective**: Production hardening and error handling robustness.
 
 ## Current Technical State
 
@@ -15,35 +15,38 @@
 - Peak measurement selection logic implemented
 - Comprehensive test infrastructure with DfldHtml test utility
 - **Cypress E2E CI Pipeline**: Fully operational with Docker integration and automated testing
+- **Event-to-measurement correlation**: Fixed and working correctly with actual event timestamps
+- **Clean refactoring**: Controller naming, property naming consistency established
+- **Production logging**: Debug logging implemented in controllers
 
 ## Next Steps - Current Sprint
 
-### 1. Expand TDD Workflow with Comprehensive E2E Tests
-- Build upon successful Cypress CI foundation with comprehensive user journey tests
-- Write failing end-to-end test that demonstrates the correlation bug  
-- Test should cover complete user journey: record event → get correct noise level for that event's timestamp
-- Leverage working CI pipeline to catch regressions early in development process
+### 1. Fix GetPeak() Safety Critical Issue
+- **Location**: `NoiseMeasurementRange.cs:18` - `GetPeak()` method crashes on empty measurement data
+- **Risk**: Application crashes when no measurement data exists
+- **Solution**: Return `Optional<NoiseMeasurement>` or throw meaningful exception with proper handling
 
-### 2. Fix Critical Event-to-Measurement Correlation Bug (TDD: Red → Green)
-- NoiseLevelMapper queries current time instead of actual event timestamps
-- Fix TODO on line 31: "take end time and duration from the current event"  
-- Make the end-to-end test pass, proving the bug is resolved
+### 2. Improve API Design for No-Data Scenarios
+- **Location**: `NoiseMeasurementResponse.cs:8` - `HasMeasurement` boolean violates REST principles
+- **Issue**: Using boolean flag instead of proper HTTP status codes
+- **Solution**: Use HTTP 204 No Content for scenarios with no measurement data
 
-### 3. Apply TDD to Remaining TODO Comments
-- Write failing tests first for controller TODOs
-- Write failing tests first for peak measurement selection logic
-- Then implement fixes to make tests pass (Red → Green → Refactor)
+### 3. Complete Frontend Error Handling
+- **Location**: `NoiseLevelMapper.ts:40,51` - Incomplete error handling TODOs
+- **Issue**: Users see no feedback when backend fails or network issues occur
+- **Solution**: Implement user-friendly error messages and graceful degradation
 
-### 4. Complete End-to-End Workflow Validation
-- Validate with real DFLD data from Rösrath-Forsbach station
-- Ensure error handling for edge cases
+### 4. Add Comprehensive Edge Case Test Coverage
+- **Gap**: No unit tests for empty measurement data scenarios
+- **Gap**: No tests for network failure cases
+- **Gap**: No tests for invalid timestamp ranges
+- **Solution**: TDD approach to add failing tests first, then implement proper handling
 
-### 3. Production Logging Strategy
-- Add proper logging for debugging and monitoring
-- Essential for production troubleshooting when users report issues
-- Focus on key workflow points: event recording, DFLD data retrieval, noise level mapping
+### 5. Complete End-to-End Workflow Validation
+- Validate complete user journey with real DFLD data from Rösrath-Forsbach station
+- Ensure all error handling paths work correctly for edge cases
 
-### 4. Complaint Export Feature
+### 6. Complaint Export Feature Implementation
 - Implement structured data export for official complaint submission
 - Design export format (JSON, CSV, or structured text)
 - Connect export to recorded events and their noise level mappings
@@ -51,10 +54,10 @@
 ## Active Decisions and Considerations
 
 ### Current Technical Decisions
-- **TDD Transition**: Establish Test-Driven Development workflow starting with end-to-end test
-- **Production Readiness Focus**: Move from prototype to production-quality implementation
-- **User Experience Priority**: Complete the full complaint preparation workflow
-- **Test Coverage**: Write tests first, then implement (Red → Green → Refactor)
+- **Production Hardening Focus**: Shift from core functionality to error handling robustness
+- **TDD for Edge Cases**: Write failing tests first for error scenarios, then implement handling
+- **REST API Compliance**: Move away from boolean flags toward proper HTTP status codes
+- **User Experience Quality**: Ensure graceful degradation and meaningful error feedback
 
 ### Development Standards
 - **Clean Architecture**: Continue maintaining clear separation of concerns
@@ -72,11 +75,16 @@
 
 ## Current Sprint Definition of Done
 
-- [x] End-to-end test written (TDD: Red phase)
-- [x] Critical event-to-measurement correlation bug fixed (TDD: Green phase)
-- [ ] TDD applied to remaining TODO comments (test-first approach)
-- [ ] Peak measurement selection logic fully tested with TDD
-- [ ] Production logging strategy implemented
+**Completed ✅**:
+- [x] End-to-end test written and passing
+- [x] Critical event-to-measurement correlation bug fixed
+- [x] Clean refactoring completed (controller naming, property consistency)
+- [x] Production logging strategy implemented
+
+**In Progress 🔄**:
+- [ ] GetPeak() safety issue resolved
+- [ ] API design improved for no-data scenarios
+- [ ] Frontend error handling completed
+- [ ] Comprehensive edge case test coverage added
 - [ ] Complete user workflow validated with real DFLD data
 - [ ] Complaint export functionality implemented
-- [ ] Error handling verified for edge cases

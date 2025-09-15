@@ -4,7 +4,6 @@ import { EventView } from "../../Views/EventView.js";
 interface NoiseMeasurementResponse {
   noiseMeasurementDba: number;
   timestampUtc: string | null;
-  hasMeasurement: boolean;
 }
 
 export class NoiseLevelMapper {

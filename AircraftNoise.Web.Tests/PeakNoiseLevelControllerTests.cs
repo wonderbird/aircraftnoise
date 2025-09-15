@@ -58,7 +58,6 @@ public class PeakNoiseLevelControllerTests : IClassFixture<WebApplicationFactory
 
         Assert.NotNull(result);
         Assert.Equal(ExpectedNoiseLevelInDataFile, result.NoiseMeasurementDba);
-        Assert.True(result.HasMeasurement);
     }
 
     [Fact]

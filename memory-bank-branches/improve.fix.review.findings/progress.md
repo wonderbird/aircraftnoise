@@ -73,9 +73,11 @@
 
 ## Known Issues
 
-### Critical Production Issues
-1. GetPeak() is brittle regarding empty measurements, because exception is thrown
-2. Frontend error handling incomplete
+### Critical Production Issues (Code Review Sept 15, 2025)
+1. **GetPeak() Domain Safety**: Core method still throws InvalidOperationException on empty data despite controller workarounds
+2. **Incomplete Error Handling Chain**: Backend returns HTTP 204 but frontend provides no user feedback
+3. **Architecture Layer Violations**: Controller performs business logic instead of domain layer
+4. **Frontend Error Handling**: Only console logging implemented, no user-friendly messages
 
 ### Current Scope Limitations
 1. Manual export required (no API integration available)
@@ -84,12 +86,13 @@
 
 ## Next Milestones
 
-### Current Sprint
-- [x] Fix GetPeak() safety issue for empty measurement data
-- [x] Improve API design for no-data scenarios
-- [ ] GetPeak() should handle empty measurements gracefully instead of throwing an exception.
-- [ ] Complete frontend error handling implementation
-- [ ] Add comprehensive edge case test coverage
+### Current Sprint (Post Code Review)
+- [x] ~~Fix GetPeak() safety issue for empty measurement data~~ (Controller workaround implemented)
+- [x] Improve API design for no-data scenarios (HTTP 204 implemented)
+- [ ] **GetPeak() domain method safety**: Return optional result instead of throwing exceptions
+- [ ] **Frontend error feedback**: Replace console logging with user messages for no-data scenarios
+- [ ] **Refactor empty data handling**: Move business logic from controller to domain layer
+- [ ] Complete comprehensive edge case test coverage
 - [ ] Peak detection shall consider 10 minutes around event timestamp
 - [ ] Implement complaint export functionality
 - [ ] Validate end-to-end user workflow

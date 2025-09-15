@@ -75,8 +75,7 @@
 
 ### Critical Production Issues
 1. GetPeak() is brittle regarding empty measurements, because exception is thrown
-2. API design uses HasMeasurement boolean instead of HTTP status codes
-3. Frontend error handling incomplete
+2. Frontend error handling incomplete
 
 ### Current Scope Limitations
 1. Manual export required (no API integration available)

@@ -14,24 +14,20 @@ Core infrastructure complete: DFLD parsing, backend API, frontend integration, t
 - `GetPeak()` method crashes on empty measurement data
 - Implement proper exception handling or optional return
 
-### 2. Improve API Design for No-Data Scenarios
-- Replace `HasMeasurement` boolean with proper HTTP status codes
-- Use HTTP 204 No Content for no measurement data scenarios
-
-### 3. Complete Frontend Error Handling
+### 2. Complete Frontend Error Handling
 - Implement user-friendly error messages for backend failures
 - Add graceful degradation for network issues
 
-### 4. Add Comprehensive Edge Case Test Coverage
+### 3. Add Comprehensive Edge Case Test Coverage
 - Unit tests for empty measurement data scenarios
 - Tests for network failure cases
 - Tests for invalid timestamp ranges
 
-### 5. Complete End-to-End Workflow Validation
+### 4. Complete End-to-End Workflow Validation
 - Validate complete user journey with real DFLD data
 - Ensure all error handling paths work correctly
 
-### 6. Complaint Export Feature Implementation
+### 5. Complaint Export Feature Implementation
 - Implement structured data export for official complaint submission
 - Design export format and connect to recorded events
 

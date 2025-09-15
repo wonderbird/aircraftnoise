@@ -4,17 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AircraftNoise.Web.Controllers;
 
-// TODO: Because this returns only a single peak measurement, it should be renamed to PeakNoiseLevelController
 [ApiController]
 [Route("[controller]")]
-public class PeakNoiseLevelsController : ControllerBase
+public class PeakNoiseLevelController : ControllerBase
 {
     private readonly ICanProvideMeasurements _measurementProvider;
-    private readonly ILogger<PeakNoiseLevelsController> _logger;
+    private readonly ILogger<PeakNoiseLevelController> _logger;
 
-    public PeakNoiseLevelsController(
+    public PeakNoiseLevelController(
         ICanProvideMeasurements measurementProvider,
-        ILogger<PeakNoiseLevelsController> logger
+        ILogger<PeakNoiseLevelController> logger
     )
     {
         _measurementProvider = measurementProvider;

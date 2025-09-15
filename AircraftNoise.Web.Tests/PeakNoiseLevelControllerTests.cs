@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace AircraftNoise.Web.Tests;
 
-public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactory<Program>>
+public class PeakNoiseLevelControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private const double ExpectedNoiseLevelInDataFile = 59.4;
 
@@ -24,7 +24,7 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
         DurationMinutes = 5,
     };
 
-    public PeakNoiseLevelsControllerTests(WebApplicationFactory<Program> factory)
+    public PeakNoiseLevelControllerTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
     }
@@ -34,7 +34,7 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
     {
         var client = _factory.CreateClient();
 
-        var response = await client.PostAsJsonAsync("/PeakNoiseLevels", _searchRequest);
+        var response = await client.PostAsJsonAsync("/PeakNoiseLevel", _searchRequest);
 
         response.EnsureSuccessStatusCode();
         Assert.Equal(
@@ -48,7 +48,7 @@ public class PeakNoiseLevelsControllerTests : IClassFixture<WebApplicationFactor
     {
         var client = _factory.CreateClient();
 
-        var response = await client.PostAsJsonAsync("/PeakNoiseLevels", _searchRequest);
+        var response = await client.PostAsJsonAsync("/PeakNoiseLevel", _searchRequest);
         var content = await response.Content.ReadAsStringAsync();
         var result = JsonSerializer.Deserialize<NoiseMeasurementResponse>(
             content,

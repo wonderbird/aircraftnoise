@@ -19,21 +19,21 @@ export class NoiseLevelMapper {
     let noiseEvents = this.noiseEventRepository.noiseEvents;
 
     for (const event of noiseEvents) {
-      event.noiseLevelDBA = await this.queryNoiseLevel();
+      event.noiseLevelDBA = await this.queryNoiseLevel(event.timestamp);
       this.noiseEventRepository.update(event);
     }
 
     this.view.update(noiseEvents);
   }
 
-  private async queryNoiseLevel(): Promise<number | null> {
+  private async queryNoiseLevel(timestampUtc: Date): Promise<number | null> {
     try {
       // TODO: take end time and duration from the current event
       const response = await fetch("/PeakNoiseLevels", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          EndTimeUtc: new Date().toISOString(),
+          EndTimeUtc: timestampUtc.toISOString(),
           DurationMinutes: 5,
         }),
       });

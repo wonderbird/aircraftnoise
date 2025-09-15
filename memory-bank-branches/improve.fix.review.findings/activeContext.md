@@ -72,8 +72,8 @@
 
 ## Current Sprint Definition of Done
 
-- [ ] End-to-end test written (TDD: Red phase)
-- [ ] Critical event-to-measurement correlation bug fixed (TDD: Green phase)
+- [x] End-to-end test written (TDD: Red phase)
+- [x] Critical event-to-measurement correlation bug fixed (TDD: Green phase)
 - [ ] TDD applied to remaining TODO comments (test-first approach)
 - [ ] Peak measurement selection logic fully tested with TDD
 - [ ] Production logging strategy implemented

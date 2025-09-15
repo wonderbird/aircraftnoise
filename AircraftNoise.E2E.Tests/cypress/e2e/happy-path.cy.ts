@@ -10,20 +10,23 @@ describe("Aircraft Noise App", () => {
       .should("be.visible")
       .and("contain", "Rösrath-Forsbach");
 
-    cy.log("Record noise event for which we have measurement data");
-    const now = Date.UTC(2025, 8, 3, 23, 0, 0, 0);
+    cy.log(
+      "Record noise event between Apr. 9 00:00 AM - 02:00 AM CET, the range of our measurement data",
+    );
+    const now = Date.UTC(2025, 3, 8, 23, 0, 0, 0);
     cy.clock(now);
     cy.get('[data-testid="record-button"]').click();
     cy.get('[data-testid="events"] li:first-child').should(
       "have.text",
-      "9/4/2025, 1:00:00 AM",
+      "4/9/2025, 1:00:00 AM",
     );
 
     cy.log("Query noise level");
     cy.get('[data-testid="get-noise-button"]').click();
-    // TODO (HIGH): When the event time correlation bug is fixed, activate this assertion to verify correctness.
-    // cy.get('[data-testid="events"] li:first-child')
-    //    .should("have.text", "9/4/2025, 1:00:00 AM: 58 dB(A)")
+    cy.get('[data-testid="events"] li:first-child').should(
+      "have.text",
+      "4/9/2025, 1:00:00 AM: 59.4 dB(A)",
+    );
   });
 
   // Replace the browser location function by a stub allowing to configure fake locations.

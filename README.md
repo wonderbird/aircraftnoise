@@ -37,6 +37,12 @@ dotnet watch --project AircraftNoise.Web -- --urls "http://localhost:8080"
 
 The `--urls` parameter will set the port to `8080` so that you can run the end-to-end tests on the running application.
 
+If you want to see debug messages in the console, then set the corresponding environment variable before running the application:
+
+```shell
+Logging__LogLevel__Default="Debug" dotnet watch --project=AircraftNoise.Web -- --urls "http://localhost:8080/"
+```
+
 ## Run as Docker Container
 
 ```shell

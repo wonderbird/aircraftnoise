@@ -1,5 +1,4 @@
 using AircraftNoise.Core.Adapters.Outbound;
-using AircraftNoise.Core.Domain;
 using AircraftNoise.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +10,15 @@ namespace AircraftNoise.Web.Controllers;
 public class PeakNoiseLevelsController : ControllerBase
 {
     private readonly ICanProvideMeasurements _measurementProvider;
+    private readonly ILogger<PeakNoiseLevelsController> _logger;
 
-    public PeakNoiseLevelsController(ICanProvideMeasurements measurementProvider)
+    public PeakNoiseLevelsController(
+        ICanProvideMeasurements measurementProvider,
+        ILogger<PeakNoiseLevelsController> logger
+    )
     {
         _measurementProvider = measurementProvider;
+        _logger = logger;
     }
 
     [HttpPost]
@@ -26,6 +30,7 @@ public class PeakNoiseLevelsController : ControllerBase
         var endTimeUtc = request.EndTimeUtc ?? DateTime.UtcNow;
         var duration = TimeSpan.FromMinutes(request.DurationMinutes);
 
+        _logger.LogDebug("Searching peak before {EndTime} for {Duration}", endTimeUtc, duration);
         var range = (await _measurementProvider.GetMeasurementsBeforeAsync(endTimeUtc, duration));
         var peak = range.GetPeak();
 

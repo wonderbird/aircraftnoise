@@ -3,7 +3,7 @@
 ## Technology Stack
 
 ### Backend Technologies
-- **.NET 8.0 LTS**: Latest long-term support version
+- **.NET 9.0**: Latest version
 - **ASP.NET Core MVC**: Web framework with Razor Pages
 - **C# 12**: Modern language features with record structs
 - **xUnit**: Testing framework for unit and integration tests
@@ -23,13 +23,14 @@
 ## Development Setup
 
 ### Prerequisites
-- .NET SDK 8.0 LTS
+- .NET SDK 9.0
 - Node.js 22.14 LTS (jod)
 - Docker (optional, for containerized deployment)
 
 ### Key Commands
 - Development: `dotnet watch --project AircraftNoise.Web`
 - Testing: `dotnet test`
+- End to End Testing: `dotnet run` and `npm test`
 - Docker: `docker build -t aircraftnoise .`
 
 ## Technical Constraints

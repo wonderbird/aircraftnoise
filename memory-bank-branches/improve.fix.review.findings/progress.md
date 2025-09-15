@@ -74,7 +74,7 @@
 ## Known Issues
 
 ### Critical Production Issues
-1. GetPeak() method crashes on empty measurement data
+1. GetPeak() is brittle regarding empty measurements, because exception is thrown
 2. API design uses HasMeasurement boolean instead of HTTP status codes
 3. Frontend error handling incomplete
 
@@ -88,6 +88,7 @@
 ### Current Sprint
 - [x] Fix GetPeak() safety issue for empty measurement data
 - [x] Improve API design for no-data scenarios
+- [ ] GetPeak() should handle empty measurements gracefully instead of throwing an exception.
 - [ ] Complete frontend error handling implementation
 - [ ] Add comprehensive edge case test coverage
 - [ ] Peak detection shall consider 10 minutes around event timestamp

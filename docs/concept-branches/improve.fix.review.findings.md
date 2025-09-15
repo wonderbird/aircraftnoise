@@ -67,7 +67,6 @@ Clarify details of the following findings to understand the underlying problem. 
 
 Clarify details of the following findings to understand the underlying problem. Then judge which findings to fix immediately and which findings to move to the improvement backlog.
 
-- **Time zone conversion**: Potential UTC/CET conversion issues
 - **Memory usage**: Measurement collections not disposed properly
 - **XSS potential**: User-generated event data not properly sanitized
 

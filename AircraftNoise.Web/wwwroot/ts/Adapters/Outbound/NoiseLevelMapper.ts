@@ -26,6 +26,8 @@ export class NoiseLevelMapper {
     this.view.update(noiseEvents);
   }
 
+  // TODO: For the "204: no data" case a warning message should be shown in the UI
+  // TODO: For errors, an alert should be shown in the UI
   private async queryNoiseLevel(timestampUtc: Date): Promise<number | null> {
     try {
       const response = await fetch("/PeakNoiseLevel", {
@@ -37,18 +39,24 @@ export class NoiseLevelMapper {
         }),
       });
 
-      // TODO: Implement proper error handling if the backend fails to respond
-      if (!response.ok) {
-        console.error(
-          `Error fetching noise level: ERR ${response.status} - ${response.statusText}`,
-        );
-        return null;
-      }
+      switch (response.status) {
+        case 200:
+          const data: NoiseMeasurementResponse = await response.json();
+          return data.noiseMeasurementDba;
 
-      const data: NoiseMeasurementResponse = await response.json();
-      return data.hasMeasurement ? data.noiseMeasurementDba : null;
+        case 204:
+          console.log(
+            `Received status code ${response.status}: Noise measurements are not available yet.`,
+          );
+          return null;
+
+        default:
+          console.error(
+            `Error fetching noise level: ERR ${response.status}: ${response.statusText}`,
+          );
+          return null;
+      }
     } catch (error) {
-      // TODO: Implement proper error handling if there is a communication error
       console.error("Failed to fetch noise level:", error);
       return null;
     }

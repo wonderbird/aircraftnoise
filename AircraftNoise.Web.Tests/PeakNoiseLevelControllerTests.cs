@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using AircraftNoise.Web.Models;
@@ -58,5 +59,23 @@ public class PeakNoiseLevelControllerTests : IClassFixture<WebApplicationFactory
         Assert.NotNull(result);
         Assert.Equal(ExpectedNoiseLevelInDataFile, result.NoiseMeasurementDba);
         Assert.True(result.HasMeasurement);
+    }
+
+    [Fact]
+    public async Task Search_ReturnsNoData()
+    {
+        var client = _factory.CreateClient();
+
+        var searchRequestOutsideData = new NoiseMeasurementRequest
+        {
+            EndTimeUtc = TimeZoneInfo.ConvertTimeToUtc(
+                DateTime.Parse("2025-09-15T15:00:00"),
+                TimeZoneInfo.FindSystemTimeZoneById("Europe/Berlin")
+            ),
+            DurationMinutes = 5,
+        };
+        var response = await client.PostAsJsonAsync("/PeakNoiseLevel", searchRequestOutsideData);
+
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
 }

@@ -1,3 +1,4 @@
+using System.Net;
 using AircraftNoise.Core.Adapters.Outbound;
 using AircraftNoise.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +22,21 @@ public class PeakNoiseLevelController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<NoiseMeasurementResponse>> Search(
+    public async Task<ActionResult<NoiseMeasurementResponse>?> Search(
         [FromBody] NoiseMeasurementRequest request
     )
     {
-        // TODO: Clarify error handling - what happens if there is no data?
         var endTimeUtc = request.EndTimeUtc ?? DateTime.UtcNow;
         var duration = TimeSpan.FromMinutes(request.DurationMinutes);
 
         _logger.LogDebug("Searching peak before {EndTime} for {Duration}", endTimeUtc, duration);
-        var range = (await _measurementProvider.GetMeasurementsBeforeAsync(endTimeUtc, duration));
+        var range = await _measurementProvider.GetMeasurementsBeforeAsync(endTimeUtc, duration);
+
+        if (range.IsEmpty)
+        {
+            return null; // by convention, null is converted to HTTP/NO CONTENT (204).
+        }
+
         var peak = range.GetPeak();
 
         return new NoiseMeasurementResponse

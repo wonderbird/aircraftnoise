@@ -86,10 +86,11 @@
 ## Next Milestones
 
 ### Current Sprint
-- [ ] Fix GetPeak() safety issue for empty measurement data
-- [ ] Improve API design for no-data scenarios
+- [x] Fix GetPeak() safety issue for empty measurement data
+- [x] Improve API design for no-data scenarios
 - [ ] Complete frontend error handling implementation
 - [ ] Add comprehensive edge case test coverage
+- [ ] Peak detection shall consider 10 minutes around event timestamp
 - [ ] Implement complaint export functionality
 - [ ] Validate end-to-end user workflow
 

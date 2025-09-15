@@ -28,7 +28,6 @@ export class NoiseLevelMapper {
 
   private async queryNoiseLevel(timestampUtc: Date): Promise<number | null> {
     try {
-      // TODO: take end time and duration from the current event
       const response = await fetch("/PeakNoiseLevel", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

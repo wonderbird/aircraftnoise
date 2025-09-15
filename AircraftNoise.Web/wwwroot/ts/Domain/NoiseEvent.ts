@@ -1,12 +1,12 @@
 export class NoiseEvent {
   private readonly _id: number;
   private readonly _timestampUtc: Date;
-  private _noiseLevelDBA: number | null;
+  private _noiseLevelDba: number | null;
 
   constructor(id: number) {
     this._id = id;
     this._timestampUtc = new Date();
-    this._noiseLevelDBA = null;
+    this._noiseLevelDba = null;
   }
 
   public get id(): number {
@@ -17,11 +17,11 @@ export class NoiseEvent {
     return this._timestampUtc;
   }
 
-  get noiseLevelDBA(): number | null {
-    return this._noiseLevelDBA;
+  get noiseLevelDba(): number | null {
+    return this._noiseLevelDba;
   }
 
-  set noiseLevelDBA(value: number | null) {
-    this._noiseLevelDBA = value;
+  set noiseLevelDba(value: number | null) {
+    this._noiseLevelDba = value;
   }
 }

@@ -19,7 +19,7 @@ export class NoiseLevelMapper {
     let noiseEvents = this.noiseEventRepository.noiseEvents;
 
     for (const event of noiseEvents) {
-      event.noiseLevelDBA = await this.queryNoiseLevel(event.timestampUtc);
+      event.noiseLevelDba = await this.queryNoiseLevel(event.timestampUtc);
       this.noiseEventRepository.update(event);
     }
 

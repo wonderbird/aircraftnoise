@@ -98,11 +98,11 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: AircraftNoise.E2E.Tests/cypress/screenshots
       
       - name: Save screen recordings
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-videos
-          path: cypress/videos
+          path: AircraftNoise.E2E.Tests/cypress/videos

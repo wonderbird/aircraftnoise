@@ -47,11 +47,19 @@ Core infrastructure complete: DFLD parsing, backend API, frontend integration, t
 - Tests for network failure cases
 - Tests for invalid timestamp ranges
 
-### 5. Complete End-to-End Workflow Validation
+### 5. For Demo: Allow to retrieve measurement data even when there is no data ready
+- UI shall allow entering "demo mode"
+- In demo mode, the app shall show a peak value for all recorded events
+
+### 6. Request DFLD permission to use the data
+- Request permission to use data from DFLD
+- Optional: Present the current idea to DFLD
+
+### 7. Complete End-to-End Workflow Validation
 - Validate complete user journey with real DFLD data
 - Ensure all error handling paths work correctly
 
-### 6. Complaint Export Feature Implementation
+### 8. Complaint Export Feature Implementation
 - Implement structured data export for official complaint submission
 - Design export format and connect to recorded events
 

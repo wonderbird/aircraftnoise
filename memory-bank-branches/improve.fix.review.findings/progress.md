@@ -89,11 +89,12 @@
 ### Current Sprint (Post Code Review)
 - [x] ~~Fix GetPeak() safety issue for empty measurement data~~ (Controller workaround implemented)
 - [x] Improve API design for no-data scenarios (HTTP 204 implemented)
-- [ ] **GetPeak() domain method safety**: Return optional result instead of throwing exceptions
-- [ ] **Frontend error feedback**: Replace console logging with user messages for no-data scenarios
-- [ ] **Refactor empty data handling**: Move business logic from controller to domain layer
+- [x] **GetPeak() domain method safety**: Return optional result instead of throwing exceptions
+- [x] **Refactor empty data handling**: Move business logic from controller to domain layer
+- [x] **Frontend error feedback**: Replace console logging with user messages for no-data scenarios
 - [ ] Complete comprehensive edge case test coverage
 - [ ] Peak detection shall consider 10 minutes around event timestamp
+- [ ] For Demo: Allow to retrieve measurement data even when there is no data ready
 - [ ] Implement complaint export functionality
 - [ ] Validate end-to-end user workflow
 

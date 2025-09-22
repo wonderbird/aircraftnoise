@@ -33,17 +33,15 @@ public class PeakNoiseLevelController : ControllerBase
 
         var result = range.GetPeak();
 
-        if (!result.HasValue)
+        if (result == null)
         {
             return null;
         }
-        else
+
+        return new NoiseMeasurementResponse
         {
-            return new NoiseMeasurementResponse
-            {
-                NoiseMeasurementDba = result.Value.NoiseMeasurementDba,
-                TimestampUtc = result.Value.TimestampUtc,
-            };
-        }
+            NoiseMeasurementDba = result.Value.NoiseMeasurementDba,
+            TimestampUtc = result.Value.TimestampUtc,
+        };
     }
 }

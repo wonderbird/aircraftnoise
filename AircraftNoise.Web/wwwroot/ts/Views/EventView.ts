@@ -43,7 +43,7 @@ export class EventView {
     this.events.innerHTML = "";
 
     for (const event of noiseEvents) {
-      let stringRepresentation = event.timestampUtc.toLocaleString();
+      let stringRepresentation = event.timestampCet.toLocaleString();
 
       if (event.noiseLevelDba !== null) {
         stringRepresentation += `: ${event.noiseLevelDba} dB(A)`;

@@ -20,7 +20,7 @@ export class NoiseLevelMapper {
     let warnings: string[] = [];
     let noiseEvents = this.noiseEventRepository.noiseEvents;
     for (const event of noiseEvents) {
-      let result = await this.queryNoiseLevel(event.timestampUtc);
+      let result = await this.queryNoiseLevel(event.timestampCet);
 
       if (typeof result === "string") {
         warnings.push(result);
@@ -35,8 +35,8 @@ export class NoiseLevelMapper {
     this.view.showWarnings(warnings);
   }
 
-  private async queryNoiseLevel(timestampUtc: Date): Promise<number | string> {
-    const forEvent = `Für die Störung am ${timestampUtc.toLocaleDateString()} um ${timestampUtc.toLocaleTimeString()}`;
+  private async queryNoiseLevel(timestampCet: Date): Promise<number | string> {
+    const forEvent = `Für die Störung am ${timestampCet.toLocaleDateString()} um ${timestampCet.toLocaleTimeString()}`;
     let errorSituation = `${forEvent} konnten keine Lärmpegel-Messdaten abgerufen werden`;
 
     try {
@@ -44,7 +44,7 @@ export class NoiseLevelMapper {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          EndTimeUtc: timestampUtc.toISOString(),
+          EndTimeUtc: timestampCet.toISOString(),
           DurationMinutes: 5,
         }),
       });

@@ -37,7 +37,7 @@ public class PeakNoiseLevelController : ControllerBase
             return null; // by convention, null is converted to HTTP/NO CONTENT (204).
         }
 
-        var peak = range.GetPeak();
+        var peak = range.GetPeak()!.Value;
 
         return new NoiseMeasurementResponse
         {

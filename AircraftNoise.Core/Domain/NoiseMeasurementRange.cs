@@ -16,10 +16,12 @@ public class NoiseMeasurementRange
     /// <summary>
     /// Identify peak in non empty measurements
     /// </summary>
-    /// <returns>Measurement with highest <see cref="NoiseMeasurement.NoiseMeasurementDba">NoiseMeasurementDba</see> value</returns>
-    /// <exception cref="InvalidOperationException">The measurements collection is empty</exception>
-    public NoiseMeasurement GetPeak()
+    /// <returns>Null if no data or Measurement with highest <see cref="NoiseMeasurement.NoiseMeasurementDba">NoiseMeasurementDba</see> value</returns>
+    public NoiseMeasurement? GetPeak()
     {
+        if (IsEmpty)
+            return null;
+
         return _measurements.OrderByDescending(m => m.NoiseMeasurementDba).First();
     }
 }

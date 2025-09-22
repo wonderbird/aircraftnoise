@@ -46,14 +46,14 @@ Core infrastructure complete: DFLD parsing, backend API, frontend integration, t
 - UI shall allow entering "demo mode"
 - In demo mode, the app shall show a peak value for all recorded events
 
-### 5. Add Comprehensive Edge Case Test Coverage
+### 5. Request DFLD permission to use the data
+- Request permission to use data from DFLD
+- Optional: Present the current idea to DFLD
+
+### 6. Add Comprehensive Edge Case Test Coverage
 - Unit tests for empty measurement data scenarios
 - Tests for network failure cases
 - Tests for invalid timestamp ranges
-
-### 6. Request DFLD permission to use the data
-- Request permission to use data from DFLD
-- Optional: Present the current idea to DFLD
 
 ### 7. Complete End-to-End Workflow Validation
 - Validate complete user journey with real DFLD data

@@ -1,5 +1,5 @@
 describe("Aircraft Noise App", () => {
-  xit("locates next measurement station", () => {
+  it("locates next measurement station", () => {
     cy.visit("/");
 
     cy.log("Record noise event outside measurement data range");

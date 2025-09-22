@@ -92,7 +92,7 @@
 - [x] **GetPeak() domain method safety**: Return optional result instead of throwing exceptions
 - [x] **Refactor empty data handling**: Move business logic from controller to domain layer
 - [x] **Frontend error feedback**: Replace console logging with user messages for no-data scenarios
-- [ ] For Demo: Allow to retrieve measurement data even when there is no data ready
+- [x] For Demo: Allow to retrieve measurement data even when there is no data ready
 - [ ] Complete comprehensive edge case test coverage
 - [ ] Peak detection shall consider 10 minutes around event timestamp
 - [ ] Implement complaint export functionality

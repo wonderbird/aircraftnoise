@@ -3,9 +3,9 @@ export class NoiseEvent {
   private readonly _timestampCet: Date;
   private _noiseLevelDba: number | null;
 
-  constructor(id: number) {
+  constructor(id: number, timestampCet: Date = new Date()) {
     this._id = id;
-    this._timestampCet = new Date();
+    this._timestampCet = timestampCet;
     this._noiseLevelDba = null;
   }
 

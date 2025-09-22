@@ -22,8 +22,11 @@ export class EventView {
     const getNoiseButton = document.querySelector(
       "#get-noise-button",
     ) as HTMLButtonElement;
+    const moveEventsButton = document.querySelector(
+      "#move-events-button",
+    ) as HTMLButtonElement;
 
-    if (this.events && recordButton && getNoiseButton) {
+    if (this.events && recordButton && getNoiseButton && moveEventsButton) {
       recordButton.addEventListener(
         "click",
         this.eventRecorder.record.bind(this.eventRecorder),
@@ -31,6 +34,12 @@ export class EventView {
       getNoiseButton.addEventListener(
         "click",
         this.noiseLevelMapper.map.bind(this.noiseLevelMapper),
+      );
+      moveEventsButton.addEventListener(
+        "click",
+        this.eventRecorder.moveEventsToMeasurementDataRange.bind(
+          this.eventRecorder,
+        ),
       );
     }
   }

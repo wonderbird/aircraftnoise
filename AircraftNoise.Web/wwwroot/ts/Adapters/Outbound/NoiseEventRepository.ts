@@ -21,4 +21,27 @@ export class NoiseEventRepository {
   update(event: NoiseEvent) {
     this._noiseEventMap.set(event.id, event);
   }
+
+  moveEventsToMeasurementDataRange(): void {
+    const measurementDataStartCet = new Date(2025, 3, 9, 0, 0, 0, 0);
+
+    for (const event of this._noiseEventMap.values()) {
+      const correctedHours = event.timestampCet.getHours() % 2;
+
+      const correctedTimestampCet = new Date(
+        measurementDataStartCet.getFullYear(),
+        measurementDataStartCet.getMonth(),
+        measurementDataStartCet.getDate(),
+        correctedHours,
+        event.timestampCet.getMinutes(),
+        event.timestampCet.getSeconds(),
+        event.timestampCet.getMilliseconds(),
+      );
+
+      this._noiseEventMap.set(
+        event.id,
+        new NoiseEvent(event.id, correctedTimestampCet),
+      );
+    }
+  }
 }

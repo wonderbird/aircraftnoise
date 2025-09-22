@@ -13,4 +13,10 @@ export class EventRecorder {
     this.noiseEventRepository.create();
     this.view.update(this.noiseEventRepository.noiseEvents);
   }
+
+  public moveEventsToMeasurementDataRange(): void {
+    this.noiseEventRepository.moveEventsToMeasurementDataRange();
+    const noiseEvents = this.noiseEventRepository.noiseEvents;
+    this.view.update(noiseEvents);
+  }
 }

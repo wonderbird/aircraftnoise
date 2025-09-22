@@ -15,17 +15,22 @@ export class NoiseLevelMapper {
   }
 
   public async map(): Promise<void> {
-    let noiseEvents = this.noiseEventRepository.noiseEvents;
+    this.view.notifyLoadingEvents();
 
+    let hasError = false;
+    let noiseEvents = this.noiseEventRepository.noiseEvents;
     for (const event of noiseEvents) {
       event.noiseLevelDba = await this.queryNoiseLevel(event.timestampUtc);
+      hasError = hasError || event.noiseLevelDba === null;
       this.noiseEventRepository.update(event);
     }
 
     this.view.update(noiseEvents);
+    if (hasError) {
+      this.view.notifyMissingMeasurementData();
+    }
   }
 
-  // TODO: For the "204: no data" case a warning message should be shown in the UI
   // TODO: For errors, an alert should be shown in the UI
   private async queryNoiseLevel(timestampUtc: Date): Promise<number | null> {
     try {

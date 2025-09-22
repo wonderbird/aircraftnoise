@@ -15,24 +15,27 @@ export class NoiseLevelMapper {
   }
 
   public async map(): Promise<void> {
-    this.view.notifyLoadingEvents();
+    this.view.hideWarnings();
 
-    let hasError = false;
+    let warnings = "";
     let noiseEvents = this.noiseEventRepository.noiseEvents;
     for (const event of noiseEvents) {
-      event.noiseLevelDba = await this.queryNoiseLevel(event.timestampUtc);
-      hasError = hasError || event.noiseLevelDba === null;
+      let result = await this.queryNoiseLevel(event.timestampUtc);
+
+      if (typeof result === "string") {
+        warnings += result + " ";
+      } else {
+        event.noiseLevelDba = result;
+      }
+
       this.noiseEventRepository.update(event);
     }
 
     this.view.update(noiseEvents);
-    if (hasError) {
-      this.view.notifyMissingMeasurementData();
-    }
+    this.view.showWarnings(warnings);
   }
 
-  // TODO: For errors, an alert should be shown in the UI
-  private async queryNoiseLevel(timestampUtc: Date): Promise<number | null> {
+  private async queryNoiseLevel(timestampUtc: Date): Promise<number | string> {
     try {
       const response = await fetch("/PeakNoiseLevel", {
         method: "POST",
@@ -49,20 +52,13 @@ export class NoiseLevelMapper {
           return data.noiseMeasurementDba;
 
         case 204:
-          console.log(
-            `Received status code ${response.status}: Noise measurements are not available yet.`,
-          );
-          break;
+          return "Für einige Störungen konnten keine Messdaten abgerufen werden. Bitte versuche es später noch einmal.";
 
         default:
-          console.error(
-            `Error fetching noise level: ERR ${response.status}: ${response.statusText}`,
-          );
+          return `Fehler beim Messdatenabruf: HTTP Status ${response.status}: ${response.statusText}`;
       }
     } catch (error) {
-      console.error("Failed to fetch noise level:", error);
+      return `Fehler beim Messdatenabruf: HTTP Status ${error}`;
     }
-
-    return null;
   }
 }

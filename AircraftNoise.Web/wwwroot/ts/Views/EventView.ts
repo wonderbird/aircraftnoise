@@ -7,16 +7,14 @@ export class EventView {
   private readonly noiseLevelMapper: NoiseLevelMapper;
 
   private readonly events: HTMLUListElement;
-  private readonly missingDataWarning: HTMLElement;
+  private readonly warnings: HTMLElement;
 
   constructor() {
     this.eventRecorder = new EventRecorder(this);
     this.noiseLevelMapper = new NoiseLevelMapper(this);
 
     this.events = document.querySelector("#events") as HTMLUListElement;
-    this.missingDataWarning = document.getElementById(
-      "missing-measurement-data-warning",
-    ) as HTMLElement;
+    this.warnings = document.getElementById("warnings") as HTMLElement;
 
     const recordButton = document.querySelector(
       "#record-button",
@@ -57,17 +55,22 @@ export class EventView {
     }
   }
 
-  public notifyLoadingEvents(): void {
-    if (this.missingDataWarning.hasAttribute("hidden")) {
+  public hideWarnings(): void {
+    this.warnings.textContent = "";
+
+    if (this.warnings.hasAttribute("hidden")) {
       return;
     }
 
-    this.missingDataWarning.setAttribute("hidden", "hidden");
+    this.warnings.setAttribute("hidden", "hidden");
   }
 
-  public notifyMissingMeasurementData(): void {
-    if (this.missingDataWarning) {
-      this.missingDataWarning.removeAttribute("hidden");
+  public showWarnings(errors: string): void {
+    if (errors === "") {
+      return;
     }
+
+    this.warnings.removeAttribute("hidden");
+    this.warnings.textContent = errors;
   }
 }

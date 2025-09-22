@@ -42,14 +42,14 @@ Core infrastructure complete: DFLD parsing, backend API, frontend integration, t
 - Move business logic from controller to domain layer
 - Ensure Clean Architecture compliance
 
-### 4. Add Comprehensive Edge Case Test Coverage
+### 4. For Demo: Allow to retrieve measurement data even when there is no data ready
+- UI shall allow entering "demo mode"
+- In demo mode, the app shall show a peak value for all recorded events
+
+### 5. Add Comprehensive Edge Case Test Coverage
 - Unit tests for empty measurement data scenarios
 - Tests for network failure cases
 - Tests for invalid timestamp ranges
-
-### 5. For Demo: Allow to retrieve measurement data even when there is no data ready
-- UI shall allow entering "demo mode"
-- In demo mode, the app shall show a peak value for all recorded events
 
 ### 6. Request DFLD permission to use the data
 - Request permission to use data from DFLD

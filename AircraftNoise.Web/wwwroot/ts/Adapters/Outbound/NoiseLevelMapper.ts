@@ -17,13 +17,13 @@ export class NoiseLevelMapper {
   public async map(): Promise<void> {
     this.view.hideWarnings();
 
-    let warnings = "";
+    let warnings: string[] = [];
     let noiseEvents = this.noiseEventRepository.noiseEvents;
     for (const event of noiseEvents) {
       let result = await this.queryNoiseLevel(event.timestampUtc);
 
       if (typeof result === "string") {
-        warnings += result + " ";
+        warnings.push(result);
       } else {
         event.noiseLevelDba = result;
       }
@@ -36,6 +36,9 @@ export class NoiseLevelMapper {
   }
 
   private async queryNoiseLevel(timestampUtc: Date): Promise<number | string> {
+    const forEvent = `Für die Störung am ${timestampUtc.toLocaleDateString()} um ${timestampUtc.toLocaleTimeString()}`;
+    let errorSituation = `${forEvent} konnten keine Lärmpegel-Messdaten abgerufen werden`;
+
     try {
       const response = await fetch("/PeakNoiseLevel", {
         method: "POST",
@@ -52,13 +55,13 @@ export class NoiseLevelMapper {
           return data.noiseMeasurementDba;
 
         case 204:
-          return "Für einige Störungen konnten keine Messdaten abgerufen werden. Bitte versuche es später noch einmal.";
+          return `${forEvent} liegen noch keine Lärmpegel-Messdaten vor.`;
 
         default:
-          return `Fehler beim Messdatenabruf: HTTP Status ${response.status}: ${response.statusText}`;
+          return `${errorSituation}: HTTP Status ${response.status}: ${response.statusText}`;
       }
     } catch (error) {
-      return `Fehler beim Messdatenabruf: HTTP Status ${error}`;
+      return `${errorSituation}: HTTP Status ${error}`;
     }
   }
 }

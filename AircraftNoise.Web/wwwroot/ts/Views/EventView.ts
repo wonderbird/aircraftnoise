@@ -56,7 +56,7 @@ export class EventView {
   }
 
   public hideWarnings(): void {
-    this.warnings.textContent = "";
+    this.warnings.innerHTML = "";
 
     if (this.warnings.hasAttribute("hidden")) {
       return;
@@ -65,12 +65,12 @@ export class EventView {
     this.warnings.setAttribute("hidden", "hidden");
   }
 
-  public showWarnings(errors: string): void {
-    if (errors === "") {
+  public showWarnings(errors: string[]): void {
+    if (errors.length === 0) {
       return;
     }
 
     this.warnings.removeAttribute("hidden");
-    this.warnings.textContent = errors;
+    this.warnings.innerHTML = errors.join("<br/>");
   }
 }

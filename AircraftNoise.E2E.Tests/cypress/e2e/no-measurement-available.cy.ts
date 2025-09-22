@@ -17,6 +17,6 @@ describe("Aircraft Noise App", () => {
     cy.get('[data-testid="get-noise-button"]').click();
     cy.get('[data-testid="warnings"]')
       .should("be.visible")
-      .and("contain", "keine Messdaten");
+      .and("contain", "keine Lärmpegel-Messdaten");
   });
 });

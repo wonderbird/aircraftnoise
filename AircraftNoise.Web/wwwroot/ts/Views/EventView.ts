@@ -65,12 +65,18 @@ export class EventView {
     this.warnings.setAttribute("hidden", "hidden");
   }
 
-  public showWarnings(errors: string[]): void {
-    if (errors.length === 0) {
+  public showWarnings(warnings: string[]): void {
+    if (warnings.length === 0) {
       return;
     }
 
     this.warnings.removeAttribute("hidden");
-    this.warnings.innerHTML = errors.join("<br/>");
+    let list = document.createElement("ul");
+    for (const warning of warnings) {
+      let item = document.createElement("li");
+      item.textContent = warning;
+      list.appendChild(item);
+    }
+    this.warnings.appendChild(list);
   }
 }

@@ -1,4 +1,3 @@
-using System.Net;
 using AircraftNoise.Core.Adapters.Outbound;
 using AircraftNoise.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -32,17 +31,19 @@ public class PeakNoiseLevelController : ControllerBase
         _logger.LogDebug("Searching peak before {EndTime} for {Duration}", endTimeUtc, duration);
         var range = await _measurementProvider.GetMeasurementsBeforeAsync(endTimeUtc, duration);
 
-        if (range.IsEmpty)
+        var result = range.GetPeak();
+
+        if (!result.HasValue)
         {
-            return null; // by convention, null is converted to HTTP/NO CONTENT (204).
+            return null;
         }
-
-        var peak = range.GetPeak()!.Value;
-
-        return new NoiseMeasurementResponse
+        else
         {
-            NoiseMeasurementDba = peak.NoiseMeasurementDba,
-            TimestampUtc = peak.TimestampUtc,
-        };
+            return new NoiseMeasurementResponse
+            {
+                NoiseMeasurementDba = result.Value.NoiseMeasurementDba,
+                TimestampUtc = result.Value.TimestampUtc,
+            };
+        }
     }
 }

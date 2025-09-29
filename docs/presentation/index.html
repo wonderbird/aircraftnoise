@@ -17,6 +17,12 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>Aircraft Noise</section>
+				<section>
+					<a href="#" data-modal-type="video" data-modal-url="assets/aircraftnoise-screenrecording.mp4">
+						<h3>Demo</h3>
+						<img src="assets/aircraftnoise-screenrecording-thumbnail.jpg" alt="Aircraft Noise" style="width: auto; height: 580px;">
+					</a>
+				</section>
 			</div>
 		</div>
 
@@ -24,15 +30,16 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="node_modules/reveal.js-multimodal/plugin/multimodal/multimodal.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+				
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, Multimodal ]
 			});
 		</script>
 	</body>

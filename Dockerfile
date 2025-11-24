@@ -3,7 +3,7 @@ USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
 # Install Node.js LTS
 RUN apt-get update && apt-get install -y curl \
